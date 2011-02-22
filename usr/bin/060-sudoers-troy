@@ -1,0 +1,22 @@
+#!/usr/bin/env perl
+use warnings;
+use strict;
+
+&run_command ( 'pacman --sync sudo' );
+
+open ( my $out, '>>', '/etc/sudoers' );
+print $out <<"END";
+### Following lines added by 4g-arch-040-sudoers
+# Defaults specification
+Defaults:troy timestamp_timeout=-1
+Defaults:!tty_tickets
+# User privilege specification
+root	ALL=(ALL) ALL
+troy	ALL=(ALL) ALL
+END
+
+sub run_command {
+    my $command = shift;
+    print "=> $command\n";
+    system $command;
+}
