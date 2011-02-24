@@ -17,5 +17,5 @@ Sample /etc/fstab entry for swapfiles:
 
 #### Swapfiles
 LABEL=ata1		/mnt/ata1	ext4	defaults		0	1
-/mnt/sda1/swap.sda1	none		swap	sw,pri=2		0	0
+/mnt/sda1/swap.ata1	none		swap	sw,pri=2		0	0
 /swapfile1		none		swap	sw,pri=2		0	0
