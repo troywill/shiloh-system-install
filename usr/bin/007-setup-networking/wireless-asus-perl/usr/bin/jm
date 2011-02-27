@@ -1,0 +1,92 @@
+#!/usr/bin/env perl
+use warnings;
+use strict;
+# troydwill@gmail.com, June 2010
+my $DELAY=1;
+my $SUDO = &get_sudo();
+my $WIRELESS_DEVICE='wlan0';
+my $ESSID='nunu';
+my $KEY='644E4A6E39';
+$ESSID='JM';
+$KEY='D21B5074EA';
+my $CARRIER_CAT_COMMAND = "cat /sys/class/net/${WIRELESS_DEVICE}/carrier";
+my $OPERATING_STATE_COMMAND = "cat /sys/class/net/${WIRELESS_DEVICE}/operstate";
+my $LINK_UP_COMMAND = "$SUDO ip link set wlan0 up";
+my $DHCPCD_COMMAND = "$SUDO /usr/sbin/dhcpcd --timeout=16 $WIRELESS_DEVICE";
+my $GET_IP_ADDRESS_COMMAND = "$SUDO ip addr show dev $WIRELESS_DEVICE";
+
+&run_command($GET_IP_ADDRESS_COMMAND);
+
+while(chomp ( my $result = `$CARRIER_CAT_COMMAND` ) != 1) {
+    &run_command($LINK_UP_COMMAND);
+}
+
+
+# system "$SUDO /etc/rc.d/init.d/network stop";
+
+my $network_status = &get_network_status($WIRELESS_DEVICE);
+
+my $network_status = &get_network_status();
+if ( $network_status eq 'up' ) {
+    print "UP!"; exit;
+} else {
+    &up;
+}
+
+
+sub get_network_status {
+    chomp(my $network_status = `$OPERATING_STATE_COMMAND`);
+    return $network_status;
+}
+
+sub up {
+    &set_key ( ${WIRELESS_DEVICE}, ${KEY});
+    &set_essid ( ${WIRELESS_DEVICE}, ${ESSID});
+    for (1..3) {
+	&do_sleep ($DELAY);
+	my $carrier = `$CARRIER_CAT_COMMAND`;
+	print "CARRIER = $carrier ...";
+	chomp $carrier;
+	if ( $carrier == 1 ) {
+	    last;
+	}
+    }
+    my $t1 = time;
+    &run_command($DHCPCD_COMMAND);
+    print "Obtained dhcp lease in ", time - $t1, " seconds\n";
+#    system("/sbin/ip route add default via ${GATEWAY_IP_ADDRESS} dev ${WIRELESS_DEVICE}");
+}
+
+sub set_essid {
+    my ( $wireless_device, $essid ) = @_;
+    my $command = "$SUDO /usr/sbin/iwconfig $wireless_device essid $essid";
+    print "=> $command\n";
+    system $command;
+}
+
+sub set_key {
+    my ( $wireless_device, $key ) = @_;
+    my $command = "$SUDO /usr/sbin/iwconfig $wireless_device key $key";
+    print "=> $command\n";
+    system $command;
+}
+
+sub get_sudo {
+    if ( $ENV{"USER"} ne 'root') {
+	return '/usr/bin/sudo';
+    }	else {
+	return '';
+    }
+}
+
+sub run_command {
+    my $command = shift;
+    print "=> $command\n";
+    system $command;
+}
+
+sub do_sleep {
+    my $delay = shift;
+    print "$delay\n";
+    sleep $delay;
+}
