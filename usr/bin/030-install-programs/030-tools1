@@ -1,14 +1,5 @@
-#!/usr/bin/env perl
-use warnings;
-use strict;
-
-&run_command ( 'pacman --sync --refresh' );
-&run_command ( 'pacman --sync openssh');
-&run_command ( 'pacman --sync git' );
-&run_command ( 'pacman --sync rsync' );
-
-sub run_command {
-    my $command = shift;
-    print "=> $command\n";
-    system $command;
-}
+#!/bin/sh
+pacman --sync --refresh
+pacman --sync openssh
+pacman --sync git
+pacman --sync rsync
