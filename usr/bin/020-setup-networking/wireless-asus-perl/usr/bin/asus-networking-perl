@@ -1,12 +1,15 @@
 #!/usr/bin/env perl
 use warnings;
 use strict;
-# troydwill@gmail.com, June 2010
+# troydwill@gmail.com, May 2011
 my $DELAY=1;
 my $SUDO = &get_sudo();
 my $WIRELESS_DEVICE='wlan0';
 my $ESSID='nunu';
 my $KEY='644E4A6E39';
+$ESSID='JM';
+$KEY='D21B5074EA';
+
 my $CARRIER_CAT_COMMAND = "cat /sys/class/net/${WIRELESS_DEVICE}/carrier";
 my $OPERATING_STATE_COMMAND = "cat /sys/class/net/${WIRELESS_DEVICE}/operstate";
 my $LINK_UP_COMMAND = "$SUDO ip link set wlan0 up";
@@ -18,11 +21,6 @@ my $GET_IP_ADDRESS_COMMAND = "$SUDO ip addr show dev $WIRELESS_DEVICE";
 while(chomp ( my $result = `$CARRIER_CAT_COMMAND` ) != 1) {
     &run_command($LINK_UP_COMMAND);
 }
-
-if ( defined $ARGV[0] ) {
-     $ESSID='JM';
-     $KEY='D21B5074EA';
- }
 
 # system "$SUDO /etc/rc.d/init.d/network stop";
 
