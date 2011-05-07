@@ -10,8 +10,6 @@ mkswap -L swap1.${DISK_LABEL} /mnt/${DISK_LABEL}/swap1.${DISK_LABEL}
 swapon /mnt/${DISK_LABEL}/swap1.${DISK_LABEL}
 
 exit
-exit
-exit
 
 Sample /etc/fstab entry for swapfiles:
 
