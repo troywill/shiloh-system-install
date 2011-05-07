@@ -3,5 +3,5 @@ use warnings;
 use strict;
 
 print "SDHC\n";
-print "32 MB boot partition, ext2, label = sdhc_boot\n";
-print "root partition, ext4, label=sdhc_root\n";
+print "32 MB boot partition, ext2, label = boot.sdhc\n";
+print "root partition, ext4, label=root.sdhc\n";
