@@ -1,0 +1,8 @@
+#!/bin/sh
+pacman --sync fluxbox
+
+exit
+
+Optional dependencies for fluxbox
+    xorg-xmessage: for using the fbsetbg and fluxbox-generate_menu utilities
+
