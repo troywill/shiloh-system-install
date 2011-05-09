@@ -6,3 +6,6 @@ set -o nounset
 
 pacman --sync mingetty
 
+c1:2345:respawn:/sbin/mingetty --autologin USERNAME tty1 linux
+
+
