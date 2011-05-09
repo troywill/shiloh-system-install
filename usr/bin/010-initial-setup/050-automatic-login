@@ -1,0 +1,8 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+
+# 2011-05-08 Do Web search on "Automatic login to virtual console"
+
+pacman --sync mingetty
+
