@@ -8,7 +8,7 @@ my $WIRELESS_DEVICE='wlan0';
 my $ESSID='nunu';
 my $KEY='644E4A6E39';
 $ESSID='JM';
-$ESSID='rose';
+# $ESSID='rose';
 $KEY='D21B5074EA';
 
 my $CARRIER_CAT_COMMAND = "cat /sys/class/net/${WIRELESS_DEVICE}/carrier";
