@@ -17,15 +17,29 @@ foreach (@scan) {
     };
 }
 
-print "+---------- Available Wireless Networks -----------------------+\n";
+&display_01;
 
-foreach my $mac ( keys %HoC ) {
-    print "\ncell = $mac\n";
-    for my $value ( keys %{ $HoC{$mac} } ) {
-     	print "\t$value = $HoC{$mac}{$value} ";
+sub display_01 {
+    print "+---------- Available Wireless Networks -----------------------+\n";
+    foreach my $mac ( keys %HoC ) {
+	print "\ncell = $mac\n";
+	for my $value ( keys %{ $HoC{$mac} } ) {
+	    print "\t$value = $HoC{$mac}{$value} ";
+	}
     }
+    print "\n";
 }
-print "\n";
+sub display_00 {
+    print "+---------- Available Wireless Networks -----------------------+\n";
+    foreach my $mac ( keys %HoC ) {
+	print "\ncell = $mac\n";
+	for my $value ( keys %{ $HoC{$mac} } ) {
+	    print "\t$value = $HoC{$mac}{$value} ";
+	}
+    }
+    print "\n";
+}
+
 exit;
 __END__
 Usage: iwlist [interface] scanning [essid NNN] [last]
