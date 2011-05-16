@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 use warnings;
 use strict;
+my $clear = `clear`;
 
 my $INTERFACE = 'wlan0';
 my $SCAN_COMMAND = "iwlist $INTERFACE scanning";
@@ -20,12 +21,12 @@ foreach (@scan) {
 &display_01;
 
 sub display_01 {
-    print "+---------- Available Wireless Networks -----------------------+\n";
+    my $counter = 1;
+    print $clear;
+    chomp( my $date = `date`);
+    print "+---------- Available Wireless Networks $date -----------------------+\n\n";
     foreach my $mac ( keys %HoC ) {
-	print "\ncell = $mac\n";
-	for my $value ( keys %{ $HoC{$mac} } ) {
-	    print "\t$value = $HoC{$mac}{$value} ";
-	}
+	print "\t", $counter++, ": $HoC{$mac}{ESSID}\n";
     }
     print "\n";
 }
