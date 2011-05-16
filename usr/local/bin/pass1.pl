@@ -11,17 +11,18 @@ my @scan = `$SCAN_COMMAND`;
 my %cell;
 undef %cell;
 my %HoC;
-foreach my $line (@scan) {
+# 10:32
+foreach (@scan) {
+    my $mac;
 #          Cell 02 - Address: 00:23:69:B6:FC:F5
-    if ( $line =~ m/^\s+Cell\s+\d+\s+-*\s*Address:\s*(([0-9a-fA-F]{2}[:-]{1}){5}([0-9a-fA-F]{2}))/ ) {
-	my $mac = $1;
-	print ":: DEBUG: matched Cell $mac\n";
-	if ( %cell ) {
-	} else {
-	}
+    if ( m/^\s+Cell\s+\d+\s+-*\s*Address:\s*(([0-9a-fA-F]{2}[:-]{1}){5}([0-9a-fA-F]{2}))/ ) {
+	$mac = $1;
 	%cell = ( mac  => $mac );
-	$HoC{$mac}{essid} = "JM";
+	print "DEBUG $mac\n";
+    } elsif (1) {
+	
     };
+#    $HoC{$mac}{essid} = "JM";
 }
 
 foreach my $mac ( keys %HoC ) {
