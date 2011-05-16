@@ -1,40 +1,31 @@
 #!/usr/bin/env perl
-print "\n";
-print `date`;
-print "--------------------------------------------\n";
 use warnings;
 use strict;
-my $SUDO = '/usr/bin/sudo';
+
 my $INTERFACE = 'wlan0';
-my $SCAN_COMMAND = "$SUDO iwlist $INTERFACE scanning";
+my $SCAN_COMMAND = "iwlist $INTERFACE scanning";
 my @scan = `$SCAN_COMMAND`;
-my %cell;
-undef %cell;
-my %HoC;
-# 10:32
+my ( %cell, %HoC, $mac );
 foreach (@scan) {
-    my $mac;
-#          Cell 02 - Address: 00:23:69:B6:FC:F5
     if ( m/^\s+Cell\s+\d+\s+-*\s*Address:\s*(([0-9a-fA-F]{2}[:-]{1}){5}([0-9a-fA-F]{2}))/ ) {
 	$mac = $1;
 	%cell = ( mac  => $mac );
-	print "DEBUG $mac\n";
-    } elsif (1) {
-	
+    } elsif (	m/^\s*ESSID:*\"(.*?)\"/ ) {
+	$HoC{$mac}{ESSID} = $1;
+    } elsif (	m/^\s*Quality=(\d+\/\d+)\s*/ ) {
+	$HoC{$mac}{Quality} = $1;
     };
-#    $HoC{$mac}{essid} = "JM";
 }
+
+print "+---------- Available Wireless Networks -----------------------+\n";
 
 foreach my $mac ( keys %HoC ) {
     print "\ncell = $mac\n";
-  # for $role ( keys %{ $HoH{$family} } ) {
-  # 	print "$role=$HoH{$family}{$role} ";
-  # }
     for my $value ( keys %{ $HoC{$mac} } ) {
      	print "\t$value = $HoC{$mac}{$value} ";
     }
 }
-
+print "\n";
 exit;
 __END__
 Usage: iwlist [interface] scanning [essid NNN] [last]
