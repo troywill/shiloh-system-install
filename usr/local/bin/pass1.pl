@@ -12,7 +12,7 @@ foreach (@scan) {
 	%cell = ( mac  => $mac );
     } elsif (m/^\s*ESSID:*\"(.*?)\"/ ) {
 	$HoC{$mac}{ESSID} = $1;
-    } elsif ( m/^\s*Quality=(\d+\/\d+)\s*/ ) {
+    } elsif ( m/^\s*Quality=(\d+)\/(\d+)\s*/ ) {
 	$HoC{$mac}{Quality} = $1;
     } elsif ( m/^\s*Encryption key:(.*?)$/ ) {
 	$HoC{$mac}{Encryption} = $1;
@@ -28,8 +28,9 @@ sub display_01 {
     print $clear;
     chomp( my $date = `date`);
     print "+---------- Available Wireless Networks $date -----------------------+\n\n";
-    foreach my $mac ( keys %HoC ) {
-	print "\t", $counter++, ": $HoC{$mac}{ESSID}";
+#    foreach my $mac ( sort keys %HoC ) {
+    foreach my $mac ( sort keys %HoC ) {
+	print "\t", $counter++, " $mac $HoC{$mac}{ESSID}";
 	if ( $HoC{$mac}{Encryption} eq 'off' ) {
 	    print color 'bold green';
 	    print " [open network]";
