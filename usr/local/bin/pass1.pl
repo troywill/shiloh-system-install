@@ -29,7 +29,7 @@ sub display_01 {
     chomp( my $date = `date`);
     print "+---------- Available Wireless Networks $date -----------------------+\n\n";
 #    foreach my $mac ( sort keys %HoC ) {
-    foreach my $mac ( sort keys %HoC ) {
+    foreach my $mac ( sort { keys %{$HoC{$b}} <=> keys %{$HoC{$a}} } keys %HoC ) {
 	print "\t", $counter++, " $mac $HoC{$mac}{ESSID}";
 	if ( $HoC{$mac}{Encryption} eq 'off' ) {
 	    print color 'bold green';
