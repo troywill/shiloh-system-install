@@ -19,7 +19,29 @@ foreach (@scan) {
     }
 }
 
-&display_01;
+
+&sort_00;
+
+sub sort_00 {
+
+    foreach my $key ( keys %HoC ) {
+	print "$key\n";
+    };
+    print "-----------------------------\n";
+    foreach my $mac ( sort { 1 <=> 2 } keys %HoC ) {
+	print "$mac\n";
+    };
+    print "--------- OK --------------------\n";
+    foreach my $mac ( sort { $HoC{$mac}{Quality} <=> $HoC{$mac}{Quality} } keys %HoC ) {
+	print "$mac $HoC{$mac}{Quality}\n";
+    };
+    print "-----------------------------\n";
+    foreach my $mac ( sort { $HoC{$b}{Quality} <=> $HoC{$a}{Quality} } keys %HoC ) {
+	print "$mac $HoC{$mac}{ESSID}\t$HoC{$mac}{Quality}\n";
+    };
+}
+
+# &display_01;
 
 sub display_01 {
     use Term::ANSIColor;
