@@ -1,31 +1,44 @@
 #!/usr/bin/env perl
 use warnings;
 use strict;
+my $clear = `clear`;
 
 my $INTERFACE = 'wlan0';
 my $SCAN_COMMAND = "iwlist $INTERFACE scanning";
-my @scan = `$SCAN_COMMAND`;
+
 my ( %cell, %HoC, $mac );
-foreach (@scan) {
-    if ( m/^\s+Cell\s+\d+\s+-*\s*Address:\s*(([0-9a-fA-F]{2}[:-]{1}){5}([0-9a-fA-F]{2}))/ ) {
-	$mac = $1;
-	%cell = ( mac  => $mac );
-    } elsif (m/^\s*ESSID:*\"(.*?)\"/ ) {
-	$HoC{$mac}{ESSID} = $1;
-    } elsif ( m/^\s*Quality=(\d+)\/(\d+)\s*/ ) {
-	$HoC{$mac}{Quality} = $1;
-    } elsif ( m/^\s*Encryption key:(.*?)$/ ) {
-	$HoC{$mac}{Encryption} = $1;
+
+# while (1) {
+    my @scan = `$SCAN_COMMAND`;
+    foreach (@scan) {
+	if ( m/^\s+Cell\s+\d+\s+-*\s*Address:\s*(([0-9a-fA-F]{2}[:-]{1}){5}([0-9a-fA-F]{2}))/ ) {
+	    $mac = $1;
+	    %cell = ( mac  => $mac );
+	} elsif (m/^\s*ESSID:*\"(.*?)\"/ ) {
+	    $HoC{$mac}{ESSID} = $1;
+	} elsif ( m/^\s*Quality=(\d+)\/(\d+)\s*/ ) {
+	    $HoC{$mac}{Quality} = $1;
+	} elsif ( m/^\s*Encryption key:(.*?)$/ ) {
+	    $HoC{$mac}{Encryption} = $1;
+	}
     }
-}
-
-
-&sort_00;
+    print $clear;
+    &sort_00;
+# }
+# &display_01;
 
 sub sort_00 {
-    print "------------------------------------------------\n";
+    use Term::ANSIColor;
+    print "\thardware address\tstrenth\tNetwork name\n";
+    print "\t-----------------\t-------\t------------\n";
     foreach my $mac ( sort { $HoC{$b}{Quality} <=> $HoC{$a}{Quality} } keys %HoC ) {
-	print "$mac $HoC{$mac}{Quality} \"$HoC{$mac}{ESSID}\"\n";
+	print "\t$mac\t  $HoC{$mac}{Quality}\t\"$HoC{$mac}{ESSID}\"";
+	if ( $HoC{$mac}{Encryption} eq 'off' ) {
+	    print color 'bold green';
+	    print " (open network)";
+	    print color 'reset';
+	}
+	print "\n";
     };
 }
 
@@ -34,8 +47,6 @@ sub sort_00 {
 sub display_01 {
     use Term::ANSIColor;
     my $counter = 1;
-    my $clear = `clear`;
-    print $clear;
     chomp( my $date = `date`);
     print "+---------- Available Wireless Networks $date -----------------------+\n\n";
     # Sort by Quality => $HoC{$mac}{Quality}
