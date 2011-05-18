@@ -22,17 +22,16 @@ my ( %cell, %HoC, $mac );
 	    $HoC{$mac}{Encryption} = $1;
 	}
     }
-    print $clear;
     &sort_00;
 # }
 # &display_01;
 
 sub sort_00 {
     use Term::ANSIColor;
-    print "\thardware address\tstrenth\tNetwork name\n";
-    print "\t-----------------\t-------\t------------\n";
+    print "  hardware address  strength Network name\n";
+    print "  ----------------- -------- ------------\n";
     foreach my $mac ( sort { $HoC{$b}{Quality} <=> $HoC{$a}{Quality} } keys %HoC ) {
-	print "\t$mac\t  $HoC{$mac}{Quality}\t\"$HoC{$mac}{ESSID}\"";
+	print "  $mac    $HoC{$mac}{Quality}\t\"$HoC{$mac}{ESSID}\"";
 	if ( $HoC{$mac}{Encryption} eq 'off' ) {
 	    print color 'bold green';
 	    print " (open network)";
