@@ -12,3 +12,7 @@ sub run_command {
     print "=> $command\n";
     system $command;
 }
+
+__END__
+
+gpasswd --add troy audio,network,optical,storage,video,http
