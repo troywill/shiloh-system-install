@@ -1,0 +1,2 @@
+pacman --sync kdebase-konqueror kdeplasma-addons-applets-konqprofiles kdeplasma-addons-runners-konquerorsessions
+
