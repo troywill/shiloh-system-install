@@ -3,6 +3,6 @@ use warnings;
 use strict;
 
 print <<END
+openssh
 wireless_tools
-iproute2
 END
