@@ -1,2 +1,4 @@
 #!/bin/bash
 cpanp i Catalyst::Runtime
+cpanp i Catalyst::Devel
+

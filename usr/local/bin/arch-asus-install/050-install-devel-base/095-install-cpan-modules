@@ -1,0 +1,4 @@
+#!/bin/bash
+cpanp i Term::ReadKey perltidy Perl::Critic AppConfig Perl::Tidy
+
+
