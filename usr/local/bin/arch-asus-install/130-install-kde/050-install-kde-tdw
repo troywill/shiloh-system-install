@@ -1,2 +1,4 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
 pacman --sync kdebase-konqueror kdeplasma-addons-applets-konqprofiles kdeplasma-addons-runners-konquerorsessions
-
