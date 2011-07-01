@@ -1,3 +1,2 @@
-#!/bin/bash
+#!/bin/sh
 gem install rails --no-ri --no-rdoc
-
