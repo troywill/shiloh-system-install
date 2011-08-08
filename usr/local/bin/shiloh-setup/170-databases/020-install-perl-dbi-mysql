@@ -1,0 +1,2 @@
+#!/bin/sh
+cpanp i DBD::mysql
