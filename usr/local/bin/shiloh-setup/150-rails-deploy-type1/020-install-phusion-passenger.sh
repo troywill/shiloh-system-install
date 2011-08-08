@@ -8,8 +8,8 @@ if [ "$UID" -ne "0" ]; then
     exit
 fi
 
-# gem install passenger
-# passenger-install-apache2-module
+gem install passenger --no-ri --no-rdoc
+passenger-install-apache2-module
 
 
 cat >> ${APACHE_CONF} <<EOF
