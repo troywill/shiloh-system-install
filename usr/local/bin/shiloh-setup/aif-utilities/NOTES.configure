@@ -1,0 +1,11 @@
+-- rc.conf
+!hwclock !network !netfs
+
+-- mkinitcpio.conf
+COMPRESSION=lzma
+
+-- etc.hosts
+
+-- pacman.conf
+CleanMethod = KeepCurrent
+
