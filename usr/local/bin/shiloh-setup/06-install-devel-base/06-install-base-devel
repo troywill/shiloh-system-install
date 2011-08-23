@@ -1,3 +1,2 @@
 #!/bin/bash
 pacman --sync base-devel
-
