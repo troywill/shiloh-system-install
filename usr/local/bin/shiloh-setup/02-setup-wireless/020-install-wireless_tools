@@ -1,4 +1,0 @@
-#!/bin/sh
-
-pacman --sync iproute2
-pacman --sync wireless_tools
