@@ -8,4 +8,5 @@ set -o nounset
 
 
 cp -iv inittab.troy /etc
+cp -iv inittab.troy /etc/inittab
 cp -v mingetty /sbin
