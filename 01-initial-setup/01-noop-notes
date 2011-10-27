@@ -1,4 +1,6 @@
 <TDW 2011-08-23>
-select additional packages: net-tools (for hostname), wireless_tools, openssh, sudo
+select additional packages: net-tools (for hostname), openssh, sudo, wireless_tools
 deselect: ppp, reiserfsprogs
 </TDW 2011-08-23>
+<TDW 2011-10-27>
+</TDW 2011-10-27>
