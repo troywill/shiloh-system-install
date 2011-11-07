@@ -1,4 +1,5 @@
 #!/bin/sh
-ln --symbolic --verbose /var/cache/pacman/pkg /mnt/var/cache/pacman/pkg
+cd /mnt/var/cache/pacman && ln --symbolic --verbose /var/cache/pacman/pkg
+
 
 
