@@ -1,8 +1,4 @@
 #!/bin/bash
 # pacman --sync ruby
-# wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p180.tar.gz # 2011-07-08
-# wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p290.tar.gz # 2011-07-17
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz # 2011-12-27
 
-
-
+wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz # 2012-01-01
