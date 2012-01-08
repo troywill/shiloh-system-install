@@ -1,0 +1,4 @@
+#!/bin/sh
+EDITOR=emacs
+echo "/usr/local/bin/ruby-1.9.3-p0"
+${EDITOR} /etc/profile
