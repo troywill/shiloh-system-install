@@ -1,2 +1,3 @@
 #!/bin/sh
-cpanp i Catalyst::Runtime Catalyst::Devel
+cpanp i Catalyst::Runtime \
+    Catalyst::Devel
