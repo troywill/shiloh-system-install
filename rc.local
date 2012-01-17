@@ -1,7 +1,0 @@
-#!/bin/bash
-#
-# /etc/rc.local: Local multi-user startup script.
-#
-/usr/local/bin/wireless-connect.pl
-pacman --sync --refresh
-pacman --sync --sysupgrade
