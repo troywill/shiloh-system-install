@@ -1,0 +1,20 @@
+#+TITLE: List of Arch Linux installation Packages
+#+AUTHOR: Troy Will
+#+EMAIL: troydwill AT gmail DOT com
+#+LANGUAGE:  en
+
+* aif
+  description = The ArchLinux installation Framework
+  repository = extra
+  http://www.archlinux.org/packages/extra/any/aif
+  http://projects.archlinux.org/?p=aif.git;a=summary
+  git clone git://projects.archlinux.org/aif.git
+
+* libui-sh
+  description = a shell library providing useful UI functions
+  repository = extra
+  http://www.archlinux.org/packages/extra/any/libui-sh
+  http://github.com/Dieterbe/libui-sh
+  git clone https://github.com/Dieterbe/libui-sh.git
+
+  
