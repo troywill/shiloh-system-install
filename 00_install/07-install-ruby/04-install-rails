@@ -1,3 +1,4 @@
 #!/bin/sh
-gem install rails --no-ri --no-rdoc > log.rails 2>&1
+sudo gem install rails --no-ri --no-rdoc > log.rails 2>&1
+
 

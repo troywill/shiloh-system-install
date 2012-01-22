@@ -1,2 +1,3 @@
 #!/bin/bash
-gem install sqlite3 --no-ri --no-rdoc
+sudo gem install sqlite3 --no-ri --no-rdoc
+
