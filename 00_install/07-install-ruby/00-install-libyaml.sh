@@ -1,3 +1,4 @@
 #!/bin/sh
-pacman --sync libyaml
+sudo pacman --sync libyaml
+
 
