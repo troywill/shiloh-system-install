@@ -1,5 +1,6 @@
 #!/bin/bash
 set -o verbose
 
-cp --interactive /SOURCE/ssh.tar /mnt/root/
+sudo cp --interactive /SOURCE/ssh.tar /mnt/root/
+
 
