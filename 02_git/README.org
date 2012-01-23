@@ -1,0 +1,11 @@
+* aif: The ArchLinux Installation Framework
+  http://www.archlinux.org/packages/extra/any/aif/
+  Upstream URL:http://projects.archlinux.org/?p=aif.git;a=summary
+** Clone
+   git://projects.archlinux.org/aif.git
+   http://projects.archlinux.org/git/aif.git
+   https://projects.archlinux.org/git/aif.git
+
+* libui-sh: a shell library providing useful UI functions
+  Upstream URL:http://github.com/Dieterbe/libui-sh/
+  git clone https://github.com/Dieterbe/libui-sh.git
