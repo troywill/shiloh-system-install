@@ -1,0 +1,2 @@
+* http://www.modrails.com/documentation/Users%20guide%20Apache.html
+* http://railscasts.com/episodes/122-passenger-in-development

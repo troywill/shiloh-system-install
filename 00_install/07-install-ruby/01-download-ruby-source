@@ -1,4 +1,6 @@
-#!/bin/bash
-# pacman --sync ruby
+#!/bin/sh
+RUBY_VERSION=1.9.3-p0
+# 2012-01-23
+wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$RUBY_VERSION.tar.bz2
 
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz # 2012-01-01
+
