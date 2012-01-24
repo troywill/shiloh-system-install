@@ -1,5 +1,9 @@
 #!/bin/sh
-sudo gem install rails --no-ri --no-rdoc
+GEM_OPTIONS=" --no-ri --no-rdoc"
+SUDO=sudo
+$SUDO gem install rails $GEM_OPTIONS
+$SUDO gem install execjs therubyracer $GEM_OPTIONS
+
 
 
 

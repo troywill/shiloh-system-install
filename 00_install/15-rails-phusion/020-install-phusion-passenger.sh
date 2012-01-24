@@ -19,7 +19,7 @@ cat >> ${APACHE_CONF} <<EOF
 # PassengerRuby /usr/bin/ruby                                                                     
 EOF
 
-$EDITOR $APACHE_CONF
+# $EDITOR $APACHE_CONF
 exit
 
 exit
