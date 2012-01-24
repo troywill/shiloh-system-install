@@ -13,26 +13,13 @@ passenger-install-apache2-module
 
 
 cat >> ${APACHE_CONF} <<EOF
-# See http://www.modrails.com/ (as of July 2011) <troydwill@gmail.com>'
-# LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.7/ext/apache2/mod_passenger.so
-# PassengerRoot /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.7
-# PassengerRuby /usr/bin/ruby                                                                     
+# See http://www.modrails.com/ (January 2012) <troydwill@gmail.com>'
+# LoadModule passenger_module /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.11/ext/apache2/mod_passenger.so
+# PassengerRoot /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.11
+# PassengerRuby /usr/local/bin/ruby-1.9.3-p0/ruby
+
 EOF
 
-# $EDITOR $APACHE_CONF
-exit
+$EDITOR $APACHE_CONF
 
-exit
-exit
-exit
-The Apache 2 module was successfully installed.                                                     
-                                                                                                    
-Please edit your Apache configuration file, and add these lines:                                    
-                                                                                                    
-   LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.7/ext/apache2/mod_passenger.so                                                                                               
-   PassengerRoot /usr/lib/ruby/gems/1.9.1/gems/passenger-3.0.7                                      
-   PassengerRuby /usr/bin/ruby                                                                      
-                                                                                                    
-After you restart Apache, you are ready to deploy any number of Ruby on Rails                       
-applications on Apache, without any further Ruby on Rails-specific                                  
-configuration!
+
