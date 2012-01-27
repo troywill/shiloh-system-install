@@ -13,5 +13,5 @@ make test
 sudo make DESTDIR=/stow/ruby-${RUBYVERSION} install
 sudo rm --interactive --recursive /usr/local/lib/ruby
 sudo stow ruby-${RUBYVERSION}
+echo "# /usr/local/bin/ruby-$RUBYVERSION" >> /tmp/tmp_profile
 sudo $EDITOR /etc/profile
-
