@@ -10,6 +10,7 @@ PREFIX=/usr/local
 ./configure --prefix=$PREFIX --bindir=$PREFIX/bin/ruby-$RUBYVERSION --mandir=$PREFIX/man
 make
 make test
+exit
 sudo make DESTDIR=/stow/ruby-${RUBYVERSION} install
 sudo rm --interactive --recursive /usr/local/lib/ruby
 sudo stow ruby-${RUBYVERSION}
