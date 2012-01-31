@@ -1,2 +1,6 @@
+EDITOR='emacs --no-window-system'
 SYSTEM_PACKAGE_INSTALL='sudo pacman --sync'
 CPAN_INSTALL='cpanm --sudo'
+GEM_INSTALL='sudo gem install'
+GEM_FLAGS='--no-ri --no-rdoc'
+FILE_DOWNLOAD='wget --no-clober'

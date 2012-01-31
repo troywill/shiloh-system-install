@@ -1,3 +1,6 @@
 #!/bin/bash
-sudo gem install execjs --no-ri --no-rdoc
-sudo gem install therubyracer --no-ri --no-rdoc
+set -o errexit
+set -o nounset
+
+. ./simplelib.sh
+$GEM_INSTALL therubyracer $GEM_FLAGS
