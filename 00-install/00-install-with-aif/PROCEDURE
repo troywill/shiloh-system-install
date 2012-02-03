@@ -21,6 +21,7 @@ Run the following shell scripts in sequential order to install a Shiloh GNU/Linu
 	1. [X] HOSTNAME=hostname
 	   Change hostname to whatever you want!
 	2. [X] DAEMONS=(syslog-ng !network crond sshd)
-4. [ ] (Optionally) run 04-copy-stow.sh
-5. [ ] (Optionally) run 05-copy-ssh-keys.sh
-6. [ ] (Optionally) run 06-pacman-cache.sh
+3. [X] (Optionally) run 04-stow-network-perl.sh as root
+4. [X] (Optionally) run 05-copy-ssh-keys.sh as root
+5. [X] (Optionally) run 06-pacman-cache.sh as root
+

@@ -2,7 +2,8 @@
 use warnings;
 use strict;
 
-my $user = 'troy';
+print "Which user to add? ";
+chomp(my $user = <STDIN>);
 
 &run_command ( "useradd --group users --groups audio,network,optical,storage,video,http --create-home ${user}");
 &run_command ( "passwd ${user}");

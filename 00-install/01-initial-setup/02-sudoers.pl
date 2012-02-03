@@ -2,8 +2,6 @@
 use warnings;
 use strict;
 
-&run_command ( 'pacman --sync sudo' );
-
 open ( my $out, '>>', '/etc/sudoers' );
 print $out <<"END";
 ### Following lines added by 4g-arch-040-sudoers
