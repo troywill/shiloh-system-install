@@ -4,8 +4,10 @@ set -o nounset
 set -o verbose
 
 VERSION="5.14.2"
-sh Configure -de -Dprefix=/usr/local -Dbin=/usr/local/bin/perl-${VERSION} -Dsitebin=/usr/local/bin/perl-${VERSION}
+PREFIX="/usr/local"
+BINDIR="/usr/local/bin/perl-${VERSION}"
+SITEBINDIR=${BINDIR}
+sh Configure -de -Dprefix=${PREFIX} -Dbin=${BINDIR} -Dsitebin=${SITEBINDIR}
 make
 make test
 sudo make DESTDIR=/stow/perl-${VERSION} install
-
