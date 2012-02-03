@@ -1,22 +1,26 @@
   -*- mode: org; fill-column:65 -*-
 Run the following shell scripts in sequential order to install a Shiloh GNU/Linux system.
 1. [X] Run ./01-erase-drive.sh as root
-2. [-] Run ./02-run-aif.sh as root [6/7]
-   Select these additional packages:
-   1. [X] base-devel
-   2. [ ] net-tools (for hostname)
-      Note: Feb 3, 2012 I didn't select this to verify that the hostname program is part of this program
-   3. [X] openssh
-   4. [X] sudo
-   5. [X] wireless_tools
-   Deselect these packages (optional, leave them selected if you want installed):
-   1. [X] ppp
-   2. [X] reiserfsprogs
-3. [X] (Optionally) run 03-link-cache.sh as root
-4. [X] Edit /tmp/pacman.conf
+2. [-] Run ./02-run-aif.sh as root [5/6]
+   + [-] Select these additional packages: [4/5]
+     1. [X] base-devel
+     2. [ ] net-tools (for hostname)
+	     Note: Feb 3, 2012 I didn't select this to verify that the hostname program is part of this program
+     3. [X] openssh
+     4. [X] sudo
+     5. [X] wireless_tools
+   + [X] Deselect these packages (optional, leave them selected if you want installed):
+     1. [X] ppp
+     2. [X] reiserfsprogs
+   + [X] (Optionally) run 03-link-cache.sh as root
+   + [X] Edit /tmp/pacman.conf
    This is a temporary need. Add SigLevel=Never to options
-5. [X] Install packages
-6. [ ] 
-7. [ ] 04-copy-stow.sh
-8. [ ] 05-copy-ssh-keys.sh
-9. [ ] 06-pacman-cache.sh
+   + [X] Install packages
+   + [X] Configure system [1/1]
+     1. [X] /etc/rc.conf
+	1. [X] HOSTNAME=hostname
+	   Change hostname to whatever you want!
+	2. [X] DAEMONS=(syslog-ng !network crond sshd)
+4. [ ] (Optionally) run 04-copy-stow.sh
+5. [ ] (Optionally) run 05-copy-ssh-keys.sh
+6. [ ] (Optionally) run 06-pacman-cache.sh
