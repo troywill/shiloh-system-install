@@ -3,5 +3,5 @@ set -o errexit
 set -o nounset
 
 . ./simplelib.sh
-$CPAN_INSTALLER Catalyst::Runtime
-$CPAN_INSTALLER Catalyst::Devel
+$CPAN_INSTALL Catalyst::Runtime
+$CPAN_INSTALL Catalyst::Devel
