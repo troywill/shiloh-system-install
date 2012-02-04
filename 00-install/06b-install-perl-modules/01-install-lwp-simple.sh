@@ -3,4 +3,4 @@ set -o errexit
 set -o nounset
 
 . ./simplelib.sh
-$CPAN_INSTALLER LWP::Simple
+$CPAN_INSTALL LWP::Simple

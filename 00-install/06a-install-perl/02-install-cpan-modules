@@ -1,4 +1,0 @@
-#!/bin/sh
-cpanp i Term::ReadKey \
-    Perl::Critic AppConfig \
-    Perl::Tidy
