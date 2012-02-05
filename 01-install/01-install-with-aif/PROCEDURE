@@ -14,13 +14,14 @@ Run the following shell scripts in sequential order to install a Shiloh GNU/Linu
      2. [X] reiserfsprogs
    + [X] (Optionally) run 03-link-cache.sh as root
    + [X] Edit /tmp/pacman.conf
-   This is a temporary need. Add SigLevel=Never to options
+     This is a temporary need. Add SigLevel=Never to options
    + [X] Install packages
    + [X] Configure system [1/1]
      1. [X] /etc/rc.conf
 	1. [X] HOSTNAME=hostname
 	   Change hostname to whatever you want!
 	2. [X] DAEMONS=(syslog-ng !network crond sshd)
+     2. [ ] 
 3. [X] (Optionally) run 04-stow-network-perl.sh as root
 4. [X] (Optionally) run 05-copy-ssh-keys.sh as root
 5. [X] (Optionally) run 06-pacman-cache.sh as root
