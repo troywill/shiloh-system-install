@@ -1,6 +1,4 @@
 #!/bin/sh
-RUBY_VERSION=1.9.3-p0
-# 2012-01-23
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$RUBY_VERSION.tar.bz2
-
-
+RUBY_VERSION='1.9.3-p125'
+# 2012-03-08
+wget --no-clobber http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$RUBY_VERSION.tar.bz2
