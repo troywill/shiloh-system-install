@@ -4,6 +4,6 @@ set -o nounset
 set -o verbose
 
 source ../simplelib.sh
-gem install rails $GEM_OPTIONS
+${GEM_INSTALL} rails $GEM_OPTIONS
 # gem install execjs therubyracer $GEM_OPTIONS
-gem install therubyracer $GEM_OPTIONS
+${GEM_INSTALL} therubyracer $GEM_OPTIONS
