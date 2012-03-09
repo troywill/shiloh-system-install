@@ -8,7 +8,10 @@ source ../ruby-version
 # RUBYVERSION="1.9.3-p0"
 PREFIX=/usr/local
 
-./configure --prefix=$PREFIX --bindir=$PREFIX/bin/ruby-$RUBY_VERSION --mandir=$PREFIX/man
+./configure --prefix=$PREFIX --bindir=$PREFIX/bin/ruby-$RUBY_VERSION --mandir=$PREFIX/man \
+    --disable-install-doc \
+    --disable-install-rdoc \
+    --disable-install-capi
 make
 # make test
 sudo make DESTDIR=/stow/ruby-${RUBY_VERSION} install
