@@ -1,7 +1,5 @@
-#!/bin/sh
-GEM_OPTIONS=" --no-ri --no-rdoc"
+#!/bin/bash
+source ../simplelib.sh
 gem install rails $GEM_OPTIONS
 # gem install execjs therubyracer $GEM_OPTIONS
 gem install therubyracer $GEM_OPTIONS
-
-
