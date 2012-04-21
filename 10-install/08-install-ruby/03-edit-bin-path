@@ -1,5 +1,0 @@
-#!/bin/sh
-EDITOR=emacs
-cat ./ruby-version
-sleep 3
-sudo ${EDITOR} /etc/profile

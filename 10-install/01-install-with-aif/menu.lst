@@ -1,7 +1,0 @@
-timeout   5
-default   0
-color light-blue/black light-cyan/blue
-title  Shiloh GNU/Arch/Linux
-root   (hd0,0)
-kernel /boot/vmlinuz-linux root=/dev/disk/by-label/root.thumb ro
-initrd /boot/initramfs-linux.img
