@@ -17,5 +17,5 @@ make
 sudo make DESTDIR=/stow/ruby-${RUBY_VERSION} install
 sudo rm --interactive --recursive /usr/local/lib/ruby
 sudo stow ruby-${RUBY_VERSION}
-echo "# /usr/local/bin/ruby-$RUBYVERSION" >> /tmp/tmp_profile
+echo "# /usr/local/bin/ruby-$RUBY_VERSION" >> /tmp/tmp_profile
 sudo $EDITOR /etc/profile
