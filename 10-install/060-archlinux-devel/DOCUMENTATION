@@ -1,8 +1,8 @@
   -*- mode: org; fill-column:65 -*-
 * How to use ABS?
   Building package using abs contain these steps:
-  1. [X] Install the abs package with pacman
-  2. [X] Running abs as root creates the ABS tree by synchronizing with the Arch Linux server
+  1. [ ] Install the abs package with pacman
+  2. [ ] Running abs as root creates the ABS tree by synchronizing with the Arch Linux server
   3. [ ] Copy the build files (usually residing under /var/abs/<repo>/<pkgname>) to a build directory
   4. [ ] navigate to that directory, edit the PKGBUILD (if desired/necessary) and do makepkg.
   5. [ ] According to instructions in the PKGBUILD, makepkg will download the appropriate source tarball,
