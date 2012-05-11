@@ -1,23 +1,23 @@
   -*- mode: org; fill-column:65 -*-
 * Steps
-  1. [ ] Run ./02-run-aif.sh as root
-  2. [ ] Manually set up partiion (Optionally run ./10-setup-drive.sh as root)
-  3. [ ] Select these additional packages: [0/5]
-       + [ ] base-devel
-       + [ ] net-tools (for hostname)
-	     Note: Feb 3, 2012 I didn't select this to verify that the hostname program is part of this program
-       + [ ] openssh
-       + [ ] sudo
-       + [ ] wireless_tools
-  4. [ ] Deselect these packages (optional, leave them selected if you want installed):
-       1. [ ] ppp
-       2. [ ] reiserfsprogs
-  5. [ ] (Optionally) run 03-link-cache.sh as root
-  6. [ ] Edit /tmp/pacman.conf ( Add SigLevel=Never to options )
-  7. [ ] Install packages
-  8. [ ] Edit /etc/rc.conf [0/2]
-         - [ ] HOSTNAME=hostname
-         - [ ] DAEMONS=(syslog-ng !network crond sshd)
+  1. [X] Run ./02-run-aif.sh as root
+  2. [X] Manually set up partiion (Optionally run ./10-setup-drive.sh as root)
+  3. [X] Select these additional packages: [5/5]
+     + [X] base-devel
+     + [X] net-tools (for hostname)
+	   Note: Feb 3, 2012 I didn't select this to verify that the hostname program is part of this program
+     + [X] openssh
+     + [X] sudo
+     + [X] wireless_tools
+  4. [X] Deselect these packages (optional, leave them selected if you want installed):
+     1. [X] ppp
+     2. [X] reiserfsprogs
+  5. [X] (Optionally) run 03-link-cache.sh as root
+  6. [X] Edit /tmp/pacman.conf ( Add SigLevel=Never to options )
+  7. [X] Install packages
+  8. [X] Edit /etc/rc.conf [2/2]
+     - [X] HOSTNAME=hostname
+     - [X] DAEMONS=(syslog-ng !network crond sshd)
   9. [ ] (Optionally) run 04-stow-network-perl.sh as root
   10. [ ] (Optionally) run 05-copy-ssh-keys.sh as root
   11. [ ] (Optionally) run 06-pacman-cache.sh as root
