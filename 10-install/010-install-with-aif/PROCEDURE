@@ -1,26 +1,23 @@
   -*- mode: org; fill-column:65 -*-
-Run the following shell scripts in sequential order to install a Shiloh GNU/Linux system.
-1. [ ] Run ./01-erase-drive.sh as root
-2. [-] Run ./02-run-aif.sh as root [5/6]
-   + [ ] Select these additional packages: [5/5]
-     1. [ ] base-devel
-     2. [ ] net-tools (for hostname)
+* Steps
+  1. [ ] Run ./02-run-aif.sh as root
+  1. [ ] Manually set up partiion (Optionally run ./10-setup-drive.sh as root)
+  3. [ ] Select these additional packages: [0/5]
+       + [ ] base-devel
+       + [ ] net-tools (for hostname)
 	     Note: Feb 3, 2012 I didn't select this to verify that the hostname program is part of this program
-     3. [ ] openssh
-     4. [ ] sudo
-     5. [ ] wireless_tools
-   + [ ] Deselect these packages (optional, leave them selected if you want installed):
-     1. [ ] ppp
-     2. [ ] reiserfsprogs
-   + [ ] (Optionally) run 03-link-cache.sh as root
-   + [ ] Edit /tmp/pacman.conf
-     This is a temporary need. Add SigLevel=Never to options
-   + [ ] Install packages
-   + [-] Configure system [1/2]
-     1. [ ] /etc/rc.conf
-	1. [ ] HOSTNAME=hostname
-	   Change hostname to whatever you want!
-	2. [ ] DAEMONS=(syslog-ng !network crond sshd)
-3. [ ] (Optionally) run 04-stow-network-perl.sh as root
-4. [ ] (Optionally) run 05-copy-ssh-keys.sh as root
-5. [ ] (Optionally) run 06-pacman-cache.sh as root
+       + [ ] openssh
+       + [ ] sudo
+       + [ ] wireless_tools
+  4. [ ] Deselect these packages (optional, leave them selected if you want installed):
+       1. [ ] ppp
+       2. [ ] reiserfsprogs
+  5. [ ] (Optionally) run 03-link-cache.sh as root
+  6. [ ] Edit /tmp/pacman.conf ( Add SigLevel=Never to options )
+  7. [ ] Install packages
+  8. [ ] Edit /etc/rc.conf [0/2]
+         - [ ] HOSTNAME=hostname
+         - [ ] DAEMONS=(syslog-ng !network crond sshd)
+  9. [ ] (Optionally) run 04-stow-network-perl.sh as root
+  5. [ ] (Optionally) run 05-copy-ssh-keys.sh as root
+  6. [ ] (Optionally) run 06-pacman-cache.sh as root
