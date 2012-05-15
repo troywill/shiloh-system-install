@@ -1,0 +1,4 @@
+-*- mode:org -*-
+* AUR package table
+|    id | package        |  version | tarball                                                                   |
+| 18206 | emacs-org-mode | 7.8.09-1 | http://aur.archlinux.org/packages/em/emacs-org-mode/emacs-org-mode.tar.gz |
