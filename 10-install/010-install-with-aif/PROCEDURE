@@ -14,6 +14,7 @@
      2. [X] reiserfsprogs
   5. [X] (Optionally) run 03-link-cache.sh as root
   6. [X] Edit /tmp/pacman.conf ( Add SigLevel=Never to options )
+	 [[/tmp/pacman.con]]
   7. [X] Install packages
   8. [X] Edit /etc/rc.conf [2/2]
      - [X] HOSTNAME=hostname
