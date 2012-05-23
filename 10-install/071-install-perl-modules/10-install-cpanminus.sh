@@ -2,4 +2,7 @@
 set -o errexit
 set -o nounset
 
-cpan App::cpanminus
+curl -L http://cpanmin.us | perl - --sudo App::cpanminus
+
+
+# cpan App::cpanminus
