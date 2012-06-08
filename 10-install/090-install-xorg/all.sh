@@ -1,0 +1,13 @@
+./010-install-xorg-xinit
+./020-install-xorg-server
+./030-install-xf86-video-intel
+./040-install-xf86-input-synaptics
+./050-install-mesa
+./060-install-libgl
+./080-install-dbus
+./090-install-xf86-input-evdev
+./110-install-ttf-dejavu
+./120-install-ttf-bitstream-vera
+./130-install-ttf-hannom
+./140-install-xorg-twm
+./150-install-xterm
