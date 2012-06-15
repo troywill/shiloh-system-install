@@ -3,8 +3,11 @@ set -o errexit
 set -o nounset
 set -o verbose
 
+# 1. Extract ruby tarball and change into resultant source directory
+# 2. Run this script
+
 EDITOR=emacs
-source ./ruby-version
+source ../ruby-version
 # RUBYVERSION="1.9.3-p0"
 PREFIX=/usr/local
 
