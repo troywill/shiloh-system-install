@@ -4,7 +4,7 @@ set -o nounset
 set -o verbose
 
 EDITOR=emacs
-source ../ruby-version
+source ./ruby-version
 # RUBYVERSION="1.9.3-p0"
 PREFIX=/usr/local
 
