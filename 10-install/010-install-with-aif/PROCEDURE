@@ -1,6 +1,6 @@
   -*- mode: org; fill-column:65 -*-
 * Steps [0/12]
-  1. [ ] Inspect 10-setup-drive.sh
+  1. [ ] Inspect 10-setup-drive.sh then manually prepare install drive
   2. [ ] Run 20-run-aif.sh as root
   3. [ ] Manually set up partiion (Optionally run ./10-setup-drive.sh as root)
   4. [ ] Select these additional packages: [0/5]
