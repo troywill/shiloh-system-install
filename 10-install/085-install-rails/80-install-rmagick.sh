@@ -9,4 +9,3 @@ tar -xf RMagick-2.13.1.tar.bz2
 cd RMagick-2.13.1
 ruby setup.rb
 sudo ruby setup.rb install
-
