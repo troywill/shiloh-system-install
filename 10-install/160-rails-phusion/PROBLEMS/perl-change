@@ -1,0 +1,2 @@
+# Run the following command to replace all occurrences of TIME_UTC with TIME_UTC_ in a directory
+perl -p -i -e 's/TIME_UTC(?!_)/TIME_UTC_/g' *
