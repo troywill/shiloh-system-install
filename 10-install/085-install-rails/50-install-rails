@@ -1,9 +1,0 @@
-#!/bin/bash
-set -o errexit
-set -o nounset
-set -o verbose
-
-source ../simplelib.sh
-${GEM_INSTALL} rails $GEM_OPTIONS
-# gem install execjs therubyracer $GEM_OPTIONS
-${GEM_INSTALL} therubyracer $GEM_OPTIONS
