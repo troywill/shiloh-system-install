@@ -1,7 +1,7 @@
 #!/bin/sh
 EDITOR="emacs -nw"
 APACHE_CONF="/etc/httpd/conf/httpd.conf"
-echo 'See http://www.modrails.com/ (as of July 2011)'
+echo 'See http://www.modrails.com/ (verified July 2012)'
 
 if [ "$UID" -ne "0" ]; then
     echo "Please run as root user"
@@ -10,7 +10,6 @@ fi
 
 gem install passenger --no-ri --no-rdoc
 passenger-install-apache2-module
-
 
 cat >> ${APACHE_CONF} <<EOF
 # See http://www.modrails.com/ (January 2012) <troydwill@gmail.com>'
@@ -21,5 +20,3 @@ cat >> ${APACHE_CONF} <<EOF
 EOF
 
 $EDITOR $APACHE_CONF
-
-
