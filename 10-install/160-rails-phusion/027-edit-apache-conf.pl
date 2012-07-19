@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env perl
+use warnings;
+use strict;
+
+exit;
+__END__
+
+
 EDITOR="emacs -nw"
 APACHE_CONF="/etc/httpd/conf/httpd.conf"
 echo 'See http://www.modrails.com/ (as of July 2011)'
