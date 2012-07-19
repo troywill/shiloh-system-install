@@ -5,4 +5,4 @@ if [ "$UID" -ne "0" ]; then
     exit
 fi
 
-gem install passenger --no-ri --no-rdoc
+passenger-install-apache2-module
