@@ -1,3 +1,4 @@
+-*- mode:org -*-
 * http://www.modrails.com/documentation/Users%20guide%20Apache.html
 * http://railscasts.com/episodes/122-passenger-in-development
 * Please edit your Apache configuration file, and add these lines:
@@ -26,3 +27,6 @@ optimization tips, troubleshooting and other useful information:
 Enjoy Phusion Passenger, a product of Phusion (www.phusion.nl) :-)
 http://www.modrails.com/
 
+
+* Passenger Phusion
+  [[https://github.com/FooBarWidget/passenger]]
