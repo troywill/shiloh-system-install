@@ -7,7 +7,7 @@ chomp(my $apache_query = `pacman --query apache 2>/dev/null`);
 if ( $apache_query ) {
     print "$apache_query is installed\n";
 } else {
-    print "Apache is not installed\n";
+    print "Apache is not installed, please install it\n";
 }
 exit;
 __END__

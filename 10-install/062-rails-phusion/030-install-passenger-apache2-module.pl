@@ -1,11 +1,11 @@
 #!/usr/bin/env perl
-$| = 0;
 use warnings;
 use strict;
+use FindBin qw($Bin);
+use lib "$Bin/../lib";
+require "shiloh-setup-common.pm";
 
-if ( $> != 0 ) {
-    die "Please run as root user\n";
-}
+&check_root;
 
 my $glibc_version = '';
 
