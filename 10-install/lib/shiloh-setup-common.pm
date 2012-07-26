@@ -1,3 +1,7 @@
+sub check_non_root {
+    die "Please run this program as non-root user.\n" if ( $> == 0 );
+}
+
 sub check_root {
     die "You cannot perform this operation unless you are root.\n" unless ( $> == 0 );
 }
