@@ -5,7 +5,7 @@ use File::Find;
 
 my @fileList = ();
 
-find(\&replace, '/stow/ruby-1.9.3_p194/usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.13');
+find(\&replace, '/stow/ruby-1.9.3_p194/usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.14');
 
 print @fileList;
 
