@@ -1,0 +1,130 @@
+* DONE Partition
+#+BEGIN_SRC sh
+cfdisk /dev/sdb1
+#+END_SRC
+* DONE Format the partitions
+#+BEGIN_SRC sh
+mkfs.ext4 -L shiloh /dev/sda2
+#+END_SRC
+* DONE Mount the partitions
+#+begin_src sh
+mount /dev/sda2 /mnt
+#+end_src  
+* DONE Connect to the internet
+* DONE Install the base system
+Install pacstap:
+#+begin_src sh
+pacman --sync arch-install-scripts
+#+end_src
+Before installing, you may want to edit /etc/pacman.d/mirrorlist such that your preferred mirror is first. This copy of the mirrorlist will be installed on your new system by pacstrap} as well, so it's worth getting it right.
+
+Using the [https://github.com/falconindy/arch-install-scripts/blob/master/pacstrap.in pacstrap] script we install the base system. The ''base-devel'' package group should also be installed if you plan on compiling software from the [[AUR]] or using [[ABS]].
+ 
+ # pacstrap /mnt base base-devel
+ # pacstrap /mnt base base-devel
+Other packages can be installed by appending their names to the above command (space seperated), including the bootloader if you want.
+
+#+BEGIN_SRC sh :tangle pacstrap.sh
+# :tangle pacstrap.sh
+pacstrap /mnt base base-devel emacs-nox rsync git stow wireless_tools grub-bios openssh ntp os-prober
+#+END_SRC  
+
+About 190 MB of packages will be downloaded.
+
+* TODO Configure the system
+** DONE Generate an [[fstab]] with the following command (if you prefer to use UUIDs or labels, add the -U or -L option, respectively):
+Note: I got an error on Friday, November 9 running genfstab: "findmnt: unknown column: FSROOT"
+I copied /etc/fstab manually
+#+begin_example
+# 
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+tmpfs		/tmp	tmpfs	nodev,nosuid	0	0
+LABEL=shiloh / ext4 defaults 0 1
+#+end_example
+#+BEGIN_SRC sh
+genfstab -p /mnt >> /mnt/etc/fstab
+#+END_SRC   
+#+BEGIN_SRC sh :tangle genfstab.sh
+genfstab -p -L /mnt >> /mnt/etc/fstab
+#+END_SRC   
+** DONE Next we [[chroot]] into our newly installed system:
+#+BEGIN_SRC sh
+arch-chroot /mnt
+#+END_SRC   
+** DONE Write your hostname to {{ic|/etc/hostname}}.
+#+BEGIN_SRC sh
+echo "lady" > /etc/hostname
+#+END_SRC
+** DONE Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone. Replace Zone and Subzone to your liking. For example:
+
+ # ln -s /usr/share/zoneinfo/Europe/Athens /etc/localtime
+#+BEGIN_SRC sh
+ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+#+END_SRC   
+
+** DONE Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+#+BEGIN_SRC sh
+# :tangle /mnt/tmp/locale.sh
+echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
+#+END_SRC
+*** DONE Uncomment en_US.UTF-8 in /etc/locale.gen
+*** DONE locale-gen
+#+BEGIN_SRC 
+locale-gen
+#+END_SRC
+
+** DONE Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+#+BEGIN_SRC sh 
+# :tangle /mnt/tmp/console.sh
+echo KEYMAP=us > /etc/vconsole.conf
+#+END_SRC
+** DONE Uncomment the selected locale in /etc/locale.gen and generate it with locale-gen
+** DONE Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk with:
+#+BEGIN_SRC sh
+mkinitcpio -p linux
+#+END_SRC
+*** Add usb
+#+BEGIN_EXAMPLE
+HOOKS="base udev autodetect pata scsi sata usb filesystems usbinput fsck"
+#+END_EXAMPLE 
+** TODO Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+*** https://wiki.archlinux.org/index.php/GRUB2 =>
+*** DONE Install osprober if Windows dual boot
+#+begin_src sh
+pacman --sync os-prober
+#+end_src
+*** DONE Install to 440-byte MBR boot code region
+#+BEGIN_SRC sh
+# modprobe dm-mod
+grub-install --target=i386-pc --recheck --debug /dev/sdb
+mkdir -p /boot/grub/locale
+cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+#+END_SRC
+*** TODO Generate GRUB2 BIOS Config file
+#+BEGIN_SRC sh
+grub-mkconfig -o /boot/grub/grub.cfg
+#+END_SRC
+* TODO Set a root password with passwd.
+* TODO == Unmount and reboot ==
+If you are still in the chroot environment type {{ic|exit}} or press {{keypress|Ctrl+D}} in order to exit.
+Earlier we mounted the partitions under {{ic|/mnt}}. In this step we will unmount them:
+ # umount /mnt/{boot,home,}
+
+Now reboot and then login into the new system with the root account.
+
+* TODO Configure pacman ==
+Edit {{ic|/etc/pacman.conf}} and configure pacman's options, also enabling the repositories you need.
+
+See [[Pacman]] and [[Official Repositories]] for details.
+
+== Update the system ==
+At this point you should update your system.
+
+See [[Pacman#Upgrading packages|Upgrading packages]] for instructions.
+
+== Add a user ==
+Finally, add a normal user as described in [[Users and Groups#User management|User management]].
+
+Your new Arch Linux base system is now a functional GNU/Linux environment: you can proceed to [[Beginners' Guide/Extra]] for customization suggestions.
