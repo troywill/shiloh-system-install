@@ -1,17 +1,18 @@
-* DONE Partition
+* Installing Shiloh System step by step
+** DONE Partition
 #+BEGIN_SRC sh
 cfdisk /dev/sdb1
 #+END_SRC
-* DONE Format the partitions
+** DONE Format the partitions
 #+BEGIN_SRC sh
 mkfs.ext4 -L shiloh /dev/sda2
 #+END_SRC
-* DONE Mount the partitions
+** DONE Mount the partitions
 #+begin_src sh
 mount /dev/sda2 /mnt
 #+end_src  
-* DONE Connect to the internet
-* DONE Install the base system
+** DONE Connect to the internet
+** DONE Install the base system
 Install pacstap:
 #+begin_src sh
 pacman --sync arch-install-scripts
@@ -26,13 +27,13 @@ Other packages can be installed by appending their names to the above command (s
 
 #+BEGIN_SRC sh :tangle pacstrap.sh
 # :tangle pacstrap.sh
-pacstrap /mnt base base-devel emacs-nox rsync git stow wireless_tools grub-bios openssh ntp os-prober
+pacstrap /mnt base base-devel emacs-nox rsync git stow wireless_tools grub-bios openssh ntp os-prober wget
 #+END_SRC  
 
 About 190 MB of packages will be downloaded.
 
-* TODO Configure the system
-** DONE Generate an [[fstab]] with the following command (if you prefer to use UUIDs or labels, add the -U or -L option, respectively):
+** TODO Configure the system
+*** DONE Generate an [[fstab]] with the following command (if you prefer to use UUIDs or labels, add the -U or -L option, respectively):
 Note: I got an error on Friday, November 9 running genfstab: "findmnt: unknown column: FSROOT"
 I copied /etc/fstab manually
 #+begin_example
@@ -49,39 +50,39 @@ genfstab -p /mnt >> /mnt/etc/fstab
 #+BEGIN_SRC sh :tangle genfstab.sh
 genfstab -p -L /mnt >> /mnt/etc/fstab
 #+END_SRC   
-** DONE Next we [[chroot]] into our newly installed system:
+*** DONE Next we [[chroot]] into our newly installed system:
 #+BEGIN_SRC sh
 arch-chroot /mnt
 #+END_SRC   
-** DONE Write your hostname to {{ic|/etc/hostname}}.
+*** DONE Write your hostname to {{ic|/etc/hostname}}.
 #+BEGIN_SRC sh
 echo "lady" > /etc/hostname
 #+END_SRC
-** DONE Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone. Replace Zone and Subzone to your liking. For example:
+*** DONE Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone. Replace Zone and Subzone to your liking. For example:
 
  # ln -s /usr/share/zoneinfo/Europe/Athens /etc/localtime
 #+BEGIN_SRC sh
 ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 #+END_SRC   
 
-** DONE Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+*** DONE Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
 #+BEGIN_SRC sh
 # :tangle /mnt/tmp/locale.sh
 echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
 #+END_SRC
 *** DONE Uncomment en_US.UTF-8 in /etc/locale.gen
 *** DONE locale-gen
-#+BEGIN_SRC 
+#+BEGIN_SRC sh
 locale-gen
 #+END_SRC
 
-** DONE Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+*** DONE Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
 #+BEGIN_SRC sh 
 # :tangle /mnt/tmp/console.sh
 echo KEYMAP=us > /etc/vconsole.conf
 #+END_SRC
-** DONE Uncomment the selected locale in /etc/locale.gen and generate it with locale-gen
-** DONE Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk with:
+*** DONE Uncomment the selected locale in /etc/locale.gen and generate it with locale-gen
+*** DONE Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk with:
 #+BEGIN_SRC sh
 mkinitcpio -p linux
 #+END_SRC
@@ -89,7 +90,7 @@ mkinitcpio -p linux
 #+BEGIN_EXAMPLE
 HOOKS="base udev autodetect pata scsi sata usb filesystems usbinput fsck"
 #+END_EXAMPLE 
-** TODO Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+*** TODO Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
 *** https://wiki.archlinux.org/index.php/GRUB2 =>
 *** DONE Install osprober if Windows dual boot
 #+begin_src sh
@@ -106,16 +107,18 @@ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 #+BEGIN_SRC sh
 grub-mkconfig -o /boot/grub/grub.cfg
 #+END_SRC
-* TODO Set a root password with passwd.
-* TODO == Unmount and reboot ==
-If you are still in the chroot environment type {{ic|exit}} or press {{keypress|Ctrl+D}} in order to exit.
-Earlier we mounted the partitions under {{ic|/mnt}}. In this step we will unmount them:
- # umount /mnt/{boot,home,}
+** TODO Set a root password with passwd.
+** TODO Unmount and reboot
+If you are still in the chroot environment type exit or press Ctrl+D in order to exit.
+Earlier we mounted the partitions under /mnt. In this step we will unmount them:
+#+begin_src sh
+umount /mnt/{boot,home,}
+#+end_src
 
 Now reboot and then login into the new system with the root account.
 
-* TODO Configure pacman ==
-Edit {{ic|/etc/pacman.conf}} and configure pacman's options, also enabling the repositories you need.
+** TODO Configure pacman
+Edit /etc/pacman.conf and configure pacman's options, also enabling the repositories you need.
 
 See [[Pacman]] and [[Official Repositories]] for details.
 

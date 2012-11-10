@@ -1,0 +1,53 @@
+* TODO 10-install/020-initial-setup/01-adduser.pl
+* TODO sudoers
+#+begin_src perl :tangle sudo.pl :shebang #!/usr/bin/env perl
+use warnings;
+use strict;
+
+my $user = 'troy';
+
+open ( my $out, '>>', '/etc/sudoers' );
+print $out <<"END";
+### Following lines added by 4g-arch-040-sudoers
+# Defaults specification
+Defaults:$user timestamp_timeout=-1
+Defaults !tty_tickets
+# User privilege specification
+root	ALL=(ALL) ALL
+$user	ALL=(ALL) ALL
+END
+
+sub run_command {
+    my $command = shift;
+    print "=> $command\n";
+    system $command;
+}
+
+#+end_src
+* TODO Chromium flash
+1. [ ] Read https://wiki.archlinux.org/index.php/Chromium#Flash_Player
+1. [ ] https://aur.archlinux.org/packages/chromium-pepper-flash/
+Disable all other flash plugins:
+#+begin_src sh
+chromium chrome://plugins
+#+end_src
+Type [[http://chrome\://plugins/][chrome://plugins]] in the adress bar and press Enter
+Click on Details button on the top right
+Click on Disable near all the Flash plugins except the first one
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
