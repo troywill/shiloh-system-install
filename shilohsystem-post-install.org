@@ -1,3 +1,23 @@
+* bin/shiloh-postinstall.pl
+#+begin_src perl :tangle bin/shiloh-postinstall.pl :shebang #!/usr/bin/env perl :noweb yes
+use warnings;
+use strict;
+<<install-cpanminus>>
+<<install-perl-modules>>
+#+end_src
+** Install cpanminus
+#+name: install-cpanminus   
+#+begin_src perl
+print "Installing Tatsuhiko Miyagawa's cpanminus script with pacman ...\n";
+system("sudo pacman --sync cpanminus");
+#+end_src   
+** Install Perl modules
+#+name: install-perl-modules   
+#+begin_src perl
+system("sudo pacman --sync perl-libwww");
+system("cpanm --sudo Modern::Perl Term::ReadKey Perl::Critic AppConfig Perl::Tidy");
+#+end_src
+   
 * TODO 10-install/020-initial-setup/01-adduser.pl
 * TODO sudoers
 #+begin_src perl :tangle sudo.pl :shebang #!/usr/bin/env perl

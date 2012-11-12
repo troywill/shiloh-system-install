@@ -1,10 +1,10 @@
 * Installing Shiloh System step by step
-** DONE Read Beginner's Guide
-** DONE Partition
+** TODO Read Beginner's Guide
+** TODO Partition
 #+BEGIN_SRC sh
 cfdisk /dev/sdb1
 #+END_SRC
-** DONE Format the partitions
+** TODO Format the partitions
 #+BEGIN_SRC sh :tangle bin/format-the-partion.sh :shebang #!/bin/bash
 set -o verbose
 set -o errexit
@@ -13,7 +13,7 @@ LABEL="shiloh" #change this!
 DEVICE="/dev/sdaX" #change this!
 mkfs.ext4 -v -L $LABEL $DEVICE
 #+END_SRC
-** DONE Mount the partitions
+** TODO Mount the partitions
 #+begin_src sh :tangle bin/mount-the-partion.sh :shebang #!/bin/bash
 set -o verbose
 set -o errexit
@@ -21,14 +21,14 @@ set -o nounset
 DEVICE="/dev/sdaX" #change this!
 mount --verbose $DEVICE /mnt
 #+end_src  
-** DONE Connect to the internet
+** TODO Connect to the internet
 ** TODO Install the base system
 *** TODO Intall arch-install-scripts
 #+begin_src sh
 pacman --sync arch-install-scripts
 #+end_src
 
-*** DONE (Optional)
+*** TODO (Optional)
 #+begin_src sh :tangle bin/optional-cp-existing-pkg-cache :shebang #!/bin/bash
 set -o verbose
 set -o errexit
