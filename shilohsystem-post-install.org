@@ -71,3 +71,30 @@ Click on Disable near all the Flash plugins except the first one
 
 
 
+** Programmers/Developers
+1. [ ] SSH Keys
+   *** [[https://wiki.archlinux.org/index.php/SSH_keys][SSH Key authentication]] (Arch Linux)
+  1. [ ] Generate an SSH key pair
+#+begin_src sh
+ssh-keygen -b 521 -t ecdsa -C"$(id -un)@$(hostname)-$(date --rfc-3339=date)"
+#+end_src
+  2. [ ] Enter pass phrase when prompted
+  3. [ ] Copy id_ecdsa.pub to troywill.com
+#+begin_src sh
+ssh-copy-id -i ~/.ssh/id_ecdsa.pub root@troywill.com
+#+end_src
+  4. [ ] Copy id_ecdsa.pub to troywill.com
+#+begin_src sh
+ssh-copy-id -i ~/.ssh/id_ecdsa.pub troy@troywill.com
+#+end_src
+  5. ssh-agent [0/2]
+     1. [ ] run the command through the eval command
+#+BEGIN_SRC sh
+  eval $(ssh-agent)
+#+END_SRC
+     2. [ ] add your private key to ssh-agents' cache.
+#+BEGIN_SRC sh
+  ssh-add ~/.ssh/id_ecdsa
+#+END_SRC
+
+
