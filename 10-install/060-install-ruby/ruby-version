@@ -1,4 +1,3 @@
-RUBY_VERSION='1.9.3-p194'
+RUBY_VERSION='1.9.3-p374'
 # Check http://www.ruby-lang.org/en/ for latest version
-# Released 20 Apr 2012
-# Last checked 2012-06-15 by TDW (Troy Will)
+# Last checked 2013-01-19 by TDW (Troy Will)

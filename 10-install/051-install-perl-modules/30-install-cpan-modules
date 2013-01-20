@@ -3,4 +3,6 @@ set -o errexit
 set -o nounset
 
 . ./simplelib.sh
-$CPAN_INSTALL Term::ReadKey Perl::Critic AppConfig Perl::Tidy
+$CPAN_INSTALL Term::ReadKey Perl::Critic AppConfig Perl::Tidy App::cpanoutdated
+
+
