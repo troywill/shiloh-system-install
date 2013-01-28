@@ -1,0 +1,5 @@
+* Enable ntp service (ntpd) at startup
+#+begin_src sh :tangle enable-ntp-service.sh :shebang #!/bin/bash
+set -o nounset
+systemctl enable ntpd
+#+end_src
