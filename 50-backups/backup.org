@@ -1,0 +1,109 @@
+* Working programs
+** bin/rsync-backup.pl Acer, Sunday, January 29, 2013
+#+begin_src perl :tangle bin/rsync-backup.pl :shebang #!/usr/bin/env perl :noweb yes
+  <<pragma-chunk>>
+  <<read-config-chunk>>
+  <<get-options-chunk>>
+#+end_src  
+* Library
+** rsync-perllib.pm
+#+BEGIN_SRC perl :tangle lib/rsync-perllib.pm :padline no :noweb yes
+use warnings;
+use strict;
+1;
+#+END_SRC  
+* Configuration
+** foscam.conf
+  #+BEGIN_SRC fundamental :tangle foscam.conf :padline no
+  # General settings
+  STORAGE_DIRECTORY = /var/camera
+  
+  # Camera 1
+  CAM1_NAME = cam1
+  CAM1_STATUS = active
+  CAM1_DESCRIPTION = Desk
+  CAM1_IP_ADDRESS = 192.168.15.10
+  CAM1_USER = admin
+  CAM1_PASSWORD =
+  CAM1_MAC_WIRED = 00:0D:C5:D7:55:15
+  CAM1_MAC_WIRELESS = 48:02:2A:43:AF:01
+  CAM1_FIRMWARE_VERSION = 11.37.2.44
+#                          11.37.2.46
+  CAM1_EMBEDDED_WEB_UI_VERSION = 2.4.10.1
+
+#+END_SRC
+* Chunks
+** pragma-chunk
+#+NAME: pragma-chunk
+#+BEGIN_SRC perl
+use warnings;
+use strict;
+use LWP::Simple;
+use Image::Magick;
+use Getopt::Long;
+use FindBin qw($Bin);
+use File::Basename;
+use lib "$Bin/../lib";
+require "rsync-perllib.pm";
+#+END_SRC
+** read-config-chunk
+#+NAME: read-config-chunk
+#+BEGIN_SRC perl
+### BEGIN CONFIGURATION SECTION
+my $config_file = $ENV{HOME} . '/.foscam.conf';
+my $BASE_DIR = "/var/camera";
+
+my %User_Preferences;
+open(CONFIG, "<", $config_file) or die "Unable to read config file $config_file: $!";
+while (<CONFIG>) {
+    chomp;                  # no newline
+    s/#.*//;                # no comments
+    s/^\s+//;               # no leading white
+    s/\s+$//;               # no trailing white
+    next unless length;     # anything left?
+    my ($var, $value) = split(/\s*=\s*/, $_, 2);
+    $User_Preferences{$var} = $value;
+}
+### END CONFIGURATION SECTION
+#+END_SRC
+** get-options-chunk
+#+NAME: get-options-chunk
+#+BEGIN_SRC perl
+  ### BEGIN GET OPTIONS SECTION
+  my $interval = 1;
+  my $duration = 86400;
+  my $camera_name = 'CAM2';
+  my $hostname = '192.168.1.20';
+  GetOptions( "interval=i" => \$interval,
+              "duration=i" => \$duration,
+              "camera=s" => \$camera_name,
+              "hostname=s" => \$hostname);
+  my $PIDFILE = "$BASE_DIR/run/pid.asf.$camera_name";
+  my $UPLOADFILE = "$BASE_DIR/log/videofiles";
+  my $RSYNCFILE = "$BASE_DIR/log/rsyncfile";
+  ### END GET OPTIONS SECTION
+#+END_SRC   
+** Testing :noexport:
+#+BEGIN_SRC sh :tangle testing/foscam.conf :padline no
+# set storage directory
+STORAGE_DIRECTORY = /var/camera
+#+END_SRC
+#+BEGIN_SRC perl :tangle testing/foo.pl :shebang #!/usr/bin/env perl :noweb yes
+<<read-config-chunk>>
+#+END_SRC   
+
+#+TITLE:     foscam-perl.shilohystem.com
+#+AUTHOR:    Troy Will
+#+EMAIL:     troydwill@gmail.com
+#+DATE:      2012-11-20 Tue
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:nil toc:t \n:nil @:t ::t |:t ^:{} -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:

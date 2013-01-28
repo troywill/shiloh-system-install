@@ -2,10 +2,11 @@
 set -o errexit
 set -o nounset
 
-pacman --sync cpanminus
+curl -L http://cpanmin.us | perl - --sudo App::cpanminus
 
 exit
-curl -L http://cpanmin.us | perl - --sudo App::cpanminus
+pacman --sync cpanminus
+
 
 
 # cpan App::cpanminus
