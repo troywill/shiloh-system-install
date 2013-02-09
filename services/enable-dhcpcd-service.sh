@@ -1,6 +1,5 @@
 #!/bin/bash
 
 set -o nounset
-systemctl enable dhcpcd.service
-
-
+INTERFACE="eth0"
+systemctl enable dhcpcd@${INTERFACE}.service
