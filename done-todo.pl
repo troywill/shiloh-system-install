@@ -1,9 +1,9 @@
 #!/usr/bin/env perl
-
 use warnings;
 use strict;
-my $infile = 'install-shilohsystem.org';
-my $backup_file = 'install-shilohsystem.org.bak';
+
+my $infile = $ARGV[0] || die "Please supply a file to modify";
+my $backup_file = $infile . '.bak';
 
 do_replacement( $infile, $backup_file, '\* DONE', '* TODO' );
 do_replacement( $infile, $backup_file, '\[X\]', '[ ]' );
