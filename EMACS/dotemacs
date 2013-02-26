@@ -1,0 +1,7 @@
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((sh . t)
+   (perl . t)
+   ))
+;;; (require 'org-install)
+
