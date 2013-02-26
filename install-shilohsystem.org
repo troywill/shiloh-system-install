@@ -3,38 +3,41 @@
 ** TODO Partition [0/3]
 1. [ ] Zero drive 
    #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
-   DEVICE="/dev/sdb"
+   DEVICE="/dev/sdc"
    dd if=/dev/zero of=${DEVICE} bs=8M count=1
    #+END_SRC
-2. [ ] Create a partion
+2. [ ] Create a boot partion
    #+begin_src sh
-   parted /dev/sdb
-   mklabel msdos
+   parted /dev/sdc
+#   mklabel msdos
    mklabel gpt
 #   mkpart p ext4 0G -1s
 #   mkpart primary ext4 1M -1s
-   mkpart primary ext4 1M 100%
+   mkpart primary 1 2
+   set 1 bios_grub on
+   mkpart primary ext4 2 8011
    quit
    #+end_src
 3. [ ] Verify partition
    #+BEGIN_SRC sh
-   cfdisk /dev/sdb1
+   cfdisk /dev/sdc
+   gparted /dev/sdc
    #+END_SRC
 ** TODO Format the partitions
 #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
 set -o nounset
 set -o errexit
 LABEL="SD" #change this!
-DEVICE="/dev/sdb1" #change this!
+DEVICE="/dev/sdc2" #change this!
 mkfs.ext4 -v -L $LABEL $DEVICE
 #+END_SRC
 *** Commentary
     ext4*
-** TODO Mount the partitions
+** TODO Mount the partition
 #+begin_src sh :tangle bin/mount-the-partion.sh :shebang #!/bin/bash
 set -o errexit
 set -o nounset
-DEVICE="/dev/sdb1" #change this!
+DEVICE="/dev/sdc2" #change this!
 mount --verbose $DEVICE /mnt
 #+end_src
 ** TODO Connect to the internet
@@ -46,6 +49,7 @@ pacman --sync arch-install-scripts
 *** TODO (Optional)
 #+begin_src sh :tangle bin/optional-cp-existing-pkg-cache :shebang #!/bin/bash
 set -o nounset
+set -o errexit
 mkdir --verbose --parent /mnt/var/cache/pacman/pkg
 cp --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
 #+end_src
@@ -59,10 +63,9 @@ plan on compiling software from the [[AUR]] or using [[ABS]].
 Other packages can be installed by appending their names to the above command (space seperated),
 including the bootloader if you want.
 #+BEGIN_SRC sh :tangle bin/install-with-pacstrap.sh :shebang #!/bin/bash
-EXTRA_PACKAGES="base-devel emacs-nox git grub-bios ntp openssh os-prober rsync screen stow sudo wget wireless_tools"
+EXTRA_PACKAGES="base-devel emacs-nox git grub-bios ntp openssh os-prober rsync screen stow sudo wget wireless_tools wpa_supplicant"
 pacstrap /mnt base $EXTRA_PACKAGES
 #+END_SRC  
-
 ** TODO Configure the system
 *** TODO Generate an [[fstab]] with the following command (if you prefer to use UUIDs or labels, add the -U or -L option, respectively):
 #+BEGIN_SRC sh :tangle bin/configure-fstab.sh :shebang #!/bin/bash
