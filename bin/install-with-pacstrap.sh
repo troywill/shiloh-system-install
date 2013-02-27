@@ -1,4 +1,9 @@
 #!/bin/bash
 
-EXTRA_PACKAGES="base-devel emacs-nox git grub-bios ntp openssh os-prober rsync screen stow sudo wget wireless_tools"
-pacstrap /mnt base $EXTRA_PACKAGES
+set -o errexit
+INSTALL="grub-bios os-prober"
+DEVEL="base-devel git stow"
+SYSTEM="ntp openssh rsync screen sudo wget"
+EMACS="emacs-nox"
+WIRELESS="wireless_tools wpa_supplicant"
+pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS

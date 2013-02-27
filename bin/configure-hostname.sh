@@ -1,5 +1,5 @@
 #!/bin/bash
 
 set -o nounset
-HOSTNAME="shiloh130126" # change this!
+HOSTNAME="kangaroo" # change this!
 echo $HOSTNAME > /etc/hostname

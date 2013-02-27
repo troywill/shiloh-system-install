@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEVICE=/dev/sda #change this as desired!
+DEVICE=/dev/sdb #change this as desired!
 modprobe dm-mod
 sleep 1
 grub-install --target=i386-pc --recheck --debug $DEVICE
