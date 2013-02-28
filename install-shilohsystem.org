@@ -1,39 +1,42 @@
 * Installing Shiloh System step by step
 ** DONE Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
 ** DONE Prepare the target media with parted and GPT
-1. [X] (Optional) Zero drive
+1. [X] Run lsblk to determine drive   
+2. [X] (Optional) Zero drive
    #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
+     set -o errexit
      DEVICE="/dev/sdb"
-     dd if=/dev/zero of=${DEVICE} bs=8M count=1
+     BS="1M"
+     COUNT=4
+     dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
+     dd if=/dev/zero of=${DEVICE} bs=$BS count=$COUNT
    #+END_SRC
-2. [X] Create a GUID partition table with parted
+3. [X] Create a GUID partition table with parted
    #+BEGIN_SRC sh
      parted /dev/sdb
      mklabel gpt
    #+END_SRC
-3. [X] Create a boot partition with parted
+4. [X] Create a boot partition with parted
    #+BEGIN_SRC sh
    mkpart primary 1 2
    set 1 bios_grub on
    #+END_SRC
-4. [X] Create a root partition with parted
+5. [X] Create a root partition with parted
    #+BEGIN_SRC sh
      mkpart primary 2 8011
    #+END_SRC
-5. [X] Verify partition
+6. [X] Verify partition
    #+BEGIN_SRC sh
      sudo parted /dev/sdb print
    #+END_SRC
-** DONE Format the partitions
-#+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
-set -o nounset
-set -o errexit
-LABEL="SD" #change this!
-DEVICE="/dev/sdb2" #change this!
-mkfs.ext4 -v -L $LABEL $DEVICE
-#+END_SRC
-*** Commentary
-    ext4*
+7. [X] Format the partition
+   #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
+     set -o nounset
+     set -o errexit
+     LABEL="SD" #change this!
+     DEVICE="/dev/sdb2" #change this!
+     mkfs.ext4 -v -L $LABEL $DEVICE
+   #+END_SRC
 ** DONE Mount the partition
 #+begin_src sh :tangle bin/mount-the-partition.sh :shebang #!/bin/bash
 set -o errexit
@@ -42,17 +45,25 @@ DEVICE="/dev/sdb2" #change this!
 mount --verbose $DEVICE /mnt
 #+end_src
 ** DONE Connect to the internet
-** DONE Install the base system
+** Install the base system [4/4] 
 1. [X] Install arch-install-scripts
    #+begin_src sh :tangle bin/arch-install-scripts.sh :shebang #!/bin/bash
      pacman --sync arch-install-scripts
    #+end_src
-2. [X] (Optional) Copy xz files
+2. [X] (Optional) Copy xz files or link symbolically to host pkg directory
    #+begin_src sh :tangle bin/optional-cp-existing-pkg-cache :shebang #!/bin/bash
      set -o nounset
      set -o errexit
      mkdir --verbose --parent /mnt/var/cache/pacman/pkg
      rsync --archive --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
+   #+end_src
+   #+begin_src sh :tangle bin/optional-ln-existing-pkg-cache :shebang #!/bin/bash
+     set -o nounset
+     set -o errexit
+     cd /mnt
+     mkdir --verbose --parent var/cache/pacman
+     cd var/cache/pacman
+     ln --symbolic --verbose /var/cache/pacman/pkg
    #+end_src
 3. [X] Install packages with pacstap
    Before installing, you may want to edit /etc/pacman.d/mirrorlist such that your
@@ -67,15 +78,30 @@ mount --verbose $DEVICE /mnt
    
    #+BEGIN_SRC sh :tangle bin/install-with-pacstrap.sh :shebang #!/bin/bash
      set -o errexit
+     set -o nounset
      INSTALL="grub-bios os-prober"
      DEVEL="base-devel git stow"
-     SYSTEM="ntp openssh rsync screen sudo wget"
-     EMACS="emacs-nox"
+     SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
+     EMACS="emacs"
+     TEX="texlive-core texlive-latexextra"
      WIRELESS="wireless_tools wpa_supplicant"
-     pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS
-     
-     
+     XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
+     WEB="chromium"
+     XORG_FONTS="ttf-dejavu ttf-hannom"
+     KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars"
+     AUDIO="alsa-utils"
+     VIDEO="flashplugin youtube-dl smplayer"
+     pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $AUDIO $VIDEO $XORG_FONTS
    #+END_SRC  
+4. [X] (Optional) Remove symbollic link
+   #+begin_src sh :tangle bin/optional-ln-existing-pkg-cache-remove :shebang #!/bin/bash
+     set -o nounset
+     set -o errexit
+     cd /mnt/var/cache/pacman
+     unlink pkg
+     mkdir --verbose pkg
+     ls -ld /mnt/var/cache/pacman/pkg
+   #+end_src
 ** DONE [9/9] Configure the system
 1. [X] Generate an [[fstab]]
    #+BEGIN_SRC sh :tangle bin/configure-fstab.sh :shebang #!/bin/bash
@@ -116,7 +142,7 @@ mount --verbose $DEVICE /mnt
      cat /etc/locale.conf
    #+END_SRC
 6. [X] Uncomment en_US.UTF-8 in /etc/locale.gen
-   #+begin_src perl :tangle bin/configure-locale.gen.pl :shebang #!/usr/bin/env perl
+   #+begin_src perl :tangle bin/configure-locale-gen.pl :shebang #!/usr/bin/env perl
      use warnings;
      use strict;
      my $regexp = '^#en_US.UTF-8 UTF-8';
@@ -147,7 +173,7 @@ mount --verbose $DEVICE /mnt
    #+BEGIN_SRC sh :tangle bin/configure-mkinitcpio.sh :shebang #!/bin/bash
      mkinitcpio -p linux
    #+END_SRC
-** DONE [4/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+** TODO [3/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
 1. [X] READ https://wiki.archlinux.org/index.php/GRUB2
 2. [X] Install osprober if Windows dual boot
    #+begin_src sh
@@ -166,17 +192,17 @@ mount --verbose $DEVICE /mnt
        ; embedding won't be possible.
      + /usr/sbin/grub-bios-setup: warning: Embedding is not possible.  GRUB can only be installed in
        this setup by using blocklists.  However, blocklists are UNRELIABLE and their use is discouraged..
-4. [X] Generate GRUB2 BIOS Config file
+4. [ ] Generate GRUB2 BIOS Config file
    #+BEGIN_SRC sh :tangle bin/configure-grub-cfg.sh :shebang #!/bin/bash
      grub-mkconfig -o /boot/grub/grub.cfg
    #+END_SRC
-** DONE Set a root password with passwd.
-** DONE Add a user
+** TODO Set a root password with passwd.
+** TODO Add a user
    #+BEGIN_SRC sh :tangle bin/configure-adduser.sh :shebang #!/bin/bash
      useradd -m -g users -s /bin/bash troy
      passwd troy
    #+END_SRC   
-** DONE Configure pacman
+** TODO Configure pacman
 Edit /etc/pacman.conf and configure pacman's options, also enabling the repositories you need.
 
 See [[Pacman]] and [[Official Repositories]] for details.
@@ -191,7 +217,7 @@ Finally, add a normal user as described in [[Users and Groups#User management|Us
 
 Your new Arch Linux base system is now a functional GNU/Linux environment: you can proceed to [[Beginners' Guide/Extra]] for customization suggestions.
 
-** DONE Unmount and reboot
+** TODO Unmount and reboot
 If you are still in the chroot environment type exit or press Ctrl+D in order to exit.
 Earlier we mounted the partitions under /mnt. In this step we will unmount them:
 #+begin_src sh

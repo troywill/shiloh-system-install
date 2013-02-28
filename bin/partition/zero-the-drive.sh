@@ -1,4 +1,8 @@
 #!/bin/bash
 
+set -o errexit
 DEVICE="/dev/sdb"
-dd if=/dev/zero of=${DEVICE} bs=8M count=1
+BS="1M"
+COUNT=4
+dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
+dd if=/dev/zero of=${DEVICE} bs=$BS count=$COUNT
