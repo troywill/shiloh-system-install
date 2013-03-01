@@ -1,9 +1,9 @@
 * Installing Shiloh System step by step
-** DONE Connect to the internet
-** DONE Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
-** DONE Prepare the target media with parted and GPT
-1. [X] Run lsblk to determine drive   
-2. [X] (Optional) Zero drive
+** TODO Connect to the internet
+** TODO Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
+** TODO Prepare the target media with parted and GPT
+1. [ ] Run lsblk to determine drive   
+2. [ ] (Optional) Zero drive
    #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
      set -o errexit
      DEVICE="/dev/sdb"
@@ -12,25 +12,25 @@
      dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
      dd if=/dev/zero of=${DEVICE} bs=$BS count=$COUNT
    #+END_SRC
-3. [X] Create a GUID partition table with parted
+3. [ ] Create a GUID partition table with parted
    #+BEGIN_SRC sh
      parted /dev/sdb
      mklabel gpt
    #+END_SRC
-4. [X] Create a boot partition with parted
+4. [ ] Create a boot partition with parted
    #+BEGIN_SRC sh
    mkpart primary 1 2
    set 1 bios_grub on
    #+END_SRC
-5. [X] Create a root partition with parted
+5. [ ] Create a root partition with parted
    #+BEGIN_SRC sh
      mkpart primary 2 8011
    #+END_SRC
-6. [X] Verify partition
+6. [ ] Verify partition
    #+BEGIN_SRC sh
      sudo parted /dev/sdb print
    #+END_SRC
-7. [X] Format the partition
+7. [ ] Format the partition
    #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
      set -o nounset
      set -o errexit
@@ -38,19 +38,19 @@
      DEVICE="/dev/sdb2" #change this!
      mkfs.ext4 -v -L $LABEL $DEVICE
    #+END_SRC
-** DONE Mount the partition
+** TODO Mount the partition
 #+begin_src sh :tangle bin/mount-the-partition.sh :shebang #!/bin/bash
 set -o errexit
 set -o nounset
 DEVICE="/dev/sdb2" #change this!
 mount --verbose $DEVICE /mnt
 #+end_src
-** Install the base system [4/4] 
-1. [X] Install arch-install-scripts
+** Install the base system [0/4] 
+1. [ ] Install arch-install-scripts
    #+begin_src sh :tangle bin/arch-install-scripts.sh :shebang #!/bin/bash
      pacman --sync arch-install-scripts
    #+end_src
-2. [X] (Optional) Copy xz files or link symbolically to host pkg directory
+2. [ ] (Optional) Copy xz files or link symbolically to host pkg directory
    #+begin_src sh :tangle bin/optional-cp-existing-pkg-cache :shebang #!/bin/bash
      set -o nounset
      set -o errexit
@@ -65,7 +65,7 @@ mount --verbose $DEVICE /mnt
      cd var/cache/pacman
      ln --symbolic --verbose /var/cache/pacman/pkg
    #+end_src
-3. [X] Install packages with pacstap
+3. [ ] Install packages with pacstap
    Before installing, you may want to edit /etc/pacman.d/mirrorlist such that your
    preferred mirror is first. This copy of the mirrorlist will be installed on your
    new system by pacstrap} as well, so it's worth getting it right.
@@ -94,7 +94,7 @@ mount --verbose $DEVICE /mnt
      VIDEO="flashplugin youtube-dl smplayer"
      pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $AUDIO $VIDEO $XORG_FONTS
    #+END_SRC  
-4. [X] (Optional) Remove symbollic link
+4. [ ] (Optional) Remove symbollic link
    #+begin_src sh :tangle bin/optional-ln-existing-pkg-cache-remove :shebang #!/bin/bash
      set -o nounset
      set -o errexit
@@ -103,8 +103,8 @@ mount --verbose $DEVICE /mnt
      mkdir --verbose pkg
      ls -ld /mnt/var/cache/pacman/pkg
    #+end_src
-** TODO [2/10] Configure the system
-1. [X] Generate an [[fstab]]
+** TODO [0/10] Configure the system
+1. [ ] Generate an [[fstab]]
    #+BEGIN_SRC sh :tangle bin/configure-fstab.sh :shebang #!/bin/bash
      # if you prefer to use UUIDs or labels,
      # add the -U or -L option
@@ -119,7 +119,7 @@ mount --verbose $DEVICE /mnt
      tmpfs           /tmp    tmpfs   nodev,nosuid    0       0
      LABEL=shiloh / ext4 defaults 0 1
    #+END_EXAMPLE
-2. [X] rsync shiloh-setup
+2. [ ] rsync shiloh-setup
    #+BEGIN_SRC sh
      rsync -av shiloh-setup/ /mnt/root/shiloh-setup
    #+END_SRC
