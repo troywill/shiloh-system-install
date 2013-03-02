@@ -39,25 +39,25 @@
      mkfs.ext4 -v -L $LABEL $DEVICE
    #+END_SRC
 ** TODO Mount the partition
-#+begin_src sh :tangle bin/mount-the-partition.sh :shebang #!/bin/bash
+#+begin_src sh :tangle bin/partition/mount-the-partition.sh :shebang #!/bin/bash
 set -o errexit
 set -o nounset
 DEVICE="/dev/sdb2" #change this!
 mount --verbose $DEVICE /mnt
 #+end_src
-** Install the base system [0/4] 
+** TODO [0/5] Install the base system
 1. [ ] Install arch-install-scripts
-   #+begin_src sh :tangle bin/arch-install-scripts.sh :shebang #!/bin/bash
+   #+begin_src sh
      pacman --sync arch-install-scripts
    #+end_src
 2. [ ] (Optional) Copy xz files or link symbolically to host pkg directory
-   #+begin_src sh :tangle bin/optional-cp-existing-pkg-cache :shebang #!/bin/bash
+   #+begin_src sh :tangle bin/optional/copy-existing-pkg-cache :shebang #!/bin/bash
      set -o nounset
      set -o errexit
      mkdir --verbose --parent /mnt/var/cache/pacman/pkg
      rsync --archive --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
    #+end_src
-   #+begin_src sh :tangle bin/optional-ln-existing-pkg-cache :shebang #!/bin/bash
+   #+begin_src sh :tangle bin/optional/link-existing-pkg-cache :shebang #!/bin/bash
      set -o nounset
      set -o errexit
      cd /mnt
@@ -76,11 +76,11 @@ mount --verbose $DEVICE /mnt
    Other packages can be installed by appending their names to the above command (space
    seperated), including the bootloader if you want.
    
-   #+BEGIN_SRC sh :tangle bin/install-with-pacstrap.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/pacstrap.sh :shebang #!/bin/bash
      set -o errexit
      set -o nounset
-     INSTALL="grub-bios os-prober"
-     DEVEL="base-devel git stow"
+     INSTALL="grub-bios os-prober arch-install-scripts parted"
+     DEVEL="base-devel git stow cmake"
      SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
      EMACS="emacs"
      TEX="texlive-core texlive-latexextra"
@@ -94,8 +94,8 @@ mount --verbose $DEVICE /mnt
      VIDEO="flashplugin youtube-dl smplayer"
      pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $AUDIO $VIDEO $XORG_FONTS
    #+END_SRC  
-4. [ ] (Optional) Remove symbollic link
-   #+begin_src sh :tangle bin/optional-ln-existing-pkg-cache-remove :shebang #!/bin/bash
+4. [ ] (Optional) Remove symbolic link
+   #+begin_src sh :tangle bin/optional/remove-link-to-pkg-cache-remove :shebang #!/bin/bash
      set -o nounset
      set -o errexit
      cd /mnt/var/cache/pacman
@@ -103,9 +103,14 @@ mount --verbose $DEVICE /mnt
      mkdir --verbose pkg
      ls -ld /mnt/var/cache/pacman/pkg
    #+end_src
+5. [ ] Manually copy and install razor-qt
+#+BEGIN_SRC sh
+sudo cp razor-qt-0.5.2-3-i686.pkg.tar.xz /mnt/root/
+#+END_SRC
+
 ** TODO [0/10] Configure the system
 1. [ ] Generate an [[fstab]]
-   #+BEGIN_SRC sh :tangle bin/configure-fstab.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
      # if you prefer to use UUIDs or labels,
      # add the -U or -L option
      genfstab -pU /mnt >> /mnt/etc/fstab
@@ -121,33 +126,33 @@ mount --verbose $DEVICE /mnt
    #+END_EXAMPLE
 2. [ ] rsync shiloh-setup
    #+BEGIN_SRC sh
-     rsync -av shiloh-setup/ /mnt/root/shiloh-setup
+     sudo rsync -av shiloh-setup/ /mnt/root/shiloh-setup
    #+END_SRC
 3. [ ] [[chroot]] into our newly installed system
    #+BEGIN_SRC sh
      arch-chroot /mnt
    #+END_SRC
 4. [ ] Write your hostname to /etc/hostname.
-   #+BEGIN_SRC sh :tangle bin/configure-hostname.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
      set -o nounset
      HOSTNAME="kangaroo" # change this!
      echo $HOSTNAME > /etc/hostname
    #+END_SRC
 5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
    - Replace Zone and Subzone to your liking. For Los_Angeles:
-     #+BEGIN_SRC sh :tangle bin/configure-timezone.sh :shebang #!/bin/bash
+     #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
        ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
        ls -l /etc/localtime
      #+END_SRC   
 6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
-   #+BEGIN_SRC sh :tangle bin/configure-locale.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
      set -o verbose
      cat /etc/locale.conf
      echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
      cat /etc/locale.conf
    #+END_SRC
 7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
-   #+begin_src perl :tangle bin/configure-locale-gen.pl :shebang #!/usr/bin/env perl
+   #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
      use warnings;
      use strict;
      my $regexp = '^#en_US.UTF-8 UTF-8';
@@ -167,15 +172,15 @@ mount --verbose $DEVICE /mnt
      rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
    #+end_src
 8. [ ] locale-gen
-    #+BEGIN_SRC sh :tangle bin/locale-gen.sh :shebang #!/bin/bash
+    #+BEGIN_SRC sh :tangle bin/configure/locale-gen.sh :shebang #!/bin/bash
       locale-gen
     #+END_SRC
 9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
-   #+BEGIN_SRC sh :tangle bin/configure-vconsole.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
      echo KEYMAP=us > /etc/vconsole.conf
    #+END_SRC
 10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
-    #+BEGIN_SRC sh :tangle bin/configure-mkinitcpio.sh :shebang #!/bin/bash
+    #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
       mkinitcpio -p linux
     #+END_SRC
 ** TODO [0/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
@@ -185,7 +190,7 @@ mount --verbose $DEVICE /mnt
      pacman --sync os-prober
    #+end_src
 3. [ ] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
-   #+BEGIN_SRC sh :tangle bin/configure-grub-install.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/configure/grub-install.sh :shebang #!/bin/bash
      DEVICE=/dev/sdb #change this as desired!
      modprobe dm-mod
      sleep 1
@@ -198,12 +203,12 @@ mount --verbose $DEVICE /mnt
      + /usr/sbin/grub-bios-setup: warning: Embedding is not possible.  GRUB can only be installed in
        this setup by using blocklists.  However, blocklists are UNRELIABLE and their use is discouraged..
 4. [ ] Generate GRUB2 BIOS Config file
-   #+BEGIN_SRC sh :tangle bin/configure-grub-cfg.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/configure/grub-cfg.sh :shebang #!/bin/bash
      grub-mkconfig -o /boot/grub/grub.cfg
    #+END_SRC
 ** TODO Set a root password with passwd.
 ** TODO Add a user
-   #+BEGIN_SRC sh :tangle bin/configure-adduser.sh :shebang #!/bin/bash
+   #+BEGIN_SRC sh :tangle bin/configure/adduser.sh :shebang #!/bin/bash
      useradd -m -g users -s /bin/bash troy
      passwd troy
    #+END_SRC   
@@ -222,6 +227,32 @@ Finally, add a normal user as described in [[Users and Groups#User management|Us
 
 Your new Arch Linux base system is now a functional GNU/Linux environment: you can proceed to [[Beginners' Guide/Extra]] for customization suggestions.
 
+** TODO Sudo
+#+BEGIN_SRC perl :tangle bin/configure/sudo.pl :shebang #!/usr/bin/env perl
+use warnings;
+use strict;
+
+print "User? ";
+chomp(my $user = <STDIN>);
+
+open ( my $out, '>>', '/etc/sudoers' );
+print $out <<"END";
+### Following lines added by sudo.pl
+# Defaults specification
+Defaults:troy timestamp_timeout=-1
+Defaults !tty_tickets
+# User privilege specification
+root	ALL=(ALL) ALL
+$user	ALL=(ALL) ALL
+END
+
+sub run_command {
+    my $command = shift;
+    print "=> $command\n";
+    system $command;
+}
+
+#+END_SRC
 ** TODO Unmount and reboot
 If you are still in the chroot environment type exit or press Ctrl+D in order to exit.
 Earlier we mounted the partitions under /mnt. In this step we will unmount them:
@@ -230,4 +261,5 @@ umount /mnt/{boot,home,}
 #+end_src
 
 Now reboot and then login into the new system with the root account.
-
+* Disk partioning documentation
+* Bootloader documentation

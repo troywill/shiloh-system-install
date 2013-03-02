@@ -2,7 +2,7 @@
 
 set -o errexit
 set -o nounset
-INSTALL="grub-bios os-prober"
+INSTALL="grub-bios os-prober arch-install-scripts"
 DEVEL="base-devel git stow"
 SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
 EMACS="emacs"
