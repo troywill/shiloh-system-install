@@ -92,7 +92,7 @@ mount --verbose $DEVICE /mnt
      RAZORQT="openbox"
      AUDIO="alsa-utils"
      VIDEO="flashplugin youtube-dl smplayer"
-     pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $AUDIO $VIDEO $XORG_FONTS
+     pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $RAZORQT $AUDIO $VIDEO $XORG_FONTS
    #+END_SRC  
 4. [ ] (Optional) Remove symbolic link
    #+begin_src sh :tangle bin/optional/remove-link-to-pkg-cache-remove :shebang #!/bin/bash
@@ -172,7 +172,7 @@ sudo cp razor-qt-0.5.2-3-i686.pkg.tar.xz /mnt/root/
      rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
    #+end_src
 8. [ ] locale-gen
-    #+BEGIN_SRC sh :tangle bin/configure/locale-gen.sh :shebang #!/bin/bash
+    #+BEGIN_SRC sh
       locale-gen
     #+END_SRC
 9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
