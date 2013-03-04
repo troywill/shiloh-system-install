@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+mkdir --verbose --parent /mnt/var/cache/pacman/pkg
+rsync --archive --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg

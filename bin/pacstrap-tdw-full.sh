@@ -2,8 +2,8 @@
 
 set -o errexit
 set -o nounset
-INSTALL="grub-bios os-prober arch-install-scripts"
-DEVEL="base-devel git stow"
+INSTALL="grub-bios os-prober arch-install-scripts parted"
+DEVEL="base-devel git stow cmake"
 SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
 EMACS="emacs"
 TEX="texlive-core texlive-latexextra"
@@ -15,4 +15,4 @@ KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars"
 RAZORQT="openbox"
 AUDIO="alsa-utils"
 VIDEO="flashplugin youtube-dl smplayer"
-pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $AUDIO $VIDEO $XORG_FONTS
+pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $RAZORQT $AUDIO $VIDEO $XORG_FONTS
