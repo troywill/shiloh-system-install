@@ -1,0 +1,48 @@
+* DONE Install libcups
+#+BEGIN_SRC sh
+pacman --sync libcups
+#+END_SRC
+* TODO [100%] Install server packages
+  1. [X] install cups
+     #+BEGIN_SRC sh
+       pacman --sync cups
+     #+END_SRC
+  2. [X] install cups-filters
+     #+BEGIN_SRC sh
+       pacman --sync cups
+     #+END_SRC
+  3. [X] install ghostscript
+     #+BEGIN_SRC sh
+       pacman --sync ghostscript
+     #+END_SRC
+  4. [X] install GhostScript standard Type1 fonts
+     #+BEGIN_SRC sh
+       pacman --sync gsfonts
+     #+END_SRC
+  5. [X] install HP drivers
+     #+BEGIN_SRC sh
+       pacman --sync hplip
+     #+END_SRC
+     #+BEGIN_EXAMPLE
+       Optional dependencies for hplip
+           cups: for printing support
+           python2-dbus: for dbus support
+           sane: for scanner support
+           python2-imaging: for commandline scanning support
+           python2-notify: for Desktop notification support
+           rpcbind: for network support
+           python2-pyqt: for running hp-toolbox
+           python2-gobject2: for running hp-toolbox
+           hplip-plugin: binary blobs for specific devices
+           libusbx: for advanced usb support
+     #+END_EXAMPLE
+  6. [X] start cups
+     #+BEGIN_SRC sh
+       systemctl start cups
+     #+END_SRC
+  7. [X] enable cups at start time
+     #+BEGIN_SRC sh
+       systemctl enable cups
+     #+END_SRC
+  8. [X] http://localhost:631/
+  9. [ ] 

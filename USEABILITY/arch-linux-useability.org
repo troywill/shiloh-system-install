@@ -5,10 +5,10 @@
 ** wiki.archlinux.org articles
 *** [[https://wiki.archlinux.org/index.php/Automatic_login_to_virtual_console][Automatic login to virtual console]]
 **** DONE Create a new service file similar to getty@.service by copying it to /etc/systemd/system/
-#+BEGIN_SRC sh
+#+BEGIN_SRC sh :tangle new.service.file.sh
 sudo cp -v /usr/lib/systemd/system/getty@.service /etc/systemd/system/autologin@.service
 #+END_SRC
-**** DONE Change the ExecStart line to include the -a USERNAME parameter
+**** TODO Change the ExecStart line to include the -a USERNAME parameter
 - [[file://etc/systemd/system/autologin@.service][/etc/systemd/system/autologin@.service]]
 #+BEGIN_EXAMPLE
 [Service]
@@ -17,7 +17,7 @@ sudo cp -v /usr/lib/systemd/system/getty@.service /etc/systemd/system/autologin@
 ExecStart=-/sbin/agetty --noclear -a USERNAME %I 38400
 ...
 #+END_EXAMPLE
-**** DONE disable the old getty@ttyX.service
+**** TODO disable the old getty@ttyX.service
 #+BEGIN_SRC sh :tangle disable.old.getty.sh
 #!/bin/bash
 set -o errexit
@@ -33,3 +33,4 @@ sudo systemctl start autologin@tty1
 #+BEGIN_SRC sh
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 #+END_SRC
+     
