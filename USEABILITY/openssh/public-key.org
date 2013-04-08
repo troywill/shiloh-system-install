@@ -1,0 +1,33 @@
+* [[https://wiki.archlinux.org/index.php/SSH_keys][SSH Key authentication]] (Arch Linux)
+  1. [X] Generate an SSH key pair
+     #+begin_src sh :tangle generate-ssh-key-pair.sh
+ssh-keygen -b 521 -t ecdsa -C"$(id -un)@$(hostname)-$(date --rfc-3339=date)"
+     #+end_src
+  2. [X] Enter pass phrase when prompted
+  3. [X] Copy id_ecdsa.pub to troywill.com
+     #+begin_src sh :tangle copy-public-key.sh
+       ssh-copy-id -i ~/.ssh/id_ecdsa.pub root@troywill.com
+     #+end_src
+  4. [X] Copy id_ecdsa.pub to troywill.com
+     #+begin_src sh
+       ssh-copy-id -i ~/.ssh/id_ecdsa.pub troy@troywill.com
+     #+end_src
+  5. ssh-agent [2/2]
+     1. [X] run the command through the eval command
+	#+BEGIN_SRC sh
+          eval $(ssh-agent)
+        #+END_SRC
+     2. [X] add your private key to ssh-agents' cache.
+	#+BEGIN_SRC sh
+          ssh-add ~/.ssh/id_ecdsa
+	#+END_SRC
+  6. [ ] append ssh-agent to ~/.bash_profile
+     #+BEGIN_SRC sh
+        echo 'eval $(ssh-agent)' >> ~/.bash_profile
+     #+END_SRC
+  7. [ ] append ssh-add to ~/.bash_profile
+     #+BEGIN_SRC sh
+       echo 'ssh-add' >> ~/.bash_profile
+     #+END_SRC
+* External Documentation Links
+** [[http://www.openssh.com/][http://www.openssh.com/]]
