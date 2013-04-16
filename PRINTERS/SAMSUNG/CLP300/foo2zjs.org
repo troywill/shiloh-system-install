@@ -1,0 +1,21 @@
+1. [ ] Read http://foo2zjs.rkkda.com
+2. [ ] 
+   #+BEGIN_SRC sh
+     wget -O foo2zjs.tar.gz http://foo2zjs.rkkda.com/foo2zjs.tar.gz
+   #+END_SRC
+3. [ ] 
+   #+BEGIN_SRC sh
+      make
+   #+END_SRC
+4. [ ] 
+   #+BEGIN_SRC sh
+      ./getweb 300      # Get Samsung CLP-300 .ICM files
+   #+END_SRC
+5. [ ] install
+   #+BEGIN_SRC sh
+     sudo make install
+   #+END_SRC
+6. [ ] restart cups
+   #+BEGIN_SRC sh
+     sudo make cups
+   #+END_SRC
