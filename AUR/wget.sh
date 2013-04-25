@@ -2,7 +2,7 @@
 set -o errexit
 set -o nounset
 
-DOWNLOADER="wget"
+DOWNLOADER="wget --no-clobber"
 
 do_download () {
     $DOWNLOADER $1

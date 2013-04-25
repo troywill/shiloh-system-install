@@ -2,7 +2,7 @@
 ** DONE Connect to the internet
 ** DONE Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
 ** DONE Prepare the target media with parted and GPT
-1. [X] Run lsblk to determine drive   
+1. [X] (Optional) Run lsblk to determine drive   
 2. [X] (Optional) Zero drive
    #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
      set -o errexit
@@ -79,6 +79,7 @@ mount --verbose $DEVICE /mnt
    #+BEGIN_SRC sh :tangle bin/pacstrap-tdw-full.sh :shebang #!/bin/bash
      set -o errexit
      set -o nounset
+     # Thursday, April 25, 2013 3:09 PM
      INSTALL="grub-bios os-prober arch-install-scripts parted"
      DEVEL="base-devel git stow cmake"
      SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
@@ -107,8 +108,8 @@ mount --verbose $DEVICE /mnt
 #+BEGIN_SRC sh
 sudo cp razor-qt-0.5.2-3-i686.pkg.tar.xz /mnt/root/
 #+END_SRC
-** TODO [0/10] Configure the system
-1. [ ] Generate an [[fstab]]
+** DONE [10/10] Configure the system
+1. [X] Generate an [[fstab]]
    #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
      # if you prefer to use UUIDs or labels,
      # add the -U or -L option
@@ -123,34 +124,34 @@ sudo cp razor-qt-0.5.2-3-i686.pkg.tar.xz /mnt/root/
      tmpfs           /tmp    tmpfs   nodev,nosuid    0       0
      LABEL=shiloh / ext4 defaults 0 1
    #+END_EXAMPLE
-2. [ ] rsync shiloh-setup
+2. [X] copy shiloh-setup
    #+BEGIN_SRC sh
-     sudo rsync -av shiloh-setup/ /mnt/root/shiloh-setup
+     sudo cp --archive shiloh-setup/ /mnt/root/
    #+END_SRC
-3. [ ] [[chroot]] into our newly installed system
+3. [X] [[chroot]] into our newly installed system
    #+BEGIN_SRC sh
      arch-chroot /mnt
    #+END_SRC
-4. [ ] Write your hostname to /etc/hostname.
+4. [X] Write your hostname to /etc/hostname.
    #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
      set -o nounset
      HOSTNAME="kangaroo" # change this!
      echo $HOSTNAME > /etc/hostname
    #+END_SRC
-5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
+5. [X] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
    - Replace Zone and Subzone to your liking. For Los_Angeles:
      #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
        ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
        ls -l /etc/localtime
      #+END_SRC   
-6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+6. [X] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
    #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
      set -o verbose
      cat /etc/locale.conf
      echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
      cat /etc/locale.conf
    #+END_SRC
-7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
+7. [X] Uncomment en_US.UTF-8 in /etc/locale.gen
    #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
      use warnings;
      use strict;
@@ -170,15 +171,15 @@ sudo cp razor-qt-0.5.2-3-i686.pkg.tar.xz /mnt/root/
      rename("/etc/locale.gen", "/etc/locale.gen.orig")   or die "can't rename /etc/locale.gen /etc/locale.gen.orig: $!";
      rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
    #+end_src
-8. [ ] locale-gen
+8. [X] locale-gen
     #+BEGIN_SRC sh
       locale-gen
     #+END_SRC
-9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+9. [X] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
    #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
      echo KEYMAP=us > /etc/vconsole.conf
    #+END_SRC
-10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
+10. [X] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
     #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
       mkinitcpio -p linux
     #+END_SRC
