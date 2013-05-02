@@ -4,4 +4,5 @@ set -o nounset
 
 source ./ruby-version
 
-wget --no-clobber http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$RUBY_VERSION.tar.bz2
+wget --no-clobber http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-$RUBY_VERSION.tar.bz2
+
