@@ -1,9 +1,9 @@
-* Installing Shiloh System step by step
-** TODO Connect to the internet
-** TODO Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
-** TODO Prepare the target media with parted and GPT
-1. [ ] (Optional) Run lsblk to determine drive   
-2. [ ] (Optional) Zero drive
+* Installing Shiloh System step by step Start 8:02 PM Finish 
+** DONE Connect to the internet
+** DONE Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
+** DONE [7/7] Prepare the target media with parted and GPT
+1. [X] (Optional) Run lsblk to determine drive   
+2. [X] (Optional) Zero drive
    #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
      set -o errexit
      DEVICE="/dev/sdb"
@@ -12,25 +12,25 @@
      dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
      dd if=/dev/zero of=${DEVICE} bs=$BS count=$COUNT
    #+END_SRC
-3. [ ] Create a GUID partition table with parted
+3. [X] Create a GUID partition table with parted
    #+BEGIN_SRC sh
      parted /dev/sdb
      mklabel gpt
    #+END_SRC
-4. [ ] Create a boot partition with parted
+4. [X] Create a boot partition with parted
    #+BEGIN_SRC sh
    mkpart primary 1 2
-   set 1 bios_grub on
+    set 1 bios_grub on
    #+END_SRC
-5. [ ] Create a root partition with parted
+5. [X] Create a root partition with parted
    #+BEGIN_SRC sh
      mkpart primary 2 8011
    #+END_SRC
-6. [ ] Verify partition
+6. [X] Verify partition
    #+BEGIN_SRC sh
-     sudo parted /dev/sdb print
+     print
    #+END_SRC
-7. [ ] Format the partition
+7. [X] Format the partition
    #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
      set -o nounset
      set -o errexit
@@ -38,151 +38,144 @@
      DEVICE="/dev/sdb2" #change this!
      mkfs.ext4 -v -L $LABEL $DEVICE
    #+END_SRC
-** TODO Mount the partition
+** DONE Mount the partition
 #+begin_src sh :tangle bin/partition/mount-the-partition.sh :shebang #!/bin/bash
 set -o errexit
 set -o nounset
 DEVICE="/dev/sdb2" #change this!
 mount --verbose $DEVICE /mnt
 #+end_src
-** TODO [0/5] Install the base system
-1. [ ] Install arch-install-scripts
-   #+begin_src sh
-     pacman --sync arch-install-scripts
-   #+end_src
-2. [ ] (Optional) Copy xz files or link symbolically to host pkg directory
-   #+begin_src sh :tangle bin/optional/copy-existing-pkg-cache :shebang #!/bin/bash
-     set -o nounset
-     set -o errexit
-     mkdir --verbose --parent /mnt/var/cache/pacman/pkg
-     rsync --archive --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
-   #+end_src
-   #+begin_src sh :tangle bin/optional/link-existing-pkg-cache :shebang #!/bin/bash
-     set -o nounset
-     set -o errexit
-     cd /mnt
-     mkdir --verbose --parent var/cache/pacman
-     cd var/cache/pacman
-     ln --symbolic --verbose /var/cache/pacman/pkg
-   #+end_src
-3. [ ] Install packages with pacstap
-   Before installing, you may want to edit /etc/pacman.d/mirrorlist such that your
-   preferred mirror is first. This copy of the mirrorlist will be installed on your
-   new system by pacstrap} as well, so it's worth getting it right.
-   
-   Using the pacstrap script we install the base system. The 'base-devel' package group
-   should also be installed if you plan on compiling software from the [[AUR]] or using [[ABS]].
- 
-   Other packages can be installed by appending their names to the above command (space
-   seperated), including the bootloader if you want.
-   
-   #+BEGIN_SRC sh :tangle bin/pacstrap-tdw-full.sh :shebang #!/bin/bash
-     set -o errexit
-     set -o nounset
-     # Thursday, April 25, 2013 3:09 PM
-     INSTALL="grub-bios os-prober arch-install-scripts parted"
-     DEVEL="base-devel git stow cmake"
-     SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
-     EMACS="emacs"
-     TEX="texlive-core texlive-latexextra"
-     WIRELESS="wireless_tools wpa_supplicant"
-     XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
-     XORG_FONTS="ttf-dejavu ttf-hannom"
-     WEB="chromium firefox opera"
-     KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars"
-     RAZORQT="openbox"
-     AUDIO="alsa-utils"
-     VIDEO="flashplugin youtube-dl smplayer"
-     pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $RAZORQT $AUDIO $VIDEO $XORG_FONTS
-   #+END_SRC  
-4. [ ] (Optional) Remove symbolic link
-   #+begin_src sh :tangle bin/optional/remove-link-to-pkg-cache-remove :shebang #!/bin/bash
-     set -o nounset
-     set -o errexit
-     cd /mnt/var/cache/pacman
-     unlink pkg
-     mkdir --verbose pkg
-     ls -ld /mnt/var/cache/pacman/pkg
-   #+end_src
-5. [ ] Manually copy and install razor-qt
-#+BEGIN_SRC sh
-sudo cp razor-qt-0.5.2-3-i686.pkg.tar.xz /mnt/root/
-#+END_SRC
-** TODO [0/10] Configure the system
-1. [ ] Generate an [[fstab]]
-   #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
-     # if you prefer to use UUIDs or labels,
-     # add the -U or -L option
-     genfstab -pU /mnt >> /mnt/etc/fstab
-   #+END_SRC
-   - Note: I got an error on Friday, November 9 running genfstab: "findmnt: unknown column: FSROOT"
-   #+BEGIN_EXAMPLE
-     # 
-     # /etc/fstab: static file system information
-     #
-     # <file system> <dir>   <type>  <options>       <dump>  <pass>
-     tmpfs           /tmp    tmpfs   nodev,nosuid    0       0
-     LABEL=shiloh / ext4 defaults 0 1
-   #+END_EXAMPLE
-2. [ ] copy shiloh-setup
-   #+BEGIN_SRC sh
-     sudo cp --archive shiloh-setup/ /mnt/root/
-   #+END_SRC
-3. [ ] [[chroot]] into our newly installed system
-   #+BEGIN_SRC sh
-     arch-chroot /mnt
-   #+END_SRC
-4. [ ] Write your hostname to /etc/hostname.
-   #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
-     set -o nounset
-     HOSTNAME="kangaroo" # change this!
-     echo $HOSTNAME > /etc/hostname
-   #+END_SRC
-5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
-   - Replace Zone and Subzone to your liking. For Los_Angeles:
-     #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
-       ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
-       ls -l /etc/localtime
-     #+END_SRC   
-6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
-   #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
-     set -o verbose
-     cat /etc/locale.conf
-     echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
-     cat /etc/locale.conf
-   #+END_SRC
-7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
-   #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
-     use warnings;
-     use strict;
-     my $regexp = '^#en_US.UTF-8 UTF-8';
-     my $replacement = 'en_US.UTF-8 UTF-8';
-     open(my $oldlocale, "<", "/etc/locale.gen")      # open for update
-         or die "Can't open '/etc/locale.gen' for reading: $!";
-     open(my $newlocale, ">", "/etc/locale.gen.tmp")
-         or die "Can't open '/tmp/locale.gen' for writing: $!";
-     while (<$oldlocale>) {
-         s/$regexp/$replacement/;
-         print $newlocale $_ or die "can't write $newlocale: $!";;
-     }
-     
-     close($oldlocale)            or die "can't close $oldlocale: $!";
-     close($newlocale)            or die "can't close $newlocale: $!";
-     rename("/etc/locale.gen", "/etc/locale.gen.orig")   or die "can't rename /etc/locale.gen /etc/locale.gen.orig: $!";
-     rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
-   #+end_src
-8. [ ] locale-gen
-    #+BEGIN_SRC sh
-      locale-gen
-    #+END_SRC
-9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
-   #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
-     echo KEYMAP=us > /etc/vconsole.conf
-   #+END_SRC
-10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
-    #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
-      mkinitcpio -p linux
-    #+END_SRC
+** DONE [5/5] Install the base system
+   1. [X] Install arch-install-scripts
+      #+begin_src sh
+        pacman --sync arch-install-scripts
+      #+end_src
+   2. [X] (Optional) Copy xz files or link symbolically to host pkg directory
+      #+begin_src sh :tangle bin/optional/copy-existing-pkg-cache :shebang #!/bin/bash
+        set -o nounset
+        set -o errexit
+        mkdir --verbose --parent /mnt/var/cache/pacman/pkg
+        rsync --archive --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
+      #+end_src
+      #+begin_src sh :tangle bin/optional/link-existing-pkg-cache :shebang #!/bin/bash
+        set -o nounset
+        set -o errexit
+        cd /mnt
+        mkdir --verbose --parent var/cache/pacman
+        cd var/cache/pacman
+        ln --symbolic --verbose /var/cache/pacman/pkg
+      #+end_src
+   3. [X] Install packages with pacstap
+      Before installing, you may want to edit /etc/pacman.d/mirrorlist such that your
+      preferred mirror is first. This copy of the mirrorlist will be installed on your
+      new system by pacstrap} as well, so it's worth getting it right.
+      
+      Using the pacstrap script we install the base system. The 'base-devel' package group
+      should also be installed if you plan on compiling software from the [[AUR]] or using [[ABS]].
+      
+      Other packages can be installed by appending their names to the above command (space
+      seperated), including the bootloader if you want.
+      
+      #+BEGIN_SRC sh :tangle bin/pacstrap-tdw-full.sh :shebang #!/bin/bash
+        set -o errexit
+        set -o nounset
+        # Thursday, April 25, 2013 3:09 PM
+        INSTALL="grub-bios os-prober arch-install-scripts parted"
+        DEVEL="base-devel git stow cmake"
+        SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
+        EMACS="emacs"
+        TEX="texlive-core texlive-latexextra"
+        WIRELESS="wireless_tools wpa_supplicant"
+        XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
+        XORG_FONTS="ttf-dejavu ttf-hannom"
+        WEB="chromium firefox opera"
+        KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars"
+        RAZORQT="openbox"
+        AUDIO="alsa-utils"
+        VIDEO="flashplugin youtube-dl smplayer"
+        pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $RAZORQT $AUDIO $VIDEO $XORG_FONTS
+      #+END_SRC  
+   4. [X] (Optional) Remove symbolic link, and restore pacman pkg directory
+      #+begin_src sh :tangle bin/optional/remove-link-to-pkg-cache-remove :shebang #!/bin/bash
+        set -o nounset
+        set -o errexit
+        cd /mnt/var/cache/pacman
+        unlink pkg
+        mkdir --verbose pkg
+        ls -ld /mnt/var/cache/pacman/pkg
+      #+end_src
+   5. [X] [100%] Copy AUR packages
+      1. [X] razor-qt 
+         #+BEGIN_SRC sh
+           sudo cp razor-qt-0.5.2-4-i686.pkg.tar.xz /mnt/root/
+         #+END_SRC
+** TODO [3/10] Configure the system
+   1. [X] Generate an [[fstab]]
+      #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
+        set -o verbose
+        # if you prefer to use UUIDs or labels,
+        # add the -U or -L option
+        genfstab -pU /mnt >> /mnt/etc/fstab
+      #+END_SRC
+   2. [X] copy shiloh-setup
+      #+BEGIN_SRC sh
+          sudo cp --archive shiloh-setup/ /mnt/root
+      #+END_SRC
+   3. [X] [[chroot]] into our newly installed system
+      #+BEGIN_SRC sh
+        arch-chroot /mnt
+      #+END_SRC
+   4. [ ] Write your hostname to /etc/hostname.
+      #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
+        set -o nounset
+        HOSTNAME="kangaroo" # change this!
+        echo $HOSTNAME > /etc/hostname
+      #+END_SRC
+   5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
+      - Replace Zone and Subzone to your liking. For Los_Angeles:
+        #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
+          ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+          ls -l /etc/localtime
+        #+END_SRC   
+   6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+      #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
+        set -o verbose
+        cat /etc/locale.conf
+        echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
+        cat /etc/locale.conf
+      #+END_SRC
+   7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
+      #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
+        use warnings;
+        use strict;
+        my $regexp = '^#en_US.UTF-8 UTF-8';
+        my $replacement = 'en_US.UTF-8 UTF-8';
+        open(my $oldlocale, "<", "/etc/locale.gen")      # open for update
+            or die "Can't open '/etc/locale.gen' for reading: $!";
+        open(my $newlocale, ">", "/etc/locale.gen.tmp")
+            or die "Can't open '/tmp/locale.gen' for writing: $!";
+        while (<$oldlocale>) {
+            s/$regexp/$replacement/;
+            print $newlocale $_ or die "can't write $newlocale: $!";;
+        }
+        
+        close($oldlocale)            or die "can't close $oldlocale: $!";
+        close($newlocale)            or die "can't close $newlocale: $!";
+        rename("/etc/locale.gen", "/etc/locale.gen.orig")   or die "can't rename /etc/locale.gen /etc/locale.gen.orig: $!";
+        rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
+      #+end_src
+   8. [ ] locale-gen
+       #+BEGIN_SRC sh
+         locale-gen
+       #+END_SRC
+   9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+      #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
+        echo KEYMAP=us > /etc/vconsole.conf
+      #+END_SRC
+   10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
+       #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
+         mkinitcpio -p linux
+       #+END_SRC
 ** TODO [0/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
 1. [ ] READ https://wiki.archlinux.org/index.php/GRUB2
 2. [ ] Install osprober if Windows dual boot

@@ -1,0 +1,7 @@
+| Package           |    Updated | AUR URL                                               |
+|-------------------+------------+-------------------------------------------------------|
+| google-talkplugin | 2013-04-05 | https://aur.archlinux.org/packages/google-talkplugin/ |
+| emacs-org-mode    | 2013-04-19 | https://aur.archlinux.org/packages/emacs-org-mode/    |
+| razor-qt          | 2013-03-04 | https://aur.archlinux.org/packages/razor-qt/          |
+|                   |            |                                                       |
+
