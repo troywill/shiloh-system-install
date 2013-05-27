@@ -1,0 +1,11 @@
+* Emacs 24 starter kit
+  1. git clone http://github.com/eschulte/emacs24-starter-kit.git
+  2. mv -v ~/.emacs.d /tmp
+  3. mkdir ~/.emacs.d
+  4. cd emacs24-starter-kit
+  5. cp -a * ~/.emacs.d
+  6. Start emacs
+
+
+     
+     
