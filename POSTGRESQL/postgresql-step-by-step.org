@@ -1,0 +1,28 @@
+* Install PostgreSQL Step by Step ( See https://wiki.archlinux.org/index.php/PostgreSQL#Installing_PostgreSQL )
+1. [ ] Install postgresql
+2. [ ] Create the file tmpfiles.d for /run/postgresql
+   #+BEGIN_SRC sh
+     systemd-tmpfiles --create postgresql.conf
+   #+END_SRC
+3. [ ] Create the data directory
+   #+BEGIN_SRC sh
+     mkdir /var/lib/postgres/data
+   #+END_SRC
+4. [ ] Set /var/lib/postgres ownership to user 'postgres'
+   #+BEGIN_SRC sh
+     hown -c -R postgres:postgres /var/lib/postgres
+   #+END_SRC
+5. [ ] As user 'postgres' start the database
+   #+BEGIN_SRC sh
+     su - postgres
+     initdb -D '/var/lib/postgres/data'
+   #+END_SRC
+6. [ ] Start PostgreSQL
+   #+BEGIN_SRC sh
+     systemctl start postgresql
+   #+END_SRC
+7. [ ] (Optional) Add PostgreSQL to the list of daemons that start on
+   system startup
+   #+BEGIN_SRC sh
+     systemctl enable postgresql
+   #+END_SRC
