@@ -3,7 +3,7 @@ set -o errexit
 set -o nounset
 set -o verbose
 
-VERSION="5.14.2"
+VERSION="5.18.0"
 PREFIX="/usr/local"
 BINDIR="/usr/local/bin/perl-${VERSION}"
 SITEBINDIR=${BINDIR}
