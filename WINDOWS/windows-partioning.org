@@ -1,7 +1,7 @@
 #+STARTUP: showcontent
 * Make backup
   #+BEGIN_SRC sh :tangle bin/make-backup.sh :shebang #!/bin/bash
-    dd if=/dev/sda conv=sync,noerror bs=64k | gzip -c > sda.img.2012.08.31.dell.gz
+    dd if=/dev/sda bs=4096 | gzip -c > sda.img.2012.08.31.dell.gz
   #+END_SRC
 
 *** Friday, November 9
