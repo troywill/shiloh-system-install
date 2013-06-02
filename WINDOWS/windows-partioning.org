@@ -3,7 +3,7 @@
   #+BEGIN_SRC sh :tangle bin/make-backup.sh :shebang #!/bin/bash
     dd if=/dev/sda bs=4096 | gzip -c > sda.img.2012.08.31.dell.gz
   #+END_SRC
-
+* Partition Drive
 *** Friday, November 9
 **** Decide to restore Dell
 ***** Where are backup images?
