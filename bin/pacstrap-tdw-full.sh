@@ -3,7 +3,7 @@
 set -o errexit
 set -o nounset
 # Thursday, April 25, 2013 3:09 PM
-INSTALL="grub-bios os-prober arch-install-scripts parted"
+INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
 DEVEL="base-devel git stow cmake"
 SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
 EMACS="emacs"

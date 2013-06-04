@@ -3,51 +3,28 @@
   #+BEGIN_SRC sh :tangle bin/make-backup.sh :shebang #!/bin/bash
     dd if=/dev/sda bs=4096 | gzip -c > sda.img.2012.08.31.dell.gz
   #+END_SRC
-* Partition Drive
-*** Friday, November 9
-**** Decide to restore Dell
-***** Where are backup images?
-sda.img.2012.08.31.dell.gz, located on sdb1
-#+begin_src sh
-#!/bin/bash
-dd if=/dev/sda conv=sync,noerror bs=64k | gzip -c > sda.img.2012.08.31.dell.gz
-#+end_src
-***** Procedure to restore ( [[https://wiki.archlinux.org/index.php/Disk_Cloning][Disk Cloning]] )
-#+begin_src sh
-gunzip -c /mnt/sda1/hda.img.gz | dd of=/dev/hda
-#+end_src
-***** How to resize the drive
-***** Resizing the windows partition
-- I installed ntfsprogs-2012.1.15-3
-- Use ntfsreszie
-***** Step by step
-1. [X] cp mbr as a safety precaution
-#+begin_src sh
-dd if=/dev/sda of=mbr.sda.dell.laptop.nov.9.20M bs=1M count=20
-#+end_src  
-2. [ ] Boot external drive and restore hard drive
-#+begin_src sh
-# :tangle restore.sda.sh
-# The following line was run on Friday, November 9.
-gunzip --to-stdout sda.img.2012.08.31.dell.gz | dd of=/dev/sda bs=8M
-#+end_src
-1. [X] Resize hard drive in half
-2. [X] Image resized ntfs partition
-3. [X] Image mbr
+* Partition Drive 
+** Step by step
+   1. [X] cp mbr as a safety precaution
+      #+BEGIN_SRC sh
+        sudo dd if=/dev/sda of=mbr.sda.dell.optiplex.755.june.2.2013.20M bs=1M count=20
+      #+END_SRC
+   2. [X] Install ntfsprogs
+      #+BEGIN_SRC sh
+        pacman --sync ntfsprogs      
+      #+END_SRC
+   3. [X] Resize hard drive in half
+      #+BEGIN_SRC sh
+        ntfsresize --size 40G /dev/sda1
+      #+END_SRC
+   4. [ ] parted /dev/sda
+   5. [ ] rescue 1 50G
+   6. [X] Image resized ntfs partition
+   7. [X] Image mbr
 ****** How I resized the Windows Vista ntfs partition on November 9, 2012
-I ran Arch Linux from an external hard drive. Then I installed ntfsprogs:       
-#+begin_src sh
-pacman --sync ntfsprogs
-#+end_src
 I used ntfsresize to resize the partiton to 50 GB.
-#+begin_src sh
-ntfsresize --size 50G /dev/sda1
-#+end_src
 - I used parted to shrink the partition table entry.
 - I did that by first deleting both partitions and then used the rescue function searching from 1 to 50 GB
-#+begin_src sh
-rescue 1 50G
-#+end_src
 - Finally, I made the partition bootable.
 Here's the partition table displayed by cfdisk after I got done:
 #+begin_example
@@ -339,6 +316,22 @@ NTFSRESIZE(8)                                                   NTFSRESIZE(8)
        mkntfs(8), ntfsprogs(8)
 
 ntfs-3g 2012.1.15               February 2006                   NTFSRESIZE(8)
+*** Friday, November 9
+**** Decide to restore Dell
+***** Where are backup images?
+sda.img.2012.08.31.dell.gz, located on sdb1
+#+begin_src sh
+#!/bin/bash
+dd if=/dev/sda conv=sync,noerror bs=64k | gzip -c > sda.img.2012.08.31.dell.gz
+#+end_src
+***** Procedure to restore ( [[https://wiki.archlinux.org/index.php/Disk_Cloning][Disk Cloning]] )
+#+begin_src sh
+gunzip -c /mnt/sda1/hda.img.gz | dd of=/dev/hda
+#+end_src
+***** How to resize the drive
+***** Resizing the windows partition
+- I installed ntfsprogs-2012.1.15-3
+- Use ntfsreszie
 
 *** Sunday, November 11
 **** Grub experiment - Find out what grub install does to the space between the master boot record and the first partion.

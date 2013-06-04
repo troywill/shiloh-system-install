@@ -1,7 +1,7 @@
 * Installing Shiloh System step by step Start 8:02 PM Finish 
-** DONE Connect to the internet
-** DONE Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
-** DONE [7/7] Prepare the target media with parted and GPT
+** TODO Connect to the internet
+** TODO Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
+** TODO [7/7] Prepare the target media with parted and GPT
 1. [X] (Optional) Run lsblk to determine drive   
 2. [X] (Optional) Zero drive
    #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
@@ -45,7 +45,7 @@ set -o nounset
 DEVICE="/dev/sdb2" #change this!
 mount --verbose $DEVICE /mnt
 #+end_src
-** DONE [5/5] Install the base system
+** TODO [4/5] Install the base system
    1. [X] Install arch-install-scripts
       #+begin_src sh
         pacman --sync arch-install-scripts
@@ -80,7 +80,7 @@ mount --verbose $DEVICE /mnt
         set -o errexit
         set -o nounset
         # Thursday, April 25, 2013 3:09 PM
-        INSTALL="grub-bios os-prober arch-install-scripts parted"
+        INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
         DEVEL="base-devel git stow cmake"
         SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
         EMACS="emacs"
@@ -104,12 +104,12 @@ mount --verbose $DEVICE /mnt
         mkdir --verbose pkg
         ls -ld /mnt/var/cache/pacman/pkg
       #+end_src
-   5. [X] [100%] Copy AUR packages
-      1. [X] razor-qt 
+   5. [ ] [0%] Copy AUR packages
+      1. [ ] razor-qt 
          #+BEGIN_SRC sh
            sudo cp razor-qt-0.5.2-4-i686.pkg.tar.xz /mnt/root/
          #+END_SRC
-** TODO [3/10] Configure the system
+** TODO [2/10] Configure the system
    1. [X] Generate an [[fstab]]
       #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
         set -o verbose
@@ -121,7 +121,7 @@ mount --verbose $DEVICE /mnt
       #+BEGIN_SRC sh
           sudo cp --archive shiloh-setup/ /mnt/root
       #+END_SRC
-   3. [X] [[chroot]] into our newly installed system
+   3. [ ] [[chroot]] into our newly installed system
       #+BEGIN_SRC sh
         arch-chroot /mnt
       #+END_SRC
