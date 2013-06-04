@@ -1,6 +1,6 @@
 * Installing Shiloh System step by step Start 8:02 PM Finish 
-** TODO Connect to the internet
-** TODO Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
+** DONE Connect to the internet
+** DONE Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
 ** TODO [7/7] Prepare the target media with parted and GPT
 1. [X] (Optional) Run lsblk to determine drive   
 2. [X] (Optional) Zero drive
@@ -109,7 +109,7 @@ mount --verbose $DEVICE /mnt
          #+BEGIN_SRC sh
            sudo cp razor-qt-0.5.2-4-i686.pkg.tar.xz /mnt/root/
          #+END_SRC
-** TODO [2/10] Configure the system
+** [10/10] Configure the system
    1. [X] Generate an [[fstab]]
       #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
         set -o verbose
@@ -121,30 +121,30 @@ mount --verbose $DEVICE /mnt
       #+BEGIN_SRC sh
           sudo cp --archive shiloh-setup/ /mnt/root
       #+END_SRC
-   3. [ ] [[chroot]] into our newly installed system
+   3. [X] [[chroot]] into our newly installed system
       #+BEGIN_SRC sh
         arch-chroot /mnt
       #+END_SRC
-   4. [ ] Write your hostname to /etc/hostname.
+   4. [X] Write your hostname to /etc/hostname.
       #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
         set -o nounset
         HOSTNAME="kangaroo" # change this!
         echo $HOSTNAME > /etc/hostname
       #+END_SRC
-   5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
+   5. [X] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
       - Replace Zone and Subzone to your liking. For Los_Angeles:
         #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
           ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
           ls -l /etc/localtime
         #+END_SRC   
-   6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+   6. [X] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
       #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
         set -o verbose
         cat /etc/locale.conf
         echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
         cat /etc/locale.conf
       #+END_SRC
-   7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
+   7. [X] Uncomment en_US.UTF-8 in /etc/locale.gen
       #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
         use warnings;
         use strict;
@@ -164,25 +164,25 @@ mount --verbose $DEVICE /mnt
         rename("/etc/locale.gen", "/etc/locale.gen.orig")   or die "can't rename /etc/locale.gen /etc/locale.gen.orig: $!";
         rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
       #+end_src
-   8. [ ] locale-gen
+   8. [X] locale-gen
        #+BEGIN_SRC sh
          locale-gen
        #+END_SRC
-   9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+   9. [X] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
       #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
         echo KEYMAP=us > /etc/vconsole.conf
       #+END_SRC
-   10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
+   10. [X] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
        #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
          mkinitcpio -p linux
        #+END_SRC
-** TODO [0/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
-1. [ ] READ https://wiki.archlinux.org/index.php/GRUB2
-2. [ ] Install osprober if Windows dual boot
+** [4/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+1. [X] READ https://wiki.archlinux.org/index.php/GRUB2
+2. [X] Install osprober if Windows dual boot
    #+begin_src sh
      pacman --sync os-prober
    #+end_src
-3. [ ] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
+3. [X] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
    #+BEGIN_SRC sh :tangle bin/configure/grub-install.sh :shebang #!/bin/bash
      DEVICE=/dev/sdb #change this as desired!
      modprobe dm-mod
@@ -195,12 +195,12 @@ mount --verbose $DEVICE /mnt
        ; embedding won't be possible.
      + /usr/sbin/grub-bios-setup: warning: Embedding is not possible.  GRUB can only be installed in
        this setup by using blocklists.  However, blocklists are UNRELIABLE and their use is discouraged..
-4. [ ] Generate GRUB2 BIOS Config file
+4. [X] Generate GRUB2 BIOS Config file
    #+BEGIN_SRC sh :tangle bin/configure/grub-cfg.sh :shebang #!/bin/bash
      grub-mkconfig -o /boot/grub/grub.cfg
    #+END_SRC
-** TODO Set a root password with passwd.
-** TODO Add a user
+** DONE Set a root password with passwd.
+** DONE Add a user
    #+BEGIN_SRC sh :tangle bin/configure/adduser.sh :shebang #!/bin/bash
      useradd -m -g users -s /bin/bash troy
      passwd troy
