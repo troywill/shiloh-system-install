@@ -1,0 +1,28 @@
+* [0/6] Install Perl step by step
+  1. [ ] 
+     #+BEGIN_SRC sh
+       pacman --sync perlbrew
+     #+END_SRC
+  2. [ ] 
+     #+BEGIN_SRC sh
+       source /etc/profile
+     #+END_SRC
+  3. [ ] 
+     #+BEGIN_SRC sh
+       perlbrew init
+     #+END_SRC
+  4. [ ] Append the following piece of code to the end of your
+     ~/.bash_profile and start a new shell, perlbrew should be up and
+     fully functional from there:
+     #+BEGIN_SRC sh
+       echo 'source ~/perl5/perlbrew/etc/bashrc' >> ~/.bash_profile
+     #+END_SRC
+  5. [ ] 
+     #+BEGIN_SRC sh
+       source ~/perl5/perlbrew/etc/bashrc' >> ~/.bash_profile
+     #+END_SRC
+  6. [ ] 
+     #+BEGIN_SRC sh
+       perlbrew install stable
+     #+END_SRC
+

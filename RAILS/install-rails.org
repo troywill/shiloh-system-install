@@ -1,0 +1,5 @@
+* [/] Install Ruby on Rails step by step
+  1. [ ] 
+     #+BEGIN_SRC sh :tangle install-rails.sh :shebang #!/bin/sh
+       gem install rails --prerelease --no-ri --no-rdoc
+     #+END_SRC
