@@ -1,18 +1,18 @@
 * [0/0] Post install activities
-  1. [4/4] Create and upload Enable Github ssh key
-     1. [X] Read https://help.github.com/articles/generating-ssh-keys to get an overview
-     2. [X] Generate an rsa SSH key pair
+  1. [0/4] Create and upload Enable Github ssh key
+     1. [ ] Read https://help.github.com/articles/generating-ssh-keys to get an overview
+     2. [ ] Generate an rsa SSH key pair
 	#+BEGIN_SRC sh :tangle bin/generate-rsa-key-pair.sh :shebang #!/bin/sh
           ssh-keygen -t rsa -C"$(id -un)@$(hostname)-$(date --rfc-3339=date)"
 	#+END_SRC
-     3. [X] Enter pass phrase when prompted
-     4. [X] Copy id_rsa.pub to github
-     5. ssh-agent [2/4]
-	1. [X] run the command through the eval command
+     3. [ ] Enter pass phrase when prompted
+     4. [ ] Copy id_rsa.pub to github
+     5. ssh-agent [0/4]
+	1. [ ] run the command through the eval command
 	   #+BEGIN_SRC sh
              eval $(ssh-agent)
            #+END_SRC
-	2. [X] add your private key to ssh-agents' cache.
+	2. [ ] add your private key to ssh-agents' cache.
 	   #+BEGIN_SRC sh
              ssh-add ~/.ssh/id_ecdsa
 	   #+END_SRC

@@ -1,9 +1,9 @@
 * Installing Shiloh System step by step Start 8:02 PM Finish 
-1. [X] Connect to the internet
-2. [X] Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
-3. [X] Prepare the target media with parted and GPT
-   1. [X] (Optional) Run lsblk to determine drive   
-   2. [X] (Optional) Zero drive
+1. [ ] Connect to the internet
+2. [ ] Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
+3. [ ] Prepare the target media with parted and GPT
+   1. [ ] (Optional) Run lsblk to determine drive   
+   2. [ ] (Optional) Zero drive
       #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
 	set -o errexit
 	DEVICE="/dev/sdb"
@@ -12,25 +12,25 @@
 	dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
 	dd if=/dev/zero of=${DEVICE} bs=$BS count=$COUNT
       #+END_SRC
-   3. [X] Create a GUID partition table with parted
+   3. [ ] Create a GUID partition table with parted
       #+BEGIN_SRC sh
 	parted /dev/sdb
 	mklabel gpt
       #+END_SRC
-   4. [X] Create a boot partition with parted
+   4. [ ] Create a boot partition with parted
       #+BEGIN_SRC sh
       mkpart primary 1 2
        set 1 bios_grub on
       #+END_SRC
-   5. [X] Create a root partition with parted
+   5. [ ] Create a root partition with parted
       #+BEGIN_SRC sh
 	mkpart primary 2 8011
       #+END_SRC
-   6. [X] Verify partition
+   6. [ ] Verify partition
       #+BEGIN_SRC sh
 	print
       #+END_SRC
-   7. [X] Format the partition
+   7. [ ] Format the partition
       #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -38,19 +38,19 @@
 	DEVICE="/dev/sdb2" #change this!
 	mkfs.ext4 -v -L $LABEL $DEVICE
       #+END_SRC
-4. [X] Mount the partition
+4. [ ] Mount the partition
    #+begin_src sh :tangle bin/partition/mount-the-partition.sh :shebang #!/bin/bash
     set -o errexit
     set -o nounset
     DEVICE="/dev/sdb2" #change this!
     mount --verbose $DEVICE /mnt
    #+end_src
-5. [X] Install the base system
-   1. [X] Install arch-install-scripts
+5. [ ] Install the base system
+   1. [ ] Install arch-install-scripts
       #+begin_src sh
 	pacman --sync arch-install-scripts
       #+end_src
-   2. [X] (Optional) Copy xz files or link symbolically to host pkg directory
+   2. [ ] (Optional) Copy xz files or link symbolically to host pkg directory
       #+begin_src sh :tangle bin/optional/copy-existing-pkg-cache :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -65,7 +65,7 @@
 	cd var/cache/pacman
 	ln --symbolic --verbose /var/cache/pacman/pkg
       #+end_src
-   3. [X] Install packages with pacstap
+   3. [ ] Install packages with pacstap
       Before installing, you may want to edit /etc/pacman.d/mirrorlist such that your
       preferred mirror is first. This copy of the mirrorlist will be installed on your
       new system by pacstrap} as well, so it's worth getting it right.
@@ -95,7 +95,7 @@
 	VIDEO="flashplugin youtube-dl smplayer"
 	pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $RAZORQT $AUDIO $VIDEO $XORG_FONTS
       #+END_SRC  
-   4. [X] (Optional) Remove symbolic link, and restore pacman pkg directory
+   4. [ ] (Optional) Remove symbolic link, and restore pacman pkg directory
       #+begin_src sh :tangle bin/optional/remove-link-to-pkg-cache-remove :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -104,47 +104,47 @@
 	mkdir --verbose pkg
 	ls -ld /mnt/var/cache/pacman/pkg
       #+end_src
-   5. [X] [100%] Copy AUR packages
-      1. [X] razor-qt 
+   5. [ ] [100%] Copy AUR packages
+      1. [ ] razor-qt 
          #+BEGIN_SRC sh
            sudo cp razor-qt-0.5.2-4-i686.pkg.tar.xz /mnt/root/
          #+END_SRC
-6. [X]  Configure the system
-   1. [X] Generate an [[fstab]]
+6. [ ]  Configure the system
+   1. [ ] Generate an [[fstab]]
       #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
         set -o verbose
         # if you prefer to use UUIDs or labels,
         # add the -U or -L option
         genfstab -pU /mnt >> /mnt/etc/fstab
       #+END_SRC
-   2. [X] copy shiloh-setup
+   2. [ ] copy shiloh-setup
       #+BEGIN_SRC sh
           sudo cp --archive shiloh-setup/ /mnt/root
       #+END_SRC
-   3. [X] [[chroot]] into our newly installed system
+   3. [ ] [[chroot]] into our newly installed system
       #+BEGIN_SRC sh
         arch-chroot /mnt
       #+END_SRC
-   4. [X] Write your hostname to /etc/hostname.
+   4. [ ] Write your hostname to /etc/hostname.
       #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
         set -o nounset
         HOSTNAME="kangaroo" # change this!
         echo $HOSTNAME > /etc/hostname
       #+END_SRC
-   5. [X] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
+   5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
       - Replace Zone and Subzone to your liking. For Los_Angeles:
         #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
           ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
           ls -l /etc/localtime
         #+END_SRC   
-   6. [X] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+   6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
       #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
         set -o verbose
         cat /etc/locale.conf
         echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
         cat /etc/locale.conf
       #+END_SRC
-   7. [X] Uncomment en_US.UTF-8 in /etc/locale.gen
+   7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
       #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
         use warnings;
         use strict;
@@ -164,25 +164,25 @@
         rename("/etc/locale.gen", "/etc/locale.gen.orig")   or die "can't rename /etc/locale.gen /etc/locale.gen.orig: $!";
         rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
       #+end_src
-   8. [X] locale-gen
+   8. [ ] locale-gen
        #+BEGIN_SRC sh
          locale-gen
        #+END_SRC
-   9. [X] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+   9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
       #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
         echo KEYMAP=us > /etc/vconsole.conf
       #+END_SRC
-   10. [X] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
+   10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
        #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
          mkinitcpio -p linux
        #+END_SRC
-7. [4/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
-1. [X] READ https://wiki.archlinux.org/index.php/GRUB2
-2. [X] Install osprober if Windows dual boot
+7. [0/4] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+1. [ ] READ https://wiki.archlinux.org/index.php/GRUB2
+2. [ ] Install osprober if Windows dual boot
    #+begin_src sh
      pacman --sync os-prober
    #+end_src
-3. [X] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
+3. [ ] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
    #+BEGIN_SRC sh :tangle bin/configure/grub-install.sh :shebang #!/bin/bash
      DEVICE=/dev/sdb #change this as desired!
      modprobe dm-mod
@@ -195,7 +195,7 @@
        ; embedding won't be possible.
      + /usr/sbin/grub-bios-setup: warning: Embedding is not possible.  GRUB can only be installed in
        this setup by using blocklists.  However, blocklists are UNRELIABLE and their use is discouraged..
-4. [X] Generate GRUB2 BIOS Config file
+4. [ ] Generate GRUB2 BIOS Config file
    #+BEGIN_SRC sh :tangle bin/configure/grub-cfg.sh :shebang #!/bin/bash
      grub-mkconfig -o /boot/grub/grub.cfg
    #+END_SRC
