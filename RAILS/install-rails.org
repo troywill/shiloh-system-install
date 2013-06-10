@@ -7,3 +7,62 @@
      #+BEGIN_SRC sh
        gem install therubyracer
      #+END_SRC
+* Pre rails install gem list
+  1. bigdecimal (1.2.0)
+  2. bundler (1.3.5)
+  3. bundler-unload (1.0.1)
+  4. io-console (0.4.2)
+  5. json (1.7.7)
+  6. minitest (4.3.2)
+  7. psych (2.0.0)
+  8. rake (10.0.4, 0.9.6)
+  9. rdoc (4.0.0)
+  10. rubygems-bundler (1.2.0)
+  11. rvm (1.11.3.8)
+  12. test-unit (2.0.0.0)
+* Post rails install gem list
+  1. actionmailer (4.0.0.rc1)
+  2. actionpack (4.0.0.rc1)
+  3. activemodel (4.0.0.rc1)
+  4. activerecord (4.0.0.rc1)
+  5. activerecord-deprecated_finders (1.0.2)
+  6. activesupport (4.0.0.rc1)
+  7. arel (4.0.0)
+  8. atomic (1.1.9)
+  9. bigdecimal (1.2.0)
+  10. builder (3.1.4)
+  11. bundler (1.3.5)
+  12. bundler-unload (1.0.1)
+  13. erubis (2.7.0)
+  14. hike (1.2.3)
+  15. i18n (0.6.4)
+  16. io-console (0.4.2)
+  17. json (1.7.7)
+  18. mail (2.5.4)
+  19. mime-types (1.23)
+  20. minitest (4.3.2)
+  21. multi_json (1.7.6)
+  22. polyglot (0.3.3)
+  23. psych (2.0.0)
+  24. rack (1.5.2)
+  25. rack-test (0.6.2)
+  26. rails (4.0.0.rc1)
+  27. railties (4.0.0.rc1)
+  28. rake (10.0.4, 0.9.6)
+  29. rdoc (4.0.0)
+  30. rubygems-bundler (1.2.0)
+  31. rvm (1.11.3.8)
+  32. sprockets (2.10.0)
+  33. sprockets-rails (2.0.0.rc4)
+  34. test-unit (2.0.0.0)
+  35. thor (0.18.1)
+  36. thread_safe (0.1.0)
+  37. tilt (1.4.1)
+  38. treetop (1.4.14)
+  39. tzinfo (0.3.37)
+
+* libv8
+  #+BEGIN_SRC sh :tangle install-v8.sh :shebang #!/bin/sh
+    sudo pacman --sync v8
+    gem install libv8 -- --with-system-v8
+  #+END_SRC
