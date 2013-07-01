@@ -1,0 +1,6 @@
+* upgrade
+#+BEGIN_SRC sh :tangle fix-non-official-packages.sh
+pacman -Qqo /bin /sbin /usr/sbin | pacman -Qm -
+#+END_SRC
+  
+
