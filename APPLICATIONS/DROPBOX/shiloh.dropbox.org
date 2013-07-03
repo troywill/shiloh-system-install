@@ -1,15 +1,15 @@
 * Arch Linux https://wiki.archlinux.org/index.php/Dropbox
-  1. [X] Download tarball (13-04-25)
+  1. [ ] Download tarball (13-07-03)
      #+BEGIN_SRC sh :tangle wget-dropbox.sh :shebang #!/bin/sh
        wget https://aur.archlinux.org/packages/dr/dropbox/dropbox.tar.gz
      #+END_SRC
-  2. [X] Build (13-04-25)
+  2. [X] Build (13-07-03)
      #+BEGIN_SRC sh
        makepkg --syncdeps
      #+END_SRC
   3. [X] Install
      #+BEGIN_SRC sh
-       sudo pacman --upgrade dropbox-2.0.7-1-i686.pkg.tar.xz
+       sudo pacman --upgrade ./dropbox-2.2.8-1-i686.pkg.tar.xz
      #+END_SRC
   4. [X] Run dropbox (from the command line.)
      #+BEGIN_SRC sh
