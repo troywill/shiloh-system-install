@@ -1,2 +1,6 @@
 * bbs.archlinux.org/viewtopic.php?id=51373
-  
+* Google searches
+  1. ipw2200: Radio Frequency Kill Switch is On: Kill switch must be turned off for wireless networking to work.
+     1. 
+  2. "Radio Frequency Kill Switch is On" Acer
+     

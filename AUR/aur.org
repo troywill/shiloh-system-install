@@ -1,7 +1,7 @@
 | Package           |    Updated | AUR URL                                               |
 |-------------------+------------+-------------------------------------------------------|
-| heroku-toolbelt   | 2013-04-26 | https://aur.archlinux.org/packages/heroku-toolbelt/   |
-| emacs-org-mode    | 2013-05-31 | https://aur.archlinux.org/packages/emacs-org-mode/    |
 | google-talkplugin | 2013-06-21 | https://aur.archlinux.org/packages/google-talkplugin/ |
 | razor-qt          | 2013-06-19 | https://aur.archlinux.org/packages/razor-qt/          |
+| emacs-org-mode    | 2013-05-31 | https://aur.archlinux.org/packages/emacs-org-mode/    |
+| heroku-toolbelt   | 2013-04-26 | https://aur.archlinux.org/packages/heroku-toolbelt/   |
 
