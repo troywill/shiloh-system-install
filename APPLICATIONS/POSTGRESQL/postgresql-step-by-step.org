@@ -1,25 +1,25 @@
 * Install PostgreSQL Step by Step ( See https://wiki.archlinux.org/index.php/PostgreSQL#Installing_PostgreSQL )
-1. [X] Install postgresql
+1. [ ] Install postgresql
    #+BEGIN_SRC sh :tangle 00.install-postgresql.sh :shebang #!/bin/sh
      sudo pacman --sync postgresql
    #+END_SRC
-2. [X] Create the file tmpfiles.d for /run/postgresql
+2. [ ] Create the file tmpfiles.d for /run/postgresql
    #+BEGIN_SRC sh :tangle 05.systemd-tempfiles.sh :shebang #!/bin/sh
      sudo systemd-tmpfiles --create postgresql.conf
    #+END_SRC
-3. [X] Create the data directory
+3. [ ] Create the data directory
    #+BEGIN_SRC sh :tangle 10.create-data-directory.sh  :shebang #!/bin/sh
      sudo mkdir /var/lib/postgres/data
    #+END_SRC
-4. [X] Set /var/lib/postgres ownership to user 'postgres'
+4. [ ] Set /var/lib/postgres ownership to user 'postgres'
    #+BEGIN_SRC sh :tangle 15.change-ownership-to-postgres.sh  :shebang #!/bin/sh
      sudo chown -c -R postgres:postgres /var/lib/postgres
    #+END_SRC
-5. [X] As user 'postgres' start the database
-   #+BEGIN_SRC sh :tangle 20.start-database-server.sh :shebang #!/bin/sh
+5. [ ] As user 'postgres' create a new PostgreSQL database cluster
+   #+BEGIN_SRC sh :tangle 20.create-database-cluster.sh :shebang #!/bin/sh
      sudo su - postgres --command 'initdb -D "/var/lib/postgres/data"'
    #+END_SRC
-6. [X] Start PostgreSQL
+6. [ ] Start PostgreSQL
    #+BEGIN_SRC sh :tangle 25.start-postgresql.sh :shebang #!/bin/sh
      sudo systemctl start postgresql
    #+END_SRC
