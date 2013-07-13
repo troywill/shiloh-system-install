@@ -3,15 +3,15 @@
      #+BEGIN_SRC sh :tangle wget-dropbox.sh :shebang #!/bin/sh
        wget https://aur.archlinux.org/packages/dr/dropbox/dropbox.tar.gz
      #+END_SRC
-  2. [X] Build (13-07-03)
-     #+BEGIN_SRC sh
-       makepkg --syncdeps
-     #+END_SRC
-  3. [X] Install
-     #+BEGIN_SRC sh
-       sudo pacman --upgrade ./dropbox-2.2.8-1-i686.pkg.tar.xz
-     #+END_SRC
-  4. [X] Run dropbox (from the command line.)
-     #+BEGIN_SRC sh
-        dropboxd
-     #+END_SRC
+  2. [ ] Build (13-07-03)
+      #+BEGIN_SRC sh
+	makepkg --syncdeps
+      #+END_SRC
+     1. [ ] Install
+	#+BEGIN_SRC sh
+	  sudo pacman --upgrade ./dropbox-2.2.8-1-i686.pkg.tar.xz
+	#+END_SRC
+     2. [ ] Run dropbox (from the command line.)
+	#+BEGIN_SRC sh
+           dropboxd
+	#+END_SRC

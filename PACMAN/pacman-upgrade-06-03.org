@@ -1,6 +1,16 @@
 * upgrade
-#+BEGIN_SRC sh :tangle fix-non-official-packages.sh
-pacman -Qqo /bin /sbin /usr/sbin | pacman -Qm -
-#+END_SRC
+  1. fix-non-official-packages
+     #+BEGIN_SRC sh :tangle fix-non-official-packages.sh
+       pacman -Qqo /bin /sbin /usr/sbin | pacman -Qm -
+     #+END_SRC
+  2. [X] Unowned
+     #+BEGIN_SRC sh :tangle unowned.sh
+       find /bin /sbin /usr/sbin -exec pacman -Qo -- {} + >/dev/null
+     #+END_SRC
+  3. [ ] pacman -Syu --ignore filesystem,bash
+     #+BEGIN_SRC sh :tangle update-ignore-filesystem-bash.sh
+       pacman -Syu --ignore filesystem,bash
+     #+END_SRC
+
   
 
