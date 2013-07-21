@@ -1,0 +1,23 @@
+* pacman
+[2013-07-20 16:51] [PACMAN] Running 'pacman --sync pulseaudio-alsa'
+[2013-07-20 16:51] [PACMAN] installed alsa-plugins (1.0.27-1)
+[2013-07-20 16:51] [PACMAN] installed rtkit (0.11-2)
+[2013-07-20 16:51] [PACMAN] installed webrtc-audio-processing (0.1-1)
+[2013-07-20 16:51] [PACMAN] installed sbc (1.1-1)
+[2013-07-20 16:51] [ALPM-SCRIPTLET] >>> See the wiki at http://wiki.archlinux.org/index.php/PulseAudio for details
+[2013-07-20 16:51] [ALPM-SCRIPTLET]     on configuring your system for PulseAudio.
+[2013-07-20 16:51] [ALPM-SCRIPTLET] 
+[2013-07-20 16:51] [ALPM-SCRIPTLET] >>> Make sure to install pulseaudio-alsa to configure ALSA for PulseAudio.
+[2013-07-20 16:51] [PACMAN] installed pulseaudio (4.0-2)
+[2013-07-20 16:51] [PACMAN] installed pulseaudio-alsa (2-2)
+* Optional
+Optional dependencies for pulseaudio
+    avahi: zeroconf support [installed]
+    bluez4: bluetooth support
+    bluez-libs: bluetooth support
+    gconf: configuration through gconf (paprefs) [installed]
+    jack: jack support [installed]
+    lirc-utils: infra-red support [installed]
+    openssl: RAOP support [installed]
+    python2-pyqt: Equalizer GUI (qpaeq)
+* pavucontrol
