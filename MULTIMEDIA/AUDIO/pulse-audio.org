@@ -21,3 +21,6 @@ Optional dependencies for pulseaudio
     openssl: RAOP support [installed]
     python2-pyqt: Equalizer GUI (qpaeq)
 * pavucontrol
+  #+BEGIN_SRC sh :tangle pavcontrol.sh :shebang #!/bin/sh
+    pacman --sync pavucontrol
+  #+END_SRC
