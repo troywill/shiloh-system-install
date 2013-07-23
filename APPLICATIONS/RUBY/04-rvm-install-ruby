@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rvm install ruby
