@@ -4,4 +4,6 @@
 | google-talkplugin | 2013-07-13 | https://aur.archlinux.org/packages/google-talkplugin/ |
 | razor-qt          | 2013-06-19 | https://aur.archlinux.org/packages/razor-qt/          |
 | heroku-toolbelt   | 2013-04-26 | https://aur.archlinux.org/packages/heroku-toolbelt/   |
+| google-earth      | 2013-07-19 | https://aur.archlinux.org/packages/google-earth/      |
+
 
