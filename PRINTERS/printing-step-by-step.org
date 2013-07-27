@@ -9,7 +9,7 @@ pacman --sync libcups
      #+END_SRC
   2. [X] install cups-filters
      #+BEGIN_SRC sh
-       pacman --sync cups
+       pacman --sync cups-filters
      #+END_SRC
   3. [X] install ghostscript
      #+BEGIN_SRC sh
@@ -45,4 +45,3 @@ pacman --sync libcups
        systemctl enable cups
      #+END_SRC
   8. [X] http://localhost:631/
-  9. [ ] 
