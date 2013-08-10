@@ -5,7 +5,3 @@
   4. cd emacs24-starter-kit
   5. cp -a * ~/.emacs.d
   6. Start emacs
-
-
-     
-     
