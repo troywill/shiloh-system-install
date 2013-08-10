@@ -1,0 +1,19 @@
+* Step by Step
+  1. [ ] Reset the router
+     1. [ ] Press the reset button on the back of the router for several seconds
+  2. [ ] dhcpcd eth0
+  3. [ ] http://192.168.1.1/Wireless_Basic.asp
+  4. [ ] Change Wireless Mode to Client Bridge
+     + [ ] Save changes without commit
+  5. [ ] http://192.168.1.1/Status_Wireless.asp
+  6. [ ] Site survey
+  7. [ ] Join network
+  8. [ ] Wireless security
+     1. [ ] Security Mode = WPA2 Personal
+     2. [ ] WPA Algorithm = AES
+     3. [ ] Set WPA Shared Key
+     4. [ ] Save changes without commit
+  9. [ ] Reboot router
+
+
+
