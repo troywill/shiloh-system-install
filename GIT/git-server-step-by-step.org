@@ -1,0 +1,4 @@
+1. [ ] Forward port 
+2. [ ] Nameserver (git.troywill.info)
+3. [ ] mkdir ~/opt
+4. [ ] git clone --bare my_project my_project.git
