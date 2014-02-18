@@ -1,10 +1,10 @@
 # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
 
-_pkgname=lxqt-power
+_pkgname=lxqt-runner
 pkgname=$_pkgname-git
-pkgver=81.fcf6f7d
+pkgver=105.11688ba
 pkgrel=1
-pkgdesc="LXQt poweroff/hibernate utility"
+pkgdesc="The LXQt application launcher"
 arch=('i686' 'x86_64')
 url="http://www.lxde.org"
 license=('GPL2')
