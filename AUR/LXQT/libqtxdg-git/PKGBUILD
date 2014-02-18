@@ -2,7 +2,7 @@
 
 _pkgname=libqtxdg
 pkgname=$_pkgname-git
-pkgver=139.eede4b9
+pkgver=148.18699c1
 pkgrel=1
 pkgdesc="Library providing freedesktop.org specs implementations for Qt."
 arch=('i686' 'x86_64')
