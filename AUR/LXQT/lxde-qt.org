@@ -1,10 +1,10 @@
 * https://wiki.archlinux.org/index.php/Lxqt
 * https://aur.archlinux.org/packages/?O=0&K=lxqt
 * Build order Tue Feb 18 10:09:38 PST 2014
-  1. [ ] install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]
-     1. [ ] build and install libqtxdg-git
+  1. [-] install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]
+     1. [X] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]
         https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
-     2. [ ] build and install liblxqt-git
+     2. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]
         https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz
   2. [ ] install liblxqt-mount-git
      https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
