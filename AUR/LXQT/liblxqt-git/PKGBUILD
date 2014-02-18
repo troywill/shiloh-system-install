@@ -2,7 +2,7 @@
 
 _pkgname=liblxqt
 pkgname=$_pkgname-git
-pkgver=236.d0478f0
+pkgver=253.fa26ff7
 pkgrel=1
 pkgdesc="Common base library for LXQt components."
 arch=('i686' 'x86_64')
