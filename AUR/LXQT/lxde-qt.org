@@ -6,7 +6,7 @@
         https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
      2. [X] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]
         https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz
-  2. [ ] install [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]
+  2. [X] install [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]
      https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
   3. [ ] install lximage-qt-git
      package 'libfm-qt' not found

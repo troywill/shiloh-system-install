@@ -2,7 +2,7 @@
 
 _pkgname=liblxqt-mount
 pkgname=$_pkgname-git
-pkgver=31.d594d56
+pkgver=37.9d5a1f7
 pkgrel=1
 pkgdesc="LXQt library used to manage removable devices."
 arch=('i686' 'x86_64')
