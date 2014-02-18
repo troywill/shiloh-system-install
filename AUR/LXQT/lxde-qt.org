@@ -1,51 +1,51 @@
 * https://wiki.archlinux.org/index.php/Lxqt
 * https://aur.archlinux.org/packages/?O=0&K=lxqt
 * Build order Tue Feb 18 10:09:38 PST 2014
-  1. [X] install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]
-     1. [X] build and install libqtxdg-git
+  1. [ ] install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]
+     1. [ ] build and install libqtxdg-git
         https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
-     2. [X] build and install liblxqt-git
+     2. [ ] build and install liblxqt-git
         https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz
-  2. [X] install liblxqt-mount-git
+  2. [ ] install liblxqt-mount-git
      https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
-  3. [X] install lximage-qt-git
+  3. [ ] install lximage-qt-git
      package 'libfm-qt' not found
      package 'libfm>=1.2' not found
-     1. [X] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]]
-        1. [X] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]] (TDW)
+     1. [ ] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]]
+        1. [ ] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]] (TDW)
            https://aur.archlinux.org/packages/li/libfm-git/libfm-git.tar.gz
            checking for XML::Parser... configure: error: XML::Parser perl module is required for intltool
-           1. [X] cpanm --sudo XML::Parser
-           2. [X] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
-        2. [X] build and install pcmanfm-qt-git
+           1. [ ] cpanm --sudo XML::Parser
+           2. [ ] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
+        2. [ ] build and install pcmanfm-qt-git
            https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
-     2. [X] build and install lximage-qt-git
+     2. [ ] build and install lximage-qt-git
         https://aur.archlinux.org/packages/lx/lximage-qt-git/lximage-qt-git.tar.gz
-  4. [X] install [[https://aur.archlinux.org/packages/lxinput-qt-git/][lxinput-qt-git]]
+  4. [ ] install [[https://aur.archlinux.org/packages/lxinput-qt-git/][lxinput-qt-git]]
      https://aur.archlinux.org/packages/lx/lxinput-qt-git/lxinput-qt-git.tar.gz
-  5. [X] install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
+  5. [ ] install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
      https://aur.archlinux.org/packages/lx/lxqt-about-git/lxqt-about-git.tar.gz
-  6. [X] install [[https://aur.archlinux.org/packages/lxqt-common-git/][lxqt-common-git]]
+  6. [ ] install [[https://aur.archlinux.org/packages/lxqt-common-git/][lxqt-common-git]]
      https://aur.archlinux.org/packages/lx/lxqt-common-git/lxqt-common-git.tar.gz
-  7. [X] install [[https://aur.archlinux.org/packages/lxqt-config-git/][lxqt-config-git]]
+  7. [ ] install [[https://aur.archlinux.org/packages/lxqt-config-git/][lxqt-config-git]]
      https://aur.archlinux.org/packages/lx/lxqt-config-git/lxqt-config-git.tar.gz
-  8. [X] install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]]
+  8. [ ] install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]]
      https://aur.archlinux.org/packages/lx/lxqt-globalkeys-git/lxqt-globalkeys-git.tar.gz
-  9. [X] install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]]
+  9. [ ] install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]]
      https://aur.archlinux.org/packages/lx/lxqt-notificationd-git/lxqt-notificationd-git.tar.gz
-  10. [X] install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
+  10. [ ] install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
       https://aur.archlinux.org/packages/lx/lxqt-openssh-askpass-git/lxqt-openssh-askpass-git.tar.gz
-  11. [X] install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]]
+  11. [ ] install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]]
       'Please update your dependency to "libsysstat-git".'
-      1. [X] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]]
+      1. [ ] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]]
          https://aur.archlinux.org/packages/li/libsysstat-git/libsysstat-git.tar.gz
-      2. [X] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]]
+      2. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]]
          https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
-  12. [X] install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
+  12. [ ] install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
       https://aur.archlinux.org/packages/lx/lxqt-policykit-git/lxqt-policykit-git.tar.gz
-  13. [X] install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
+  13. [ ] install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
       https://aur.archlinux.org/packages/lx/lxqt-power-git/lxqt-power-git.tar.gz
-  14. [X] install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
+  14. [ ] install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
       https://aur.archlinux.org/packages/lx/lxqt-runner-git/lxqt-runner-git.tar.gz
   15. [ ] install [[https://aur.archlinux.org/packages/lxqt-session-git/][lxsession-git]]
       https://aur.archlinux.org/packages/lx/lxqt-session-git/lxqt-session-git.tar.gz
