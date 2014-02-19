@@ -29,21 +29,18 @@
       #+BEGIN_SRC sh
         pacman --sync menu-cache
       #+END_SRC
-   8. [X] build and install libfm-git
+   8. [X] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
       #+BEGIN_SRC sh
-        pacman --sync libfm
+        wget https://aur.archlinux.org/packages/li/libfm-git/libfm-git.tar.gz
       #+END_SRC
+      - checking for XML::Parser... configure: error: XML::Parser perl module is required for intltool
+      - cpanm --sudo XML::Parser
 2. [-] Build major components
    1. [X] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
       #+END_SRC
    2. [ ] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#pcmanfm-qt][#pcmanfm-qt]])
-      1. [ ] build and install prerequisite [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
-		 https://aur.archlinux.org/packages/li/libfm-git/libfm-git.tar.gz
-		 checking for XML::Parser... configure: error: XML::Parser perl module is required for intltool
-	 1. [ ] cpanm --sudo XML::Parser
-	 2. [ ] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
       2. [ ] build and install pcmanfm-qt-git
 	 #+BEGIN_SRC sh
 	   wget https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
