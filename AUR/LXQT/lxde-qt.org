@@ -89,6 +89,9 @@
         wget https://aur.archlinux.org/packages/lx/lxqt-common-git/lxqt-common-git.tar.gz
       #+END_SRC
    2. [ ] build and install 
+      #+BEGIN_SRC sh
+        pacman --sync lxmenu-data
+      #+END_SRC
 * https://wiki.archlinux.org/index.php/Lxqt
 * https://aur.archlinux.org/packages/?O=0&K=lxqt
 * [[http://wiki.lxde.org/en/LXDE-Qt][LXDE-Qt]]
