@@ -79,13 +79,16 @@
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lxinput-qt-git/lxinput-qt-git.tar.gz
        #+END_SRC
-   14. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
+   14. [X] build and install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lxqt-about-git/lxqt-about-git.tar.gz
        #+END_SRC
-3. [ ] Install data files
+3. [ ] [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#Install_data_files][Install data files]]
    1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-common-git/][lxqt-common-git]]
-      https://aur.archlinux.org/packages/lx/lxqt-common-git/lxqt-common-git.tar.gz
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/lx/lxqt-common-git/lxqt-common-git.tar.gz
+      #+END_SRC
+   2. [ ] build and install 
 * https://wiki.archlinux.org/index.php/Lxqt
 * https://aur.archlinux.org/packages/?O=0&K=lxqt
 * [[http://wiki.lxde.org/en/LXDE-Qt][LXDE-Qt]]
