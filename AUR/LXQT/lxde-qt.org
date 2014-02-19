@@ -29,13 +29,12 @@
       #+BEGIN_SRC sh
         pacman --sync menu-cache
       #+END_SRC
-   8. [X] install libfm
+   8. [X] build and install libfm-git
       #+BEGIN_SRC sh
         pacman --sync libfm
       #+END_SRC
 2. [-] Build major components
    1. [X] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]])
-      'Please update your dependency to "libsysstat-git".'
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
       #+END_SRC
@@ -46,7 +45,10 @@
 	 1. [ ] cpanm --sudo XML::Parser
 	 2. [ ] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
       2. [ ] build and install pcmanfm-qt-git
-	 https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
+	 #+BEGIN_SRC sh
+	   wget https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
+	 #+END_SRC
+
    3. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-session-git/][lxqt-session-git]]
       https://aur.archlinux.org/packages/lx/lxqt-session-git/lxqt-session-git.tar.gz
    4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
