@@ -1,14 +1,14 @@
 # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
 
-_pkgname=lxqt-runner
+_pkgname=lxqt-policykit
 pkgname=$_pkgname-git
-pkgver=113.93ecbca
+pkgver=14.db4913d
 pkgrel=1
-pkgdesc="The LXQt application launcher"
+pkgdesc="The LXQt policykit authentication agent"
 arch=('i686' 'x86_64')
 url="http://www.lxde.org"
 license=('GPL2')
-depends=('qt4' 'liblxqt-git')
+depends=('qt4' 'liblxqt-git' 'libqtxdg-git' 'polkit-qt')
 makedepends=('git' 'cmake')
 provides=($_pkgname)
 conflicts=($_pkgname)

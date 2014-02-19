@@ -48,10 +48,14 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-session-git/lxqt-session-git.tar.gz
       #+END_SRC
-   4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
-      https://aur.archlinux.org/packages/lx/lxqt-runner-git/lxqt-runner-git.tar.gz
-   5. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
-      https://aur.archlinux.org/packages/lx/lxqt-policykit-git/lxqt-policykit-git.tar.gz
+   4. [X] build and install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/lx/lxqt-runner-git/lxqt-runner-git.tar.gz
+      #+END_SRC
+   5. [X] build and install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/lx/lxqt-policykit-git/lxqt-policykit-git.tar.gz
+      #+END_SRC
    6. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
       https://aur.archlinux.org/packages/lx/lxqt-openssh-askpass-git/lxqt-openssh-askpass-git.tar.gz
    7. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
