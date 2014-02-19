@@ -41,11 +41,9 @@
         wget https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
       #+END_SRC
    2. [ ] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#pcmanfm-qt][#pcmanfm-qt]])
-      2. [ ] build and install pcmanfm-qt-git
-	 #+BEGIN_SRC sh
-	   wget https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
-	 #+END_SRC
-
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
+       #+END_SRC
    3. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-session-git/][lxqt-session-git]]
       https://aur.archlinux.org/packages/lx/lxqt-session-git/lxqt-session-git.tar.gz
    4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
