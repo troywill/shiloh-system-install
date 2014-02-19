@@ -2,8 +2,8 @@
 
 _pkgname=lxqt-session
 pkgname=$_pkgname-git
-pkgver=198.23b09d7
-pkgrel=1
+pkgver=191.c9cdecb
+pkgrel=2
 pkgdesc="LXQt session"
 arch=('i686' 'x86_64')
 url="http://www.lxde.org"
