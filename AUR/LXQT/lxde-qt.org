@@ -13,12 +13,14 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
       #+END_SRC
-   4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]])
+   4. [X] build and install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-globalkeys-git/lxqt-globalkeys-git.tar.gz      
       #+END_SRC
-   5. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]]
-      https://aur.archlinux.org/packages/lx/lxqt-notificationd-git/lxqt-notificationd-git.tar.gz
+   5. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-notificationd][#lxqt-notificationd]])
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/lx/lxqt-notificationd-git/lxqt-notificationd-git.tar.gz
+      #+END_SRC
    6. [ ] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]]
       https://aur.archlinux.org/packages/li/libsysstat-git/libsysstat-git.tar.gz
 2. [ ] Build major components
