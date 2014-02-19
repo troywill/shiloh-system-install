@@ -56,12 +56,14 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-policykit-git/lxqt-policykit-git.tar.gz
       #+END_SRC
-   6. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
+   6. [X] build and install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
       #+BEGIN_SRC sh
-      wget https://aur.archlinux.org/packages/lx/lxqt-openssh-askpass-git/lxqt-openssh-askpass-git.tar.gz
+        wget https://aur.archlinux.org/packages/lx/lxqt-openssh-askpass-git/lxqt-openssh-askpass-git.tar.gz
       #+END_SRC
    7. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
-      https://aur.archlinux.org/packages/lx/lxqt-power-git/lxqt-power-git.tar.gz
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/lx/lxqt-power-git/lxqt-power-git.tar.gz
+      #+END_SRC
    8. [ ] build and install [[https://aur.archlinux.org/packages/lximage-qt-git/][lximage-qt-git]]
       package 'libfm-qt' not found
       package 'libfm>=1.2' not found
