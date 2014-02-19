@@ -44,7 +44,7 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
        #+END_SRC
-   3. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-session-git/][lxqt-session-git]]
+   3. [X] build and install [[https://aur.archlinux.org/packages/lxqt-session-git/][lxqt-session-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-session-git/lxqt-session-git.tar.gz
       #+END_SRC
