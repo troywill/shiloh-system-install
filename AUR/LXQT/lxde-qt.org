@@ -35,7 +35,7 @@
       #+END_SRC
       - checking for XML::Parser... configure: error: XML::Parser perl module is required for intltool
       - cpanm --sudo XML::Parser
-2. [-] Build major components
+2. [-] [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#Build_major_components][Build major components]]
    1. [X] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
@@ -52,31 +52,35 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-runner-git/lxqt-runner-git.tar.gz
       #+END_SRC
-   5. [X] build and install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
+   5. [ ] TODO lxqt-qtplugin-git ( TDW created PKGBUILD )
+   6. [ ] TODO lxqt-appswitcher   
+   7. [X] build and install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-policykit-git/lxqt-policykit-git.tar.gz
       #+END_SRC
-   6. [X] build and install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
+   8. [X] build and install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-openssh-askpass-git/lxqt-openssh-askpass-git.tar.gz
       #+END_SRC
-   7. [X] build and install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
+   9. [X] build and install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-power-git/lxqt-power-git.tar.gz
       #+END_SRC
-   8. [ ] build and install [[https://aur.archlinux.org/packages/lximage-qt-git/][lximage-qt-git]]
-      #+BEGIN_SRC sh
-        wget https://aur.archlinux.org/packages/lx/lximage-qt-git/lximage-qt-git.tar.gz
-      #+END_SRC
-   9. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-config-git/][lxqt-config-git]]
-      https://aur.archlinux.org/packages/lx/lxqt-config-git/lxqt-config-git.tar.gz
-   10. [ ] build and install [[https://aur.archlinux.org/packages/lxinput-qt-git/][lxinput-qt-git]]
+   10. [ ] TODO lxqt-powermanagement
+   11. [X] build and install [[https://aur.archlinux.org/packages/lximage-qt-git/][lximage-qt-git]]
+       #+BEGIN_SRC sh
+         wget https://aur.archlinux.org/packages/lx/lximage-qt-git/lximage-qt-git.tar.gz
+       #+END_SRC
+   12. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-config-git/][lxqt-config-git]]
+       https://aur.archlinux.org/packages/lx/lxqt-config-git/lxqt-config-git.tar.gz
+   13. [ ] build and install [[https://aur.archlinux.org/packages/lxinput-qt-git/][lxinput-qt-git]]
        https://aur.archlinux.org/packages/lx/lxinput-qt-git/lxinput-qt-git.tar.gz
-   11. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
+   14. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
        https://aur.archlinux.org/packages/lx/lxqt-about-git/lxqt-about-git.tar.gz
 3. [ ] Install data files
    1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-common-git/][lxqt-common-git]]
       https://aur.archlinux.org/packages/lx/lxqt-common-git/lxqt-common-git.tar.gz
 * https://wiki.archlinux.org/index.php/Lxqt
 * https://aur.archlinux.org/packages/?O=0&K=lxqt
-* http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source
+* [[http://wiki.lxde.org/en/LXDE-Qt][LXDE-Qt]]
+http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source
