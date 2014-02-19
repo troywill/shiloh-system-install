@@ -1,20 +1,22 @@
 * Step by step package build
 1. [-]  Build the base libraries
-   1. [X] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]])
+   1. [X] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]])
       - Library providing freedesktop.org specs implementations for Qt.
       #+BEGIN_SRC sh
       wget https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
       #+END_SRC
-   2. [X] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]])
+   2. [X] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz      
       #+END_SRC
-   3. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]] (See 
+   3. [X] build and install [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
       #+END_SRC
-   4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]]
-      https://aur.archlinux.org/packages/lx/lxqt-globalkeys-git/lxqt-globalkeys-git.tar.gz
+   4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]])
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/lx/lxqt-globalkeys-git/lxqt-globalkeys-git.tar.gz      
+      #+END_SRC
    5. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]]
       https://aur.archlinux.org/packages/lx/lxqt-notificationd-git/lxqt-notificationd-git.tar.gz
    6. [ ] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]]
