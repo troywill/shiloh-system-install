@@ -25,10 +25,20 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/libsysstat-git/libsysstat-git.tar.gz
       #+END_SRC
+   7. [X] install menu-cache
+      #+BEGIN_SRC sh
+        pacman --sync menu-cache
+      #+END_SRC
+   8. [X] install libfm
+      #+BEGIN_SRC sh
+        pacman --sync libfm
+      #+END_SRC
 2. [ ] Build major components
-   1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]]
+   1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]])
       'Please update your dependency to "libsysstat-git".'
-       https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
+      #+END_SRC
    2. [ ] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#pcmanfm-qt][#pcmanfm-qt]])
       1. [ ] build and install prerequisite [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
 		 https://aur.archlinux.org/packages/li/libfm-git/libfm-git.tar.gz
