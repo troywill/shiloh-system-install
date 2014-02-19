@@ -2,7 +2,7 @@
 
 _pkgname=lximage-qt
 pkgname=$_pkgname-git
-pkgver=26.6174e71
+pkgver=62.52cb849
 pkgrel=1
 pkgdesc="The LXQt image viewer"
 arch=('i686' 'x86_64')
