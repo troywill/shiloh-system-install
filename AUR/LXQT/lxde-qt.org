@@ -1,11 +1,14 @@
-* https://wiki.archlinux.org/index.php/Lxqt
-* https://aur.archlinux.org/packages/?O=0&K=lxqt
-* http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source
-1. [0/7]  Build the base libraries
-   1. [ ] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]
-      https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
-   2. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]
-      https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz
+* Step by step package build
+1. [ ]  Build the base libraries
+   1. [ ] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]])
+      - Library providing freedesktop.org specs implementations for Qt.
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
+      #+END_SRC
+   2. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]])
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz      
+      #+END_SRC
    3. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]])
    4. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]
       https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
@@ -15,7 +18,7 @@
       https://aur.archlinux.org/packages/lx/lxqt-notificationd-git/lxqt-notificationd-git.tar.gz
    7. [ ] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]]
       https://aur.archlinux.org/packages/li/libsysstat-git/libsysstat-git.tar.gz
-2. [0/11] Build major components
+2. [ ] Build major components
    1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]]
       'Please update your dependency to "libsysstat-git".'
        https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
@@ -51,3 +54,6 @@
 3. [ ] Install data files
    1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-common-git/][lxqt-common-git]]
       https://aur.archlinux.org/packages/lx/lxqt-common-git/lxqt-common-git.tar.gz
+* https://wiki.archlinux.org/index.php/Lxqt
+* https://aur.archlinux.org/packages/?O=0&K=lxqt
+* http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source
