@@ -1,5 +1,5 @@
 * Step by step package build
-1. [-]  Build the base libraries
+1. [X]  Build the base libraries
    1. [X] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]])
       - Library providing freedesktop.org specs implementations for Qt.
       #+BEGIN_SRC sh
@@ -17,12 +17,14 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-globalkeys-git/lxqt-globalkeys-git.tar.gz      
       #+END_SRC
-   5. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-notificationd][#lxqt-notificationd]])
+   5. [X] build and install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-notificationd][#lxqt-notificationd]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-notificationd-git/lxqt-notificationd-git.tar.gz
       #+END_SRC
-   6. [ ] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]]
-      https://aur.archlinux.org/packages/li/libsysstat-git/libsysstat-git.tar.gz
+   6. [X] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libsysstat][#libsysstat]])
+      #+BEGIN_SRC sh
+        wget https://aur.archlinux.org/packages/li/libsysstat-git/libsysstat-git.tar.gz
+      #+END_SRC
 2. [ ] Build major components
    1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]]
       'Please update your dependency to "libsysstat-git".'
