@@ -1,0 +1,21 @@
+* dhcpcd
+  #+BEGIN_SRC sh
+    systemctl start dhcpcd
+    systemctl enable dhcpcd
+  #+END_SRC
+
+* apache
+  #+BEGIN_SRC sh
+    systemctl start httpd
+    systemctl enable httpd
+  #+END_SRC
+* ntpd
+  #+BEGIN_SRC sh
+    systemctl start ntpd
+    systemctl enable ntpd
+  #+END_SRC
+* openssh
+  #+BEGIN_SRC sh
+    systemctl start sshd
+    systemctl enable sshd
+  #+END_SRC
