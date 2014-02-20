@@ -1,85 +1,85 @@
 * Step by step package build
-1. [X]  Build the base libraries
-   1. [X] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]])
+1. [ ]  Build the base libraries
+   1. [ ] build and install [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]])
       - Library providing freedesktop.org specs implementations for Qt.
       #+BEGIN_SRC sh
       wget https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
       #+END_SRC
-   2. [X] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]])
+   2. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz      
       #+END_SRC
-   3. [X] build and install [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]])
+   3. [ ] build and install [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
       #+END_SRC
-   4. [X] build and install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]])
+   4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-globalkeys-git/lxqt-globalkeys-git.tar.gz      
       #+END_SRC
-   5. [X] build and install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-notificationd][#lxqt-notificationd]])
+   5. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-notificationd][#lxqt-notificationd]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-notificationd-git/lxqt-notificationd-git.tar.gz
       #+END_SRC
-   6. [X] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libsysstat][#libsysstat]])
+   6. [ ] build and install [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libsysstat][#libsysstat]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/libsysstat-git/libsysstat-git.tar.gz
       #+END_SRC
-   7. [X] install menu-cache
+   7. [ ] install menu-cache
       #+BEGIN_SRC sh
         pacman --sync menu-cache
       #+END_SRC
-   8. [X] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
+   8. [ ] build and install [[https://aur.archlinux.org/packages/libfm-git/][libfm-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/libfm-git/libfm-git.tar.gz
       #+END_SRC
       - checking for XML::Parser... configure: error: XML::Parser perl module is required for intltool
       - cpanm --sudo XML::Parser
 2. [-] [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#Build_major_components][Build major components]]
-   1. [X] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]])
+   1. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-panel-git/][lxqt-panel-git]] (see [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
       #+END_SRC
-   2. [X] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#pcmanfm-qt][#pcmanfm-qt]])
+   2. [ ] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#pcmanfm-qt][#pcmanfm-qt]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
        #+END_SRC
-   3. [X] build and install [[https://aur.archlinux.org/packages/lxqt-session-git/][lxqt-session-git]]
+   3. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-session-git/][lxqt-session-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-session-git/lxqt-session-git.tar.gz
       #+END_SRC
-   4. [X] build and install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
+   4. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-runner-git/][lxqt-runner-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-runner-git/lxqt-runner-git.tar.gz
       #+END_SRC
    5. [ ] TODO lxqt-qtplugin-git ( TDW created PKGBUILD )
    6. [ ] TODO lxqt-appswitcher   
-   7. [X] build and install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
+   7. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-policykit-git/lxqt-policykit-git.tar.gz
       #+END_SRC
-   8. [X] build and install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
+   8. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-openssh-askpass-git/][lxqt-openssh-askpass-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-openssh-askpass-git/lxqt-openssh-askpass-git.tar.gz
       #+END_SRC
-   9. [X] build and install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
+   9. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-power-git/][lxqt-power-git]]
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-power-git/lxqt-power-git.tar.gz
       #+END_SRC
    10. [ ] TODO lxqt-powermanagement
-   11. [X] build and install [[https://aur.archlinux.org/packages/lximage-qt-git/][lximage-qt-git]]
+   11. [ ] build and install [[https://aur.archlinux.org/packages/lximage-qt-git/][lximage-qt-git]]
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lximage-qt-git/lximage-qt-git.tar.gz
        #+END_SRC
-   12. [X] build and install [[https://aur.archlinux.org/packages/lxqt-config-git/][lxqt-config-git]]
+   12. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-config-git/][lxqt-config-git]]
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lxqt-config-git/lxqt-config-git.tar.gz
        #+END_SRC
-   13. [X] build and install [[https://aur.archlinux.org/packages/lxinput-qt-git/][lxinput-qt-git]]
+   13. [ ] build and install [[https://aur.archlinux.org/packages/lxinput-qt-git/][lxinput-qt-git]]
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lxinput-qt-git/lxinput-qt-git.tar.gz
        #+END_SRC
-   14. [X] build and install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
+   14. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lxqt-about-git/lxqt-about-git.tar.gz
        #+END_SRC
