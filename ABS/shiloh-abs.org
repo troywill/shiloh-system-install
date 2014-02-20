@@ -1,0 +1,11 @@
+* Documentation
+** [[https://wiki.archlinux.org/index.php/Creating_Packages][Creating_Packages]]
+** [[https://wiki.archlinux.org/index.php/Custom_local_repository#Custom_local_repository][Custom_local_repository]]
+*** repo-add
+    #+BEGIN_SRC sh :tangle repo-add :shebang #!/bin/bash
+      set -o nounset
+      PACKAGE=$1      
+      PATH_TO_DB="/tmp/shiloh.db.tar.bz2"
+      # repo-add [options] <path-to-db> <package|delta> [<package|delta> ...]
+      repo-add ${PATH_TO_DB} ${PACKAGE}
+    #+END_SRC

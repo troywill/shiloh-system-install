@@ -5,7 +5,7 @@
      #+END_SRC
   2. [ ] 
      #+BEGIN_SRC sh
-       source /etc/profile
+        source /etc/profile
      #+END_SRC
   3. [ ] 
      #+BEGIN_SRC sh
