@@ -1,16 +1,15 @@
 
-# Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
 # Maintainer: Troy Will <troydwill@gmail.com>
 
-_pkgname=libqtxdg
+_pkgname=compton-conf
 pkgname=$_pkgname-git
 pkgver=0.0.0
 pkgrel=1
-pkgdesc="Library providing freedesktop.org specs implementations for Qt."
+pkgdesc="Package description here."
 arch=('i686' 'x86_64')
-url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg"
+url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source"
 license=('GPL2')
-depends=('qt4')
+depends=('qt4' 'libconfig')
 makedepends=('git' 'cmake')
 provides=("$_pkgname")
 conflicts=("$_pkgname")

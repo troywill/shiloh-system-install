@@ -1,61 +1,87 @@
-* LXDE Package Table
-  | Name            | GitHub          | Web              | AUR                 |
-  |-----------------+-----------------+------------------+---------------------|
-  | libqtxdg        | [[https://github.com/lxde/libqtxdg][libqtxdg]]        | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]]        | [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]        |
-  | liblxqt         | [[https://github.com/lxde/liblxqt][liblxqt]]         | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]]         | [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]         |
-  | liblxqt-mount   | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]   | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]   | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]   |
-  | lxqt-globalkeys | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]] | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] |
-  |                 |                 |                  |                     |
+* LXDE Package Tables
+  #+NAME: base-libraries
+  | Name                 | GitHub          | Web              | AUR                 |
+  |----------------------+-----------------+------------------+---------------------|
+  | libqtxdg             | [[https://github.com/lxde/libqtxdg][libqtxdg]]        | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]]        | [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]        |
+  | liblxqt              | [[https://github.com/lxde/liblxqt][liblxqt]]         | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]]         | [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]         |
+  | liblxqt-mount        | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]   | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]   | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]   |
+  | lxqt-globalkeys      | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]] | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] |
+  | lxqt-notificationd   |                 |                  |                     |
+  | libsysstat           |                 |                  |                     |
+  | menu-cache           |                 |                  |                     |
+  | libfm                |                 |                  |                     |
+
+  #+NAME: major-components
+  | Name                 | GitHub       | Web           | AUR |
+  |----------------------+--------------+---------------+-----|
+  | lxqt-panel           |              |               |     |
+  | pcmanfm-qt           |              |               |     |
+  | lxqt-session         |              |               |     |
+  | lxqt-runner          |              |               |     |
+  | lxqt-qtplugin        |              |               |     |
+  | lxqt-appswitcher     |              |               |     |
+  | lxqt-policykit       |              |               |     |
+  | lxqt-openssh-askpass |              |               |     |
+  | lxqt-power           |              |               |     |
+  | lxqt-powermanagement |              |               |     |
+  | lximage-qt           |              |               |     |
+  | lxqt-config          |              |               |     |
+  | lxinput-qt           |              |               |     |
+  | lxqt-config-randr    |              |               |     |
+  | obconf-qt            |              |               |     |
+  | compton-conf         | [[https://github.com/lxde/compton-conf][compton-conf]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#compton-conf][#compton-conf]] |     |
+  | lxqt-about           |              |               |     |
+  | lxqt-lightdm-greeter |              |               |     |
+  
 * Step by step package build
 1. [ ]  Build the base libraries
-   1. [ ] build and install [[https://github.com/lxde/libqtxdg][libqtxdg]]
+   1. [ ] build and install [[https://github.com/lxde/libqtxdg][libqtxdg]] 
       - Latest commit Feb 07, 2014 
       - Library providing freedesktop.org specs implementations for Qt.
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
       #+END_SRC
       #+BEGIN_SRC sh :tangle libqtxdg-git/PKGBUILD
-                # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
-                # Maintainer: Troy Will <troydwill@gmail.com>
-                
-                _pkgname=libqtxdg
-                pkgname=$_pkgname-git
-                pkgver=0.0.0
-                pkgrel=1
-                pkgdesc="Library providing freedesktop.org specs implementations for Qt."
-                arch=('i686' 'x86_64')
-                url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg"
-                license=('GPL2')
-                depends=('qt4')
-                makedepends=('git' 'cmake')
-                provides=("$_pkgname")
-                conflicts=("$_pkgname")
-                source=("git://github.com/lxde/$_pkgname.git")
-                # Because the source is not static, skip Git checksum:        
-                sha256sums=('SKIP')
-                _gitname=$_pkgname
-                
-                pkgver() {
-                    cd "$srcdir/$_gitname"
-                    # echo "$(git rev-list --count HEAD).$(git describe --always)"
-                    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-                }
-                
-                build() {
-                    cd "$srcdir/$_gitname"
-                    mkdir -p build
-                    cd build
-                    cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
-                    make
-                }
-                
-                package() {
-                    cd "$srcdir/$_gitname"
-                    cd build
-                    make DESTDIR="$pkgdir" install
-                }
+        # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
+        # Maintainer: Troy Will <troydwill@gmail.com>
+        
+        _pkgname=libqtxdg
+        pkgname=$_pkgname-git
+        pkgver=0.0.0
+        pkgrel=1
+        pkgdesc="Library providing freedesktop.org specs implementations for Qt."
+        arch=('i686' 'x86_64')
+        url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg"
+        license=('GPL2')
+        depends=('qt4')
+        makedepends=('git' 'cmake')
+        provides=("$_pkgname")
+        conflicts=("$_pkgname")
+        source=("git://github.com/lxde/$_pkgname.git")
+        # Because the source is not static, skip Git checksum:        
+        sha256sums=('SKIP')
+        _gitname=$_pkgname
+        
+        pkgver() {
+            cd "$srcdir/$_gitname"
+            printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+        }
+        
+        build() {
+            cd "$srcdir/$_gitname"
+            mkdir -p build
+            cd build
+            cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+            make
+        }
+        
+        package() {
+            cd "$srcdir/$_gitname"
+            cd build
+            make DESTDIR="$pkgdir" install
+        }
       #+END_SRC
-   2. [ ] build and install [[https://github.com/lxde/liblxqt][liblxqt]]
+   2. [ ] build and install [[https://github.com/lxde/liblxqt][liblxqt]] 
       - Core utility library for all LXDE-Qt components
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz      
@@ -100,11 +126,11 @@
         }
         
       #+END_SRC
-   3. [ ] build and install [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]
+   3. [ ] build and install [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]] 
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/li/liblxqt-mount-git/liblxqt-mount-git.tar.gz
       #+END_SRC
-   4. [ ] build and install
+   4. [ ] build and install [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]] 
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-globalkeys-git/lxqt-globalkeys-git.tar.gz      
       #+END_SRC
@@ -170,6 +196,46 @@
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lxinput-qt-git/lxinput-qt-git.tar.gz
        #+END_SRC
+   14. [ ] compton-conf
+       #+BEGIN_SRC sh :tangle compton-conf-git/PKGBUILD
+         # Maintainer: Troy Will <troydwill@gmail.com>
+         
+         _pkgname=compton-conf
+         pkgname=$_pkgname-git
+         pkgver=0.0.0
+         pkgrel=1
+         pkgdesc="Package description here."
+         arch=('i686' 'x86_64')
+         url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source"
+         license=('GPL2')
+         depends=('qt4' 'libconfig')
+         makedepends=('git' 'cmake')
+         provides=("$_pkgname")
+         conflicts=("$_pkgname")
+         source=("git://github.com/lxde/$_pkgname.git")
+         # Because the source is not static, skip Git checksum:        
+         sha256sums=('SKIP')
+         _gitname=$_pkgname
+         
+         pkgver() {
+             cd "$srcdir/$_gitname"
+             printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+         }
+         
+         build() {
+             cd "$srcdir/$_gitname"
+             mkdir -p build
+             cd build
+             cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+             make
+         }
+         
+         package() {
+             cd "$srcdir/$_gitname"
+             cd build
+             make DESTDIR="$pkgdir" install
+         }
+       #+END_SRC
    14. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-about-git/][lxqt-about-git]]
        #+BEGIN_SRC sh
          wget https://aur.archlinux.org/packages/lx/lxqt-about-git/lxqt-about-git.tar.gz
@@ -189,3 +255,106 @@
   http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source
 * Package Building Documentation
 ** [[https://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines][VCS_PKGBUILD_Guidelines]]
+** PKGBUILD Template
+   #+BEGIN_SRC sh
+     # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
+     # Maintainer: Troy Will <troydwill@gmail.com>
+     
+     _pkgname=PACKAGE_NAME
+     pkgname=$_pkgname-git
+     pkgver=0.0.0
+     pkgrel=1
+     pkgdesc="Package description here."
+     arch=('i686' 'x86_64')
+     url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source"
+     license=('GPL2')
+     depends=('qt4')
+     makedepends=('git' 'cmake')
+     provides=("$_pkgname")
+     conflicts=("$_pkgname")
+     source=("git://github.com/lxde/$_pkgname.git")
+     # Because the source is not static, skip Git checksum:        
+     sha256sums=('SKIP')
+     _gitname=$_pkgname
+     
+     pkgver() {
+         cd "$srcdir/$_gitname"
+         printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+     }
+     
+     build() {
+         cd "$srcdir/$_gitname"
+         mkdir -p build
+         cd build
+         cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+         make
+     }
+     
+     package() {
+         cd "$srcdir/$_gitname"
+         cd build
+         make DESTDIR="$pkgdir" install
+     }
+   #+END_SRC
+   
+* Custom Repository
+  #+BEGIN_SRC conf
+    #
+    # /etc/pacman.conf
+    #
+    # See the pacman.conf(5) manpage for option and repository directives
+    
+    [shiloh-lxqt]
+    SigLevel = Optional TrustAll
+    Server = http://192.168.1.3/shiloh-lxqt
+    
+  #+END_SRC
+* compton-git
+  #+BEGIN_SRC sh
+    
+  #+END_SRC
+  #+BEGIN_SRC sh :tangle compton-git/PKGBUILD :padline no
+    # Maintainer: OK100 <ok100 at lavabit dot com>
+    # Previous Maintainer: Valère Monseur <valere dot monseur at ymail dot com>
+    
+    pkgname=compton-git
+    _gitname=compton
+    pkgver=0
+    pkgrel=1
+    pkgdesc="X Compositor (a fork of xcompmgr-dana)"
+    arch=(i686 x86_64)
+    url="https://github.com/chjj/compton"
+    license=('MIT')
+    depends=('libgl' 'libdbus' 'libxcomposite' 'libxdamage' 'libxrandr' 'pcre' 'libconfig' 'libxinerama')
+    optdepends=('xorg-xprop: for compton-trans'
+                'xorg-xwininfo: for compton-trans')
+    makedepends=('git' 'asciidoc')
+    source=("git://github.com/chjj/compton.git")
+    md5sums=("SKIP")
+    
+    pkgver() {
+        cd "${srcdir}/${_gitname}"
+        git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g'
+    }
+    
+    build() {
+      cd "$srcdir/$_gitname"
+      make PREFIX=/usr
+      make docs
+    }
+    
+    package() {
+      cd "$srcdir/$_gitname"
+    
+      make PREFIX="$pkgdir/usr" install
+    
+      # install license
+      install -D -m644 "LICENSE" "$pkgdir/usr/share/licenses/$_gitname/LICENSE"
+    
+      # example conf
+      install -D -m644 "compton.sample.conf" "$pkgdir/etc/xdg/compton.conf.example"
+    }
+    
+  #+END_SRC
+  
+  
