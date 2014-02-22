@@ -1,8 +1,9 @@
 # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
+# Maintainer: Troy Will <troydwill@gmail.com>
 
 _pkgname=liblxqt
 pkgname=$_pkgname-git
-pkgver=253.fa26ff7
+pkgver=r253.fa26ff7
 pkgrel=1
 pkgdesc="Common base library for LXQt components."
 arch=('i686' 'x86_64')
@@ -17,20 +18,20 @@ sha256sums=('SKIP')
 _gitname=$_pkgname
 
 pkgver() {
-	cd "$srcdir/$_gitname"
-	echo "$(git rev-list --count HEAD).$(git describe --always)"
+    cd "$srcdir/$_gitname"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "$srcdir/$_gitname"
-	mkdir -p build
-	cd build
-	cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
-	make
+    cd "$srcdir/$_gitname"
+    mkdir -p build
+    cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+    make
 }
 
 package() {
-	cd "$srcdir/$_gitname"
-	cd build
-	make DESTDIR="$pkgdir" install
+    cd "$srcdir/$_gitname"
+    cd build
+    make DESTDIR="$pkgdir" install
 }
