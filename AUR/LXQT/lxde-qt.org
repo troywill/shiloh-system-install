@@ -255,6 +255,47 @@
   http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source
 * Package Building Documentation
 ** [[https://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines][VCS_PKGBUILD_Guidelines]]
+   #+BEGIN_SRC sh
+     # Maintainer: Dave Reisner <d@falconindy.com> 
+     # Contributor: William Giokas (KaiSforza) <1007380@gmail.com>
+     
+     pkgname=expac-git
+     pkgver=0.0.0
+     pkgrel=1
+     pkgdesc="Pacman database extraction utility"
+     arch=('i686' 'x86_64')
+     url="https://github.com/falconindy/expac"
+     license=('MIT')
+     depends=('pacman')
+     makedepends=('git')
+     conflicts=('expac')
+     provides=('expac')
+     # The git repo is detected by the 'git:' or 'git+' beginning. The branch
+     # '$pkgname' is then checked out upon cloning, expediating versioning:
+     #source=('git+https://github.com/falconindy/expac.git'
+     source=("$pkgname"::'git://github.com/falconindy/expac.git'
+             'expac_icon.png')
+     # Because the sources are not static, skip Git checksum:
+     md5sums=('SKIP'
+              '020c36e38466b68cbc7b3f93e2044b49')
+     
+     pkgver() {
+       cd "$srcdir/$pkgname"
+       # Use the tag of the last commit
+       git describe --long | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
+     }
+     
+     build() {
+       cd "$srcdir/$pkgname"
+       make
+     }
+     
+     package() {
+       cd "$srcdir/$pkgname"
+       make PREFIX=/usr DESTDIR="$pkgdir" install
+       install -Dm644 "$srcdir/expac_icon.png" "$pkgdir/usr/share/pixmaps/expac.png"
+     }   
+   #+END_SRC
 ** PKGBUILD Template
    #+BEGIN_SRC sh
      # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
@@ -334,7 +375,8 @@
     
     pkgver() {
         cd "${srcdir}/${_gitname}"
-        git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g'
+        # Use the tag of the last commit
+        git describe --long | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
     }
     
     build() {
