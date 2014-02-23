@@ -24,3 +24,8 @@
      - adt-bundle-linux-x86-20130717.zip
   4. [ ] http://developer.android.com/sdk/installing/bundle.html
   5. [ ] Unpack the ZIP file (named adt-bundle-<os_platform>.zip) and save it to an appropriate location, such as a "Development" directory in your home directory.
+* AUR
+  #+BEGIN_SRC sh
+    # https://aur.archlinux.org/packages/an/android-sdk/android-sdk.tar.gz
+    
+  #+END_SRC
