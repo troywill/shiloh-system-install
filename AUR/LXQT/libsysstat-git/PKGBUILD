@@ -1,7 +1,7 @@
 # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
 # Maintainer: Troy Will <troydwill@gmail.com>
 
-_pkgname=PACKAGE_NAME
+_pkgname=libsysstat
 pkgname=$_pkgname-git
 pkgver=0.0.0
 pkgrel=1

@@ -7,7 +7,7 @@
   |  37 | liblxqt-mount      | 14-02-24 | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]   | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]   | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]   |
   | 107 | lxqt-globalkeys    | 14-02-24 | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]] | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] |
   |  68 | lxqt-notificationd | 14-02-24 |                 |                  |                     |
-  |     | libsysstat         |          |                 |                  |                     |
+  |  20 | libsysstat         |          |                 |                  |                     |
   |     | menu-cache         |          |                 |                  |                     |
   |     | libfm              |          |                 |                  |                     |
 
@@ -265,7 +265,7 @@
         # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
         # Maintainer: Troy Will <troydwill@gmail.com>
         
-        _pkgname=PACKAGE_NAME
+        _pkgname=libsysstat
         pkgname=$_pkgname-git
         pkgver=0.0.0
         pkgrel=1
