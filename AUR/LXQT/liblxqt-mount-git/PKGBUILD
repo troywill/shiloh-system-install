@@ -2,7 +2,7 @@
 
 _pkgname=liblxqt-mount
 pkgname=$_pkgname-git
-pkgver=37.9d5a1f7
+pkgver=0.0.0
 pkgrel=1
 pkgdesc="LXQt library used to manage removable devices."
 arch=('i686' 'x86_64')
@@ -17,20 +17,20 @@ sha256sums=('SKIP')
 _gitname=$_pkgname
 
 pkgver() {
-	cd "$srcdir/$_gitname"
-	echo "$(git rev-list --count HEAD).$(git describe --always)"
+        cd "$srcdir/$_gitname"
+        echo "$(git rev-list --count HEAD).$(git describe --always)"
 }
 
 build() {
-	cd "$srcdir/$_gitname"
-	mkdir -p build
-	cd build
-	cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
-	make
+        cd "$srcdir/$_gitname"
+        mkdir -p build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+        make
 }
 
 package() {
-	cd "$srcdir/$_gitname"
-	cd build
-	make DESTDIR="$pkgdir" install
+        cd "$srcdir/$_gitname"
+        cd build
+        make DESTDIR="$pkgdir" install
 }
