@@ -1,15 +1,15 @@
 * LXDE Package Tables
   #+NAME: base-libraries
-  | Name                 | GitHub          | Web              | AUR                 |
-  |----------------------+-----------------+------------------+---------------------|
-  | libqtxdg             | [[https://github.com/lxde/libqtxdg][libqtxdg]]        | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]]        | [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]        |
-  | liblxqt              | [[https://github.com/lxde/liblxqt][liblxqt]]         | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]]         | [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]         |
-  | liblxqt-mount        | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]   | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]   | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]   |
-  | lxqt-globalkeys      | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]] | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] |
-  | lxqt-notificationd   |                 |                  |                     |
-  | libsysstat           |                 |                  |                     |
-  | menu-cache           |                 |                  |                     |
-  | libfm                |                 |                  |                     |
+  |   r | Name               |    Built | GitHub          | Web              | AUR                 |
+  |-----+--------------------+----------+-----------------+------------------+---------------------|
+  | 148 | libqtxdg           | 14-02-24 | [[https://github.com/lxde/libqtxdg][libqtxdg]]        | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]]        | [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]        |
+  | 253 | liblxqt            | 14-02-24 | [[https://github.com/lxde/liblxqt][liblxqt]]         | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]]         | [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]         |
+  |     | liblxqt-mount      |          | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]   | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]   | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]   |
+  |     | lxqt-globalkeys    |          | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]] | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] |
+  |     | lxqt-notificationd |          |                 |                  |                     |
+  |     | libsysstat         |          |                 |                  |                     |
+  |     | menu-cache         |          |                 |                  |                     |
+  |     | libfm              |          |                 |                  |                     |
 
   #+NAME: major-components
   | Name                 | GitHub       | Web           | AUR |
