@@ -12,26 +12,26 @@
   |     | libfm              |          |                 |                  |                     |
 
   #+NAME: major-components
-  | Name                 | GitHub       | Web           | AUR |
-  |----------------------+--------------+---------------+-----|
-  | lxqt-panel           |              |               |     |
-  | pcmanfm-qt           |              |               |     |
-  | lxqt-session         |              |               |     |
-  | lxqt-runner          |              |               |     |
-  | lxqt-qtplugin        |              |               |     |
-  | lxqt-appswitcher     |              |               |     |
-  | lxqt-policykit       |              |               |     |
-  | lxqt-openssh-askpass |              |               |     |
-  | lxqt-power           |              |               |     |
-  | lxqt-powermanagement |              |               |     |
-  | lximage-qt           |              |               |     |
-  | lxqt-config          |              |               |     |
-  | lxinput-qt           |              |               |     |
-  | lxqt-config-randr    |              |               |     |
-  | obconf-qt            |              |               |     |
-  | compton-conf         | [[https://github.com/lxde/compton-conf][compton-conf]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#compton-conf][#compton-conf]] |     |
-  | lxqt-about           |              |               |     |
-  | lxqt-lightdm-greeter |              |               |     |
+  |   r | Name                 |    Built | GitHub          | Web           | AUR            |
+  |-----+----------------------+----------+-----------------+---------------+----------------|
+  | 800 | [[file:lxqt-panel-git/PKGBUILD][lxqt-panel]]           | 14-02-25 | [[https://github.com/lxde/lxqt-panel][lxde/lxqt-panel]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]]   | [[https://aur.archlinux.org/packages/lxqt-panel-git][lxqt-panel-git]] |
+  |     | pcmanfm-qt           |          |                 |               |                |
+  |     | lxqt-session         |          |                 |               |                |
+  |     | lxqt-runner          |          |                 |               |                |
+  |     | lxqt-qtplugin        |          |                 |               |                |
+  |     | lxqt-appswitcher     |          |                 |               |                |
+  |     | lxqt-policykit       |          |                 |               |                |
+  |     | lxqt-openssh-askpass |          |                 |               |                |
+  |     | lxqt-power           |          |                 |               |                |
+  |     | lxqt-powermanagement |          |                 |               |                |
+  |     | lximage-qt           |          |                 |               |                |
+  |     | lxqt-config          |          |                 |               |                |
+  |     | lxinput-qt           |          |                 |               |                |
+  |     | lxqt-config-randr    |          |                 |               |                |
+  |     | obconf-qt            |          |                 |               |                |
+  |     | compton-conf         |          | [[https://github.com/lxde/compton-conf][compton-conf]]    | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#compton-conf][#compton-conf]] |                |
+  |     | lxqt-about           |          |                 |               |                |
+  |     | lxqt-lightdm-greeter |          |                 |               |                |
   
 * Step by step package build
 1. [-]  Build the base libraries
@@ -317,6 +317,46 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-panel-git/lxqt-panel-git.tar.gz
       #+END_SRC
+      #+BEGIN_SRC sh :tangle lxqt-panel-git/PKGBUILD :padline no
+        # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
+        # Maintainer: Troy Will <troydwill@gmail.com>
+             
+        _pkgname=lxqt-panel
+        pkgname=$_pkgname-git
+        pkgver=0.0.0
+        pkgrel=1
+        pkgdesc="Package description here."
+        arch=('i686' 'x86_64')
+        url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source"
+        license=('GPL2')
+        depends=('qt4>=4.6' 'cmake>=2.6' 'libqtxdg' 'liblxqt' 'lxqt-globalkeys' 'liblxqt-mount' 'libx11' 'libsysstat-git')
+        makedepends=('git' 'cmake')
+        provides=("$_pkgname")
+        conflicts=("$_pkgname")
+        source=("git://github.com/lxde/$_pkgname.git")
+        # Because the source is not static, skip Git checksum:        
+        sha256sums=('SKIP')
+        _gitname=$_pkgname
+        
+        pkgver() {
+            cd "$srcdir/$_gitname"
+            printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+        }
+        
+        build() {
+            cd "$srcdir/$_gitname"
+            mkdir -p build
+            cd build
+            cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+            make
+        }
+        
+        package() {
+            cd "$srcdir/$_gitname"
+            cd build
+            make DESTDIR="$pkgdir" install
+        }
+      #+END_SRC
    2. [ ] build and install [[https://aur.archlinux.org/packages/pcmanfm-qt-git/][pcmanfm-qt-git]] (See [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#pcmanfm-qt][#pcmanfm-qt]])
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/pc/pcmanfm-qt-git/pcmanfm-qt-git.tar.gz
@@ -329,7 +369,7 @@
       #+BEGIN_SRC sh
         wget https://aur.archlinux.org/packages/lx/lxqt-runner-git/lxqt-runner-git.tar.gz
       #+END_SRC
-   5. [ ] TODO lxqt-qtplugin-git ( TDW created PKGBUILD )
+   5. [ ] TODO lxqt-qtplugin-git
    6. [ ] TODO lxqt-appswitcher   
    7. [ ] build and install [[https://aur.archlinux.org/packages/lxqt-policykit-git/][lxqt-policykit-git]]
       #+BEGIN_SRC sh
@@ -457,7 +497,8 @@
      }   
    #+END_SRC
 ** PKGBUILD Template
-   #+BEGIN_SRC sh :tangle XXXX/PKGBUILD :padline no
+   # :tangle XXXX/PKGBUILD :padline no
+   #+BEGIN_SRC sh
      # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
      # Maintainer: Troy Will <troydwill@gmail.com>
      
