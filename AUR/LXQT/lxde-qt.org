@@ -1,37 +1,37 @@
 * LXDE Package Tables
   #+NAME: base-libraries
-  |   r | Name               |    Built | GitHub          | Web              | AUR                 |
-  |-----+--------------------+----------+-----------------+------------------+---------------------|
-  | 148 | libqtxdg           | 14-02-24 | [[https://github.com/lxde/libqtxdg][libqtxdg]]        | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]]        | [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]        |
-  | 253 | liblxqt            | 14-02-24 | [[https://github.com/lxde/liblxqt][liblxqt]]         | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]]         | [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]         |
-  |  37 | liblxqt-mount      | 14-02-24 | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]   | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]   | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]   |
-  | 107 | lxqt-globalkeys    | 14-02-24 | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]] | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]] |
-  |  68 | lxqt-notificationd | 14-02-24 |                 |                  |                     |
-  |  20 | libsysstat         |          |                 |                  |                     |
-  |     | menu-cache         |          |                 |                  |                     |
-  |     | libfm              |          |                 |                  |                     |
+  |   r | Name               |    Built | Web                 | GitHub             | AUR                    |
+  |-----+--------------------+----------+---------------------+--------------------+------------------------|
+  | 148 | libqtxdg           | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg][#libqtxdg]]           | [[https://github.com/lxde/libqtxdg][libqtxdg]]           | [[https://aur.archlinux.org/packages/libqtxdg-git/][libqtxdg-git]]           |
+  | 253 | liblxqt            | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt][#liblxqt]]            | [[https://github.com/lxde/liblxqt][liblxqt]]            | [[https://aur.archlinux.org/packages/liblxqt-git/][liblxqt-git]]            |
+  |  37 | liblxqt-mount      | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]      | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]      | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]      |
+  | 107 | lxqt-globalkeys    | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]]    | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]]    | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]]    |
+  |  68 | lxqt-notificationd | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-notificationd][#lxqt-notificationd]] | [[https://github.com/lxde/lxqt-notificationd][lxqt-notificationd]] | [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]] |
+  |  20 | libsysstat         |          |                     |                    |                        |
+  |     | menu-cache         |          |                     |                    |                        |
+  |     | libfm              |          |                     |                    |                        |
 
   #+NAME: major-components
-  |   r | Name                 |    Built | GitHub          | Web           | AUR            |
-  |-----+----------------------+----------+-----------------+---------------+----------------|
-  | 800 | [[file:lxqt-panel-git/PKGBUILD][lxqt-panel]]           | 14-02-25 | [[https://github.com/lxde/lxqt-panel][lxde/lxqt-panel]] | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]]   | [[https://aur.archlinux.org/packages/lxqt-panel-git][lxqt-panel-git]] |
-  |     | pcmanfm-qt           |          |                 |               |                |
-  |     | lxqt-session         |          |                 |               |                |
-  |     | lxqt-runner          |          |                 |               |                |
-  |     | lxqt-qtplugin        |          |                 |               |                |
-  |     | lxqt-appswitcher     |          |                 |               |                |
-  |     | lxqt-policykit       |          |                 |               |                |
-  |     | lxqt-openssh-askpass |          |                 |               |                |
-  |     | lxqt-power           |          |                 |               |                |
-  |     | lxqt-powermanagement |          |                 |               |                |
-  |     | lximage-qt           |          |                 |               |                |
-  |     | lxqt-config          |          |                 |               |                |
-  |     | lxinput-qt           |          |                 |               |                |
-  |     | lxqt-config-randr    |          |                 |               |                |
-  |     | obconf-qt            |          |                 |               |                |
-  |     | compton-conf         |          | [[https://github.com/lxde/compton-conf][compton-conf]]    | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#compton-conf][#compton-conf]] |                |
-  |     | lxqt-about           |          |                 |               |                |
-  |     | lxqt-lightdm-greeter |          |                 |               |                |
+  |   r | Name                 |    Built | Web           | GitHub          | AUR            |
+  |-----+----------------------+----------+---------------+-----------------+----------------|
+  | 800 | [[file:lxqt-panel-git/PKGBUILD][lxqt-panel]]           | 14-02-25 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-panel][#lxqt-panel]]   | [[https://github.com/lxde/lxqt-panel][lxde/lxqt-panel]] | [[https://aur.archlinux.org/packages/lxqt-panel-git][lxqt-panel-git]] |
+  |     | pcmanfm-qt           |          |               |                 |                |
+  |     | lxqt-session         |          |               |                 |                |
+  |     | lxqt-runner          |          |               |                 |                |
+  |     | lxqt-qtplugin        |          |               |                 |                |
+  |     | lxqt-appswitcher     |          |               |                 |                |
+  |     | lxqt-policykit       |          |               |                 |                |
+  |     | lxqt-openssh-askpass |          |               |                 |                |
+  |     | lxqt-power           |          |               |                 |                |
+  |     | lxqt-powermanagement |          |               |                 |                |
+  |     | lximage-qt           |          |               |                 |                |
+  |     | lxqt-config          |          |               |                 |                |
+  |     | lxinput-qt           |          |               |                 |                |
+  |     | lxqt-config-randr    |          |               |                 |                |
+  |     | obconf-qt            |          |               |                 |                |
+  |     | compton-conf         |          | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#compton-conf][#compton-conf]] | [[https://github.com/lxde/compton-conf][compton-conf]]    |                |
+  |     | lxqt-about           |          |               |                 |                |
+  |     | lxqt-lightdm-greeter |          |               |                 |                |
   
 * Step by step package build
 1. [-]  Build the base libraries
