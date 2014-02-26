@@ -7,7 +7,7 @@
   |  37 | liblxqt-mount      | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#liblxqt-mount][#liblxqt-mount]]      | [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]]      | [[https://aur.archlinux.org/packages/liblxqt-mount-git/][liblxqt-mount-git]]      |
   | 107 | lxqt-globalkeys    | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-globalkeys][#lxqt-globalkeys]]    | [[https://github.com/lxde/lxqt-globalkeys][lxqt-globalkeys]]    | [[https://aur.archlinux.org/packages/lxqt-globalkeys-git/][lxqt-globalkeys-git]]    |
   |  68 | lxqt-notificationd | 14-02-24 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#lxqt-notificationd][#lxqt-notificationd]] | [[https://github.com/lxde/lxqt-notificationd][lxqt-notificationd]] | [[https://aur.archlinux.org/packages/lxqt-notificationd-git/][lxqt-notificationd-git]] |
-  |  20 | libsysstat         |          |                     |                    |                        |
+  |  20 | libsysstat         | 14-02-26 | [[http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libsysstat][#libsysstat]]         | [[https://github.com/lxde/libsysstat][lxde/libsysstat]]    | [[https://aur.archlinux.org/packages/libsysstat-git/][libsysstat-git]]         |
   |     | menu-cache         |          |                     |                    |                        |
   |     | libfm              |          |                     |                    |                        |
 
