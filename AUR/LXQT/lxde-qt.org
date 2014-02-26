@@ -42,44 +42,44 @@
       wget https://aur.archlinux.org/packages/li/libqtxdg-git/libqtxdg-git.tar.gz
       #+END_SRC
       #+BEGIN_SRC sh :tangle libqtxdg-git/PKGBUILD
-      # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
-      # Maintainer: Troy Will <troydwill@gmail.com>
-        
-      _pkgname=libqtxdg
-      pkgname=$_pkgname-git
-      pkgver=0.0.0
-      pkgrel=1
-      pkgdesc="Library providing freedesktop.org specs implementations for Qt."
-      arch=('i686' 'x86_64')
-      url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg"
-      license=('GPL2')
-      depends=('qt4')
-      makedepends=('git' 'cmake')
-      provides=("$_pkgname")
-      conflicts=("$_pkgname")
-      source=("git://github.com/lxde/$_pkgname.git")
-      # Because the source is not static, skip Git checksum:        
-      sha256sums=('SKIP')
-      _gitname=$_pkgname
-        
-      pkgver() {
-      cd "$srcdir/$_gitname"
-      printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-      }
-        
-      build() {
-      cd "$srcdir/$_gitname"
-      mkdir -p build
-      cd build
-      cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
-      make
-      }
-        
-      package() {
-      cd "$srcdir/$_gitname"
-      cd build
-      make DESTDIR="$pkgdir" install
-      }
+        # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
+        # Maintainer: Troy Will <troydwill@gmail.com>
+          
+        _pkgname=libqtxdg
+        pkgname=$_pkgname-git
+        pkgver=0.0.0
+        pkgrel=1
+        pkgdesc="Library providing freedesktop.org specs implementations for Qt."
+        arch=('i686' 'x86_64')
+        url="http://wiki.lxde.org/en/Build_LXDE-Qt_From_Source#libqtxdg"
+        license=('GPL2')
+        depends=('qt4')
+        makedepends=('git' 'cmake')
+        provides=("$_pkgname")
+        conflicts=("$_pkgname")
+        source=("git://github.com/lxde/$_pkgname.git")
+        # Because the source is not static, skip Git checksum:        
+        sha256sums=('SKIP')
+        _gitname=$_pkgname
+          
+        pkgver() {
+            cd "$srcdir/$_gitname"
+            printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+        }
+          
+        build() {
+            cd "$srcdir/$_gitname"
+            mkdir -p build
+            cd build
+            cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+            make
+        }
+          
+        package() {
+            cd "$srcdir/$_gitname"
+            cd build
+            make DESTDIR="$pkgdir" install
+        }
       #+END_SRC
    2. [ ] build and install [[https://github.com/lxde/liblxqt][liblxqt]] 
       - Core utility library for all LXDE-Qt components
@@ -87,44 +87,43 @@
       wget https://aur.archlinux.org/packages/li/liblxqt-git/liblxqt-git.tar.gz      
       #+END_SRC
       #+BEGIN_SRC sh :tangle liblxqt-git/PKGBUILD :padline no
-      # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
-      # Maintainer: Troy Will <troydwill@gmail.com>
-        
-      _pkgname=liblxqt
-      pkgname=$_pkgname-git
-      pkgver=0.0.0
-      pkgrel=1
-      pkgdesc="Common base library for LXQt components."
-      arch=('i686' 'x86_64')
-      url="http://www.lxde.org"
-      license=('GPL2')
-      depends=('qt4' 'libqtxdg-git')
-      makedepends=('git' 'cmake')
-      provides=($_pkgname)
-      conflicts=($_pkgname)
-      source=("git://github.com/lxde/$_pkgname.git")
-      sha256sums=('SKIP')
-      _gitname=$_pkgname
-        
-      pkgver() {
-      cd "$srcdir/$_gitname"
-      printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-      }
-        
-      build() {
-      cd "$srcdir/$_gitname"
-      mkdir -p build
-      cd build
-      cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
-      make
-      }
-        
-      package() {
-      cd "$srcdir/$_gitname"
-      cd build
-      make DESTDIR="$pkgdir" install
-      }
-        
+        # Maintainer: Jerome Leclanche <jerome.leclanche+arch@gmail.com>
+        # Maintainer: Troy Will <troydwill@gmail.com>
+          
+        _pkgname=liblxqt
+        pkgname=$_pkgname-git
+        pkgver=0.0.0
+        pkgrel=1
+        pkgdesc="Common base library for LXQt components."
+        arch=('i686' 'x86_64')
+        url="http://www.lxde.org"
+        license=('GPL2')
+        depends=('qt4' 'libqtxdg-git')
+        makedepends=('git' 'cmake')
+        provides=($_pkgname)
+        conflicts=($_pkgname)
+        source=("git://github.com/lxde/$_pkgname.git")
+        sha256sums=('SKIP')
+        _gitname=$_pkgname
+          
+        pkgver() {
+            cd "$srcdir/$_gitname"
+            printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+        }
+          
+        build() {
+            cd "$srcdir/$_gitname"
+            mkdir -p build
+            cd build
+            cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
+            make
+        }
+          
+        package() {
+            cd "$srcdir/$_gitname"
+            cd build
+            make DESTDIR="$pkgdir" install
+        }
       #+END_SRC
    3. [ ] build and install [[https://github.com/lxde/liblxqt-mount][liblxqt-mount]] 
       #+BEGIN_SRC sh
