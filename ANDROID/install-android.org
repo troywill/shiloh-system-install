@@ -27,5 +27,4 @@
 * AUR
   #+BEGIN_SRC sh
     # https://aur.archlinux.org/packages/an/android-sdk/android-sdk.tar.gz
-    
   #+END_SRC

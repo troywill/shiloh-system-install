@@ -3,8 +3,9 @@
 # Maintainer: Troy Will <troydwill@gmail.com>
   
 _pkgname=libqtxdg
-pkgname=$_pkgname-git
-pkgver=0.0.0
+# pkgname=$_pkgname-git
+pkgname=$_pkgname
+pkgver=0.5.r150.48e366e
 pkgrel=1
 pkgdesc="Library providing freedesktop.org specs implementations for Qt."
 arch=('i686' 'x86_64')
@@ -21,7 +22,7 @@ _gitname=$_pkgname
   
 pkgver() {
     cd "$srcdir/$_gitname"
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+    printf "%s.r%s.%s" "$pkgver" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
   
 build() {
