@@ -23,7 +23,7 @@ system("unzip $adt_zip_bundle_realpath");
 
 sub add_android_bundle_to_path {
     print <<'END';
-ANDROID_BASE=$HOME/Development/adt-bundle-20131030
+ANDROID_BASE="${HOME}/Development/adt-bundle-linux-x86-20131030"
 ADK_PATH="$ANDROID_BASE/sdk/platform-tools"
 ADT_TOOLS_PATH="$ANDROID_BASE/sdk/tools"
 ECLIPSE_PATH="$ANDROID_BASE/eclipse"
