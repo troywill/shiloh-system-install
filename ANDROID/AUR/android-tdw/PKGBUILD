@@ -11,7 +11,7 @@ depends=('alsa-lib' 'libstdc++5' 'libxv' 'ncurses' 'sdl' 'swt' 'zlib')
 optdepends=('android-udev: udev rules for Android devices'
             'android-sdk-platform-tools: adb, aapt, aidl, dexdump and dx')
 # 
-source=('http://192.168.1.3/android/adt-bundle-linux-x86-20131030.zip')
+source=('http://localhost/android/adt-bundle-linux-x86-20131030.zip')
 sha1sums=('429bca9974be2c46a36ab793eb7f523210a45dcf')
 
 package() {
@@ -20,8 +20,7 @@ package() {
   echo "$srcdir/$pkgname/eclipse"
   mkdir --parent opt
   cp -av "$srcdir/adt-bundle-linux-x86-20131030/eclipse/" opt/$pkgname
-  exit
-#  cp -av "$srcdir/adt-bundle-linux-x86-20131030/sdk" opt/$pkgname
+  cp -av "$srcdir/adt-bundle-linux-x86-20131030/sdk" opt/$pkgname
 
   # cp -a "$srcdir/$pkgname/sdk" opt/$pkgname
 
