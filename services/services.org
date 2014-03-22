@@ -5,7 +5,7 @@
   #+END_SRC
 
 * apache
-  #+BEGIN_SRC sh
+  #+BEGIN_SRC sh :tangle service-httpd-start-enable.sh :shebang #!/bin/sh
     systemctl start httpd
     systemctl enable httpd
   #+END_SRC
