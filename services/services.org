@@ -20,6 +20,10 @@
     systemctl enable sshd
   #+END_SRC
 * mysql
-  #+BEGIN_SRC sh
-    systemctl start mysqld  
+  #+BEGIN_SRC sh :tangle service-mysqld-start-enable.sh :shebang #!/bin/bash
+    set -o errexit
+    set -o nounset
+    set -o verbose
+    systemctl start mysqld
+    systemctl enable mysqld  
   #+END_SRC
