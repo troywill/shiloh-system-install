@@ -27,3 +27,12 @@
     systemctl start mysqld
     systemctl enable mysqld  
   #+END_SRC
+* tomcat
+  #+BEGIN_SRC sh :tangle service-tomcat7-enable-start.sh :shebang #!/bin/bash
+    set -o errexit
+    set -o nounset
+    set -o verbose
+
+    SERVICE="tomcat7"
+    systemctl enable ${SERVICE} && systemctl start ${SERVICE}
+  #+END_SRC
