@@ -1,29 +1,22 @@
-* Step by step install December 26, 2013
+* Step by step install June 7, 2014
   1. [X] Skim http://developer.android.com/index.html
   2. [X] Skim http://developer.android.com/sdk/index.html (Get the SDK)
   3. [X] Download the SDK ADT Bundle for Linux
-     - adt-bundle-linux-x86-20131030.zip (current as of December 26, 2013)
+     - adt-bundle-linux-x86-20140321.zip
   4. [X] http://developer.android.com/sdk/installing/bundle.html
      (Setting Up the ADT Bundle)
-  5. [X] Unpack the ZIP file (named adt-bundle-linux-x86-20131030.zip)
+  5. [X] Unpack the adt-bundle-linux-x86-20140321.zip ZIP file 
      and save it to an appropriate location, such as a "Development"
      directory in your home directory.
      #+BEGIN_SRC sh :shebang #!/usr/bin/bash :tangle bin/unpack-the-zip-file.sh
        set -o errexit
+       ZIP_FILE="adt-bundle-linux-x86-20140321.zip"
        DEVELOPMENT_DIR=~/Development
-       ZIP_FILE="adt-bundle-linux-x86-20131030.zip"
-       echo $DEVELOPMENT_DIR
+       mkdir --parent ${DEVELOPMENT_DIR}
        cd $DEVELOPMENT_DIR
        unzip ~/Downloads/${ZIP_FILE} -d .
      #+END_SRC
-* Attic
-** Step by step install July 28, 2013
-  1. [ ] http://developer.android.com/index.html
-  2. [ ] http://developer.android.com/sdk/index.html
-  3. [ ] Download the SDK ADT Bundle for Linux
-     - adt-bundle-linux-x86-20130717.zip
-  4. [ ] http://developer.android.com/sdk/installing/bundle.html
-  5. [ ] Unpack the ZIP file (named adt-bundle-<os_platform>.zip) and save it to an appropriate location, such as a "Development" directory in your home directory.
+  6. [ ] Install jdk7-openjdk   
 * AUR
   #+BEGIN_SRC sh
     # https://aur.archlinux.org/packages/an/android-sdk/android-sdk.tar.gz
