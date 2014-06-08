@@ -1,9 +1,9 @@
 * Installing Shiloh System step by step
-1. [ ] Connect to the internet
-2. [ ] Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
-3. [ ] Prepare the target media with parted and GPT
-   1. [ ] (Optional) Run lsblk to determine drive   
-   2. [ ] (Optional) Zero drive
+1. [X] Connect to the internet
+2. [X] Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
+3. [X] Prepare the target media with parted and GPT
+   1. [X] (Optional) Run lsblk to determine drive   
+   2. [X] (Optional) Zero drive
       #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
 	set -o errexit
 	DEVICE="/dev/sdb"
@@ -12,25 +12,25 @@
 	dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
 	dd if=/dev/zero of=${DEVICE} bs=$BS count=$COUNT
       #+END_SRC
-   3. [ ] Create a GUID partition table with parted
+   3. [X] Create a GUID partition table with parted
       #+BEGIN_SRC sh
 	parted /dev/sdb
 	mklabel gpt
       #+END_SRC
-   4. [ ] Create a boot partition with parted
+   4. [X] Create a boot partition with parted
       #+BEGIN_SRC sh
       mkpart primary 1 2
        set 1 bios_grub on
       #+END_SRC
-   5. [ ] Create a root partition with parted
+   5. [X] Create a root partition with parted
       #+BEGIN_SRC sh
 	mkpart primary 2 8011
       #+END_SRC
-   6. [ ] Verify partition
+   6. [X] Verify partition
       #+BEGIN_SRC sh
 	print
       #+END_SRC
-   7. [ ] Format the root partition
+   7. [X] Format the root partition
       #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -38,7 +38,7 @@
 	DEVICE="/dev/sdb2" #change this!
 	mkfs.ext4 -v -L $LABEL $DEVICE
       #+END_SRC
-4. [ ] Mount the partition
+4. [X] Mount the partition
    #+begin_src sh :tangle bin/partition/mount-the-partition.sh :shebang #!/bin/bash
     set -o errexit
     set -o nounset

@@ -1,0 +1,6 @@
+* [[file:~/.emacs]]
+  #+BEGIN_SRC elisp
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((shell . t)))
+  #+END_SRC

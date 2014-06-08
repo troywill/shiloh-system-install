@@ -16,6 +16,11 @@
            dropboxd
 	#+END_SRC
 * Log
+** 2014-06-08
+   - https://aur.archlinux.org/packages/dropbox/
+   - dropbox 2.8.3-1
+   - makepkg
+   - dropboxd
 ** 2014-02-25
    I built dropbox-2.6.13-1-i686.pkg.tar.xz. I added "dropboxd &" to
    ~/.xinit.
