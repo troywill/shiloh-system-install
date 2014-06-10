@@ -1,13 +1,17 @@
 * [0/3] Install Ruby step by step
-  1. [ ]
-     #+BEGIN_SRC sh :tangle 00-install-rvm.sh :shebang #!/bin/sh
-       \curl -L https://get.rvm.io | bash -s stable
+  1. [ ] Run 
+     #+BEGIN_SRC sh :tangle bin/00-install-rvm.sh :shebang #!/bin/sh
+       # See https://rvm.io/
+       \curl --location https://get.rvm.io | bash -s stable
      #+END_SRC
   2. [ ] 
-     #+BEGIN_SRC sh :tangle 02-source.sh :shebang #!/bin/sh
+     #+BEGIN_SRC sh :tangle bin/02-source.sh :shebang #!/bin/sh
        echo 'source ~/.rvm/scripts/rvm'
      #+END_SRC
   3. [ ] 
-     #+BEGIN_SRC sh :tangle 04-rvm-install-ruby  :shebang #!/bin/sh
+     #+BEGIN_SRC sh :tangle bin/04-rvm-install-ruby  :shebang #!/bin/sh
        rvm install ruby
      #+END_SRC
+* Log
+  | 2014-06-10 |   |
+  |            |   |
