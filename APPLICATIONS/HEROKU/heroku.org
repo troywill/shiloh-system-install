@@ -1,0 +1,5 @@
+* heroku apps
+** Delete an app
+   #+BEGIN_SRC sh
+     heroku apps:destroy infinite-depths-9685
+   #+END_SRC
