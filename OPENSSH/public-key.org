@@ -2,6 +2,7 @@
   1. [X] Generate an SSH key pair
      #+begin_src sh :tangle generate-ssh-key-pair.sh :shebang #!/bin/sh
        ssh-keygen -b 521 -t ecdsa -C"$(id -un)@$(hostname)-$(date --rfc-3339=date)"
+       ssh-keygen -b 521 -t dsa -C"$(id -un)@$(hostname)-$(date --rfc-3339=date)"
      #+end_src
   2. [X] Enter pass phrase when prompted
   3. [X] Copy id_ecdsa.pub to troywill.com

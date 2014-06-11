@@ -1,7 +1,8 @@
 #!/bin/bash
 
 set -o errexit
-DEVICE="/dev/sdb"
+DEVICE="/dev/XXXX" # find DEVICE with /usr/bin/lsblk and edit this line
+exit
 BS="1M"
 COUNT=4
 dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
