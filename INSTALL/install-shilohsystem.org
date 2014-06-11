@@ -1,7 +1,7 @@
 * Installing Shiloh System step by step
 1. [X] Connect to the internet
 2. [X] Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
-3. [-] Prepare the target media with parted and GPT
+3. [X] Prepare the target media with parted and GPT
    1. [X] (Optional) Run lsblk to determine drive
       #+BEGIN_SRC sh
         lsblk > lsblk
@@ -35,7 +35,7 @@
       #+BEGIN_SRC sh
 	print
       #+END_SRC
-   7. [ ] Format the root partition
+   7. [X] Format the root partition
       #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -43,19 +43,16 @@
 	DEVICE="/dev/XXXX" #change this!
 	mkfs.ext4 -v -L $LABEL $DEVICE
       #+END_SRC
-4. [ ] Mount the partition
-   #+begin_src sh :tangle bin/partition/mount-the-partition.sh :shebang #!/bin/bash
-    set -o errexit
-    set -o nounset
-    DEVICE="/dev/sdb2" #change this!
-    mount --verbose $DEVICE /mnt
-   #+end_src
-5. [ ] Install the base system
-   1. [ ] Install arch-install-scripts
+4. [X] Mount the partition
+   #+BEGIN_SRC sh
+     mount /dev/XXXX /mnt
+   #+END_SRC
+5. [-] Install the base system
+   1. [X] Install arch-install-scripts
       #+begin_src sh
 	sudo pacman --sync arch-install-scripts
       #+end_src
-   2. [ ] (Optional) Copy xz files or link symbolically to host pkg directory
+   2. [X] (Optional) Copy xz files or link symbolically to host pkg directory
       #+begin_src sh :tangle bin/optional/copy-existing-pkg-cache :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -81,12 +78,12 @@
       Other packages can be installed by appending their names to the above command (space
       seperated), including the bootloader if you want.
       
-      #+BEGIN_SRC sh :tangle bin/pacstrap-tdw-full.sh :shebang #!/bin/bash
+      #+BEGIN_SRC sh :tangle bin/pacstrap.sh :shebang #!/bin/bash
 	set -o errexit
 	set -o nounset
-	# Thursday, April 25, 2013 3:09 PM
+	# June 11, 2016
 	# INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
-	INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
+	INSTALL="grub-bios os-prober arch-install-scripts parted"
 	DEVEL="base-devel git stow cmake"
 	SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
 	EMACS="emacs"
