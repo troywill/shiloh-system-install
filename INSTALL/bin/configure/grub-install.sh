@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DEVICE=/dev/sdb #change this as desired!
+DEVICE=/dev/XXXX #change this as desired!
+exit
 modprobe dm-mod
 sleep 1
 grub-install --target=i386-pc --recheck --debug $DEVICE
