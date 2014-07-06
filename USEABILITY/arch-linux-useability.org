@@ -89,3 +89,4 @@ sudo systemctl start autologin@tty1
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 #+END_SRC
      
+* [[https://wiki.archlinux.org/index.php/Systemd_FAQ#How_can_I_make_a_script_start_during_the_boot_process.3F][How can I make a script start during the boot process?]]
