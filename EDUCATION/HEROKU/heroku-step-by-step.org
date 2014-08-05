@@ -1,0 +1,138 @@
+* Introduction
+* Rails 4 to Heroku Step by Step
+  1. [ ] Skim https://devcenter.heroku.com/articles/getting-started-with-rails4
+  2. [ ] Skim https://devcenter.heroku.com/articles/rails4
+  3. [ ] [[https://devcenter.heroku.com/articles/getting-started-with-rails4#write-your-app][Write the application]]
+     1. [ ] Create a new Rails application using postgresql
+	    #+begin_src sh :tangle bin/create-rails-app.sh :shebang #/bin/sh
+	      rails new app_name --database postgresql
+	    #+end_src
+     2. [ ] Change into the application directory
+	#+BEGIN_SRC sh
+	  cd app_name
+	#+END_SRC
+     3. [ ] copy this org file
+	#+BEGIN_SRC sh
+	  cp ../heroku-step-by-step.org .
+	#+END_SRC
+     4. [ ] Edit file:Gemfile
+        #+BEGIN_SRC ruby
+          # 2014-07-22
+          gem 'rails_12factor', group: :production
+        #+END_SRC
+     5. [ ] Enable a JavaScript runtime in file:Gemfile
+	#+BEGIN_SRC ruby
+	  gem 'therubyracer',  platforms: :ruby
+	#+END_SRC
+     6. [ ] Install the rails_12factor gem
+        #+BEGIN_SRC sh
+          bundle install
+        #+END_SRC
+  4. [ ] Set up the Postgresql database in file:config/database.yml
+     1. [ ] template: template0
+	#+BEGIN_SRC conf
+          default: &default
+            adapter: postgresql
+            encoding: unicode
+            # For details on connection pooling, see rails configuration guide
+            # http://guides.rubyonrails.org/configuring.html#database-pooling
+            pool: 5
+            template: template0
+	#+END_SRC
+     2. [ ] rake db:create ( # may need to rake db:drop )
+  5. [ ] Create a “home” controller and “home/index”, "home/about", "home/contact" pages
+     #+BEGIN_SRC sh :tangle bin/generate-home-controller.sh :shebang #!/bin/sh
+       rails generate controller home index about contact --skip-stylesheets
+     #+END_SRC
+     Note the use of '--skip-stylesheets' since we will use Twitter Bootstrap's stylesheets
+  6. [ ] Test Rails application locally
+     1. [ ] Start the Rails server
+	#+BEGIN_SRC sh
+          rails server
+        #+END_SRC
+     2. [ ] view localhost:3000 with web browser
+  7. [ ] Set the default route to home/index in [[file:config/routes.rb]]
+     
+     Open [[file:config/routes.rb][config/routes.rb]]  with your text editor. You will see the following
+     commented line near the top of the file:
+     #+BEGIN_SRC ruby
+       # root 'welcome#index'
+     #+END_SRC
+     
+     Let's uncomment and change the application root view:
+
+     #+BEGIN_SRC ruby
+       root "home#index"
+     #+END_SRC
+     
+     Now, Rails will direct vistors to the application to home/index. We are
+     ready to start the Rails application and incorporate Twitter Bootstrap's
+     stylesheets and JavaScript scripts.
+  8. [ ] Store the application in Git
+     #+BEGIN_SRC sh
+       git init
+     #+END_SRC
+  9. [ ] Add files to the Git repository
+     #+BEGIN_SRC sh
+       git add .
+     #+END_SRC
+  10. [ ] Commit the files added to the Git repository
+      #+BEGIN_SRC sh
+	git commit -m "init"
+      #+END_SRC
+  11. [/] Deploy the application to Heroku
+      1. [ ] Create the application on Heroku
+         #+BEGIN_SRC sh
+           heroku create >> log.heroku
+           # http://murmuring-bastion-5947.herokuapp.com/ | git@heroku.com:murmuring-bastion-5947.git
+         #+END_SRC
+
+	 Creating mighty-badlands-8255... done, stack is cedar
+	 http://mighty-badlands-8255.herokuapp.com/ | git@heroku.com:mighty-badlands-8255.git
+	 Git remote heroku added
+      2. [ ] Deploy the code
+         #+BEGIN_SRC sh :tangle bin/deploy-the-code.sh :shebang #!/bin/sh
+           git push heroku master >> log.heroku
+         #+END_SRC
+* [[https://devcenter.heroku.com/]]
+** [[https://devcenter.heroku.com/articles/quickstart][Getting started]]
+   1. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-1-sign-up][Sign up]]
+   2. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-2-install-the-heroku-toolbelt][Install the Heroku Toolbelt]]
+   3. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-3-login][Login]]
+   4. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-4-deploy-an-application][Deploy an application]]
+* ( Optional ) Delete the application and Postgresql database
+  1. [ ] Delete the Heroku application
+     #+BEGIN_SRC sh
+       heroku apps:destroy --app nameless-hollows-6930       
+     #+END_SRC
+  2. [ ] Delete the Postgresql databases
+     1. [ ] Become postgres user
+	#+BEGIN_SRC sh
+          sudo su - postgres
+        #+END_SRC
+     2. [ ] Open a PostgreSQL interactive terminal
+	#+BEGIN_SRC sh
+	  psql
+	#+END_SRC
+     3. [ ] List databases
+	Type "\l"
+   	#+BEGIN_SRC sh
+	  postgres=# \l
+	#+END_SRC
+     4. [ ] drop databases
+	#+BEGIN_SRC sql
+	   drop database app_name_development;
+	   drop database app_name_test;
+	#+END_SRC
+* [/] https://devcenter.heroku.com/articles/custom-domains
+  1. [ ] 
+     #+BEGIN_SRC sh
+       heroku domains:add www.example.com
+       # Adding www.example.com to example... done
+     #+END_SRC
+  2. [ ] CNAME (Alias)
+     | HOST NAME  | IP ADDRESS/URL                   | RECORD TYPE   |
+     |------------+----------------------------------+---------------|
+     | weightloss | warm-citadel-7982.herokuapp.com. | CNAME (Alias) |
+  
+* [ ] 
