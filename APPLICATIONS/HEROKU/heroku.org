@@ -1,4 +1,9 @@
+* Install
+  #+BEGIN_SRC sh :tangle bin/install-heroku-toolbelt.sh :shebang #!/bin/sh
+    # https://toolbelt.heroku.com/
 
+    wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  #+END_SRC
 * heroku apps
 ** Delete an app
    #+BEGIN_SRC sh
