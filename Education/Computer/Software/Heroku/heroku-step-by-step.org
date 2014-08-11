@@ -3,41 +3,41 @@
   + PostgreSQL 9.3.5
 * Rails 4 to Heroku Step by Step
   1. [ ] Skim https://devcenter.heroku.com/articles/quickstart 
-  2. [X] Skim https://devcenter.heroku.com/articles/getting-started-with-rails4
-  3. [X] Skim https://devcenter.heroku.com/articles/rails4
+  2. [ ] Skim https://devcenter.heroku.com/articles/getting-started-with-rails4
+  3. [ ] Skim https://devcenter.heroku.com/articles/rails4
   4. [ ] Set up Heroku
      1. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-1-sign-up][Sign up]]
      2. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-2-install-the-heroku-toolbelt][Install the Heroku Toolbelt]]
      3. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-3-login][Login]]
      4. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-4-deploy-an-application][Deploy an application]]
-  5. [X] [[https://devcenter.heroku.com/articles/getting-started-with-rails4#write-your-app][Write the application]]
-     1. [X] Create a new Rails application using postgresql
+  5. [ ] [[https://devcenter.heroku.com/articles/getting-started-with-rails4#write-your-app][Write the application]]
+     1. [ ] Create a new Rails application using postgresql
 	#+BEGIN_SRC sh :tangle bin/create-rails-app.sh :shebang #/bin/sh
           rails new app_name --database postgresql
 	#+END_SRC
-     2. [X] Change into the application directory
+     2. [ ] Change into the application directory
 	#+BEGIN_SRC sh
 	  cd app_name
 	#+END_SRC
-     3. [X] copy this org file
+     3. [ ] copy this org file
 	#+BEGIN_SRC sh
 	  cp ../heroku-step-by-step.org .
 	#+END_SRC
-     4. [X] Edit file:Gemfile
+     4. [ ] Edit file:Gemfile
         #+BEGIN_SRC ruby
           # 2014-07-22
           gem 'rails_12factor', group: :production
         #+END_SRC
-     5. [X] Enable a JavaScript runtime in file:Gemfile
+     5. [ ] Enable a JavaScript runtime in file:Gemfile
 	#+BEGIN_SRC ruby
 	  gem 'therubyracer',  platforms: :ruby
 	#+END_SRC
-     6. [X] Install the rails_12factor gem
+     6. [ ] Install the rails_12factor gem
         #+BEGIN_SRC sh
           bundle install
         #+END_SRC
-  6. [X] Set up the Postgresql database in file:config/database.yml
-     1. [X] template: template0
+  6. [ ] Set up the Postgresql database in file:config/database.yml
+     1. [ ] template: template0
 	#+BEGIN_SRC conf
           default: &default
             adapter: postgresql
@@ -47,19 +47,19 @@
             pool: 5
             template: template0
 	#+END_SRC
-     2. [X] rake db:create ( # may need to rake db:drop )
-  7. [X] Create a “home” controller and “home/index”, "home/about", "home/contact" pages
+     2. [ ] rake db:create ( # may need to rake db:drop )
+  7. [ ] Create a “home” controller and “home/index”, "home/about", "home/contact" pages
      #+BEGIN_SRC sh :tangle bin/generate-home-controller.sh :shebang #!/bin/sh
        rails generate controller home index about contact --skip-stylesheets
      #+END_SRC
      Note the use of '--skip-stylesheets' since we will use Twitter Bootstrap's stylesheets
-  8. [X] Test Rails application locally
-     1. [X] Start the Rails server
+  8. [ ] Test Rails application locally
+     1. [ ] Start the Rails server
 	#+BEGIN_SRC sh
           rails server --port 3000
         #+END_SRC
-     2. [X] view localhost:3000 with web browser
-  9. [X] Set the default route to home/index in [[file:config/routes.rb]]
+     2. [ ] view localhost:3000 with web browser
+  9. [ ] Set the default route to home/index in [[file:config/routes.rb]]
      
      Open [[file:config/routes.rb][config/routes.rb]]  with your text editor. You will see the following
      commented line near the top of the file:
@@ -76,20 +76,20 @@
      Now, Rails will direct vistors to the application to home/index. We are
      ready to start the Rails application and incorporate Twitter Bootstrap's
      stylesheets and JavaScript scripts.
-  10. [X] Store the application in Git
+  10. [ ] Store the application in Git
       #+BEGIN_SRC sh
 	git init
       #+END_SRC
-  11. [X] Add files to the Git repository
+  11. [ ] Add files to the Git repository
       #+BEGIN_SRC sh
 	git add .
       #+END_SRC
-  12. [X] Commit the files added to the Git repository
+  12. [ ] Commit the files added to the Git repository
       #+BEGIN_SRC sh
 	git commit -m "init"
       #+END_SRC
-  13. [2/2] Deploy the application to Heroku
-      1. [X] Create the application on Heroku
+  13. [/] Deploy the application to Heroku
+      1. [ ] Create the application on Heroku
          #+BEGIN_SRC sh
            heroku create >> log.heroku
            # http://murmuring-bastion-5947.herokuapp.com/ | git@heroku.com:murmuring-bastion-5947.git
@@ -98,7 +98,7 @@
 	 Creating mighty-badlands-8255... done, stack is cedar
 	 http://mighty-badlands-8255.herokuapp.com/ | git@heroku.com:mighty-badlands-8255.git
 	 Git remote heroku added
-      2. [X] Deploy the code to Heroku
+      2. [ ] Deploy the code to Heroku
          #+BEGIN_SRC sh :tangle bin/deploy-the-code.sh :shebang #!/bin/sh
            git push heroku master >> log.heroku
          #+END_SRC
