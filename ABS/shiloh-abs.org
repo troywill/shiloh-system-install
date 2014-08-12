@@ -2,7 +2,7 @@
 ** [[https://wiki.archlinux.org/index.php/Creating_Packages][Creating_Packages]]
 ** [[https://wiki.archlinux.org/index.php/Custom_local_repository#Custom_local_repository][Custom_local_repository]]
 *** repo-add
-    #+BEGIN_SRC sh :tangle repo-add.sh :shebang #!/bin/bash
+    #+BEGIN_SRC sh :tangle bin/repo-add.sh :shebang #!/bin/bash
       set -o nounset
       PACKAGE=$1      
       PATH_TO_DB="/srv/http/shiloh.db.tar.bz2"

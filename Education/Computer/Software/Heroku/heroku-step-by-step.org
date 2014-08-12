@@ -5,11 +5,22 @@
   1. [ ] Skim https://devcenter.heroku.com/articles/quickstart 
   2. [ ] Skim https://devcenter.heroku.com/articles/getting-started-with-rails4
   3. [ ] Skim https://devcenter.heroku.com/articles/rails4
-  4. [ ] Set up Heroku
+  4. [-] Set up Heroku
      1. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-1-sign-up][Sign up]]
      2. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-2-install-the-heroku-toolbelt][Install the Heroku Toolbelt]]
-     3. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-3-login][Login]]
-     4. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-4-deploy-an-application][Deploy an application]]
+	#+BEGIN_SRC sh :tangle bin/install-heroku-toolbelt.sh :shebang #!/bin/sh
+          # https://toolbelt.heroku.com/
+          
+          wget -qO- https://toolbelt.heroku.com/install.sh | sh
+	#+END_SRC
+     3. [ ] Add the Heroku CLI to your PATH using file:~/.bash_profile 
+	#+BEGIN_SRC sh
+          # echo 'PATH="/usr/local/heroku/bin:$PATH"' >> ~/.bash_profile
+          PATH="/usr/local/heroku/bin:$PATH"
+	#+END_SRC
+     4. [ ] source ~/.bash_profile
+     5. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-3-login][Login]]
+     6. [ ] [[https://devcenter.heroku.com/articles/quickstart#step-4-deploy-an-application][Deploy an application]]
   5. [ ] [[https://devcenter.heroku.com/articles/getting-started-with-rails4#write-your-app][Write the application]]
      1. [ ] Create a new Rails application using postgresql
 	#+BEGIN_SRC sh :tangle bin/create-rails-app.sh :shebang #/bin/sh
@@ -56,7 +67,7 @@
   8. [ ] Test Rails application locally
      1. [ ] Start the Rails server
 	#+BEGIN_SRC sh
-          rails server --port 3000
+          rails server --port 3000 --daemon
         #+END_SRC
      2. [ ] view localhost:3000 with web browser
   9. [ ] Set the default route to home/index in [[file:config/routes.rb]]
