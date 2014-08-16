@@ -1,11 +1,20 @@
-* dhcpcd
-  #+BEGIN_SRC sh
-    systemctl start dhcpcd
-    systemctl enable dhcpcd
+* dhcpcd (bin/enable-dhcpcd-service.sh)
+  #+BEGIN_SRC sh :tangle enable-dhcpcd-service.sh
+    #!/bin/bash
+    
+    set -o nounset
+    set -o errexit
+    set -o verbose
+    
+    DEVICE='enp0s25'
+    
+    # rm -vf '/etc/systemd/system/multi-user.target.wants/dhcpcd@eth0.service'
+    # ln -s '/usr/lib/systemd/system/dhcpcd@.service' "/etc/systemd/system/multi-user.target.wants/dhcpcd@${DEVICE}.service"
+    systemctl start dhcpcd@${DEVICE}
+    systemctl enable dhcpcd@${DEVICE}
   #+END_SRC
-
-* apache
-  #+BEGIN_SRC sh :tangle service-httpd-start-enable.sh :shebang #!/bin/sh
+* apache (bin/enable-httpd-service.sh)
+  #+BEGIN_SRC sh :tangle bin/enable-httpd-service.sh :shebang #!/bin/sh
     systemctl start httpd
     systemctl enable httpd
   #+END_SRC
@@ -20,7 +29,7 @@
     systemctl enable sshd
   #+END_SRC
 * mysql
-  #+BEGIN_SRC sh :tangle service-mysqld-start-enable.sh :shebang #!/bin/bash
+  #+BEGIN_SRC sh :tangle bin/enable-mysqld-service.sh :shebang #!/bin/bash
     set -o errexit
     set -o nounset
     set -o verbose
