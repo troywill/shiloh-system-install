@@ -38,80 +38,61 @@
 
   
   
-  
 * bin/shiloh-postinstall.pl
-#+begin_src perl :tangle bin/shiloh-postinstall.pl :shebang #!/usr/bin/env perl :noweb yes
-use warnings;
-use strict;
-<<install-cpanminus>>
-<<install-perl-modules>>
-#+end_src
+  #+begin_src perl :tangle bin/shiloh-postinstall.pl :shebang #!/usr/bin/env perl :noweb yes
+    use warnings;
+    use strict;
+    <<install-cpanminus>>
+    <<install-perl-modules>>
+  #+end_src
 ** Install cpanminus
-#+name: install-cpanminus   
-#+begin_src perl
-print "Installing Tatsuhiko Miyagawa's cpanminus script with pacman ...\n";
-system("sudo pacman --sync cpanminus");
-#+end_src   
+   #+name: install-cpanminus   
+   #+begin_src perl
+     print "Installing Tatsuhiko Miyagawa's cpanminus script with pacman ...\n";
+     system("sudo pacman --sync cpanminus");
+   #+end_src   
 ** Install Perl modules
-#+name: install-perl-modules   
-#+begin_src perl
-system("sudo pacman --sync perl-libwww");
-system("cpanm --sudo Modern::Perl Term::ReadKey Perl::Critic AppConfig Perl::Tidy");
-#+end_src
-   
+   #+name: install-perl-modules   
+   #+begin_src perl
+     system("sudo pacman --sync perl-libwww");
+     system("cpanm --sudo Modern::Perl Term::ReadKey Perl::Critic AppConfig Perl::Tidy");
+   #+end_src
 * TODO 10-install/020-initial-setup/01-adduser.pl
 * TODO sudoers
-#+begin_src perl :tangle sudo.pl :shebang #!/usr/bin/env perl
-use warnings;
-use strict;
+  #+begin_src perl :tangle sudo.pl :shebang #!/usr/bin/env perl
+    use warnings;
+    use strict;
 
-my $user = 'troy';
+    my $user = 'troy';
 
-open ( my $out, '>>', '/etc/sudoers' );
-print $out <<"END";
-### Following lines added by 4g-arch-040-sudoers
-# Defaults specification
-Defaults:$user timestamp_timeout=-1
-Defaults !tty_tickets
-# User privilege specification
-root	ALL=(ALL) ALL
-$user	ALL=(ALL) ALL
-END
+    open ( my $out, '>>', '/etc/sudoers' );
+    print $out <<"END";
+    ### Following lines added by 4g-arch-040-sudoers
+    # Defaults specification
+    Defaults:$user timestamp_timeout=-1
+    Defaults !tty_tickets
+    # User privilege specification
+    root    ALL=(ALL) ALL
+    $user   ALL=(ALL) ALL
+    END
 
-sub run_command {
-    my $command = shift;
-    print "=> $command\n";
-    system $command;
-}
+    sub run_command {
+        my $command = shift;
+        print "=> $command\n";
+        system $command;
+    }
 
-#+end_src
+   #+end_src
 * TODO Chromium flash
-1. [ ] Read https://wiki.archlinux.org/index.php/Chromium#Flash_Player
-1. [ ] https://aur.archlinux.org/packages/chromium-pepper-flash/
-Disable all other flash plugins:
-#+begin_src sh
-chromium chrome://plugins
-#+end_src
-Type [[http://chrome\://plugins/][chrome://plugins]] in the adress bar and press Enter
-Click on Details button on the top right
-Click on Disable near all the Flash plugins except the first one
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  1. [ ] Read https://wiki.archlinux.org/index.php/Chromium#Flash_Player
+  1. [ ] https://aur.archlinux.org/packages/chromium-pepper-flash/
+     Disable all other flash plugins:
+     #+begin_src sh
+       chromum chrome://plugins
+     #+end_src
+     Type [[http://chrome\://plugins/][chrome://plugins]] in the adress bar and press Enter
+     Click on Details button on the top right
+     Click on Disable near all the Flash plugins except the first one
 ** Programmers/Developers
 1. [ ] SSH Keys
    *** [[https://wiki.archlinux.org/index.php/SSH_keys][SSH Key authentication]] (Arch Linux)

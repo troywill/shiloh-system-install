@@ -1,0 +1,62 @@
+* Usage Examples
+** passcode-lock sensitive applications (e.g. for child safety)
+** change phone settings by
+** application: long screen timeout in a book reader
+** time: screen brightness lower in the evening
+** location: ringer volume high at the office, turn off ke yguard at home
+** wake up with a random song from your music collection
+** Text-to-speech; read out loud: incoming SMS/ phone number, WiFi/Bluetooth status, when it's time for an appointment, when the battery is low etc etc (Android OS 1.6+ only)
+** launch a music application when your music SD card is inserted, otherwise a file browser
+** start the day with a particular application showing
+** change all your home icons and wallpaper every day, or in particular locations
+** turn the phone upside down to return to the home screen, tilt 90 degrees to the left and back to toggle speakerphone during a call
+** create a Home widget to
+** toggle bluetooth/wifi on/off
+** launch wireless settings dialog
+** show a menu of tasks to choose
+** send an emergency SMS with your GPS location
+** remap camera etc buttons to other applications, or show a menu of applications and/or actions
+** zip/unzip application data on the fly when an application is launched/exits
+** pause music playback while in a particular application, restart on exit
+** change the Home icon for any application
+** take a time-lapse photo series (possibly 'secretly')
+** make a regular backup of a file on the SD card
+** track your phone location via SMS in case of theft
+** extend the use of the media button on your headset: take a picture from a distance or go to the previous media track with a long press
+** record call times and destinations to the SD card
+** show a popup when an SMS arrives from a particular phone number
+** setup a birthday SMS to be sent months before it happens so you don't forget
+** record battery levels over time to a file on SD card
+** make automatic recordings of what you say during phone calls to SD card
+** during the night, turn on airplane mode to conserve battery/reduce radiation, but turn it off every 15 minutes to check for SMS/voicemail.
+** setup a vacation SMS message, with different messages for different callers
+** launch a music application when headphones are connected
+* Tasker 101 Tutorials
+** Lesson One EzY9te12UI0
+*** View the video
+    1. [X] mplayer -fs -ss 00:00 -endpos 01:00 01.mp4
+    2. [X] mplayer -fs -ss 01:00 -endpos 01:00 01.mp4
+    3. [X] mplayer -fs -ss 02:00 -endpos 01:00 01.mp4
+    4. [X] mplayer -fs -ss 03:00 -endpos 01:00 01.mp4
+    5. [X] mplayer -fs -ss 04:00 -endpos 01:00 01.mp4
+    6. [X] mplayer -fs -ss 05:00 -endpos 01:01 01.mp4
+    7. [X] mplayer -fs -ss 06:00 -endpos 01:01 01.mp4
+    8. [X] mplayer -fs -ss 07:00 -endpos 01:01 01.mp4
+    9. [X] mplayer -fs -ss 08:00 -endpos 01:01 01.mp4
+    10. [X] mplayer -fs -ss 09:00 -endpos 01:01 01.mp4
+    11. [X] mplayer -fs -ss 10:00 -endpos 01:01 01.mp4
+    12. [X] mplayer -fs -ss 11:00 -endpos 01:01 01.mp4
+    13. [X] mplayer -fs -ss 12:00 -endpos 01:01 01.mp4
+    14. [X] mplayer -fs -ss 13:00 -endpos 01:01 01.mp4
+    15. [X] mplayer -fs -ss 14:00 -endpos 01:01 01.mp4
+    16. [X] mplayer -fs -ss 15:00 -endpos 01:01 01.mp4
+*** Settings
+   1. [X] Uncheck Beginner Mode
+   2. [X] MISC: Maximum Auto-Backup Age = 1 Day
+   3. [X] MISC: Allow External Access
+*** Task 101 Vol Night
+    1. [X] New Task => "101 Vol Night"
+    2. [X] New Action
+   
+   
+   

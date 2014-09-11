@@ -1,0 +1,5 @@
+* Step by Step
+  1. [ ] Select cells
+  2. [ ] Select chart icon
+  3. [ ] 
+

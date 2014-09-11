@@ -1,6 +1,6 @@
 * Arch Linux https://wiki.archlinux.org/index.php/Dropbox
-  1. [ ] Download tarball (14-02-25)
-     #+BEGIN_SRC sh :tangle wget-dropbox.sh :shebang #!/bin/sh
+  1. [ ] Download tarball (14-08-17)
+     #+BEGIN_SRC sh :tangle bin/wget-dropbox.sh :shebang #!/bin/sh
        wget https://aur.archlinux.org/packages/dr/dropbox/dropbox.tar.gz
      #+END_SRC
   2. [ ] Build (14-02-25)
