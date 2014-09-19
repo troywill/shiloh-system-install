@@ -1,3 +1,56 @@
+* Actions
+** Alert
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
+** App
+*** Calender Insert
+*** Go Home
+*** Kill App
+*** Launch App
+*** Load Last App
+*** Test App
+** Audio
+** Display
+** File
+** Image
+** Input
+** Location
+** Media
+** Net
+** Phone
+** Plugin
+** Scene
+** Script
+** Settings
+** System
+*** CPU
+*** Reboot
+*** Search
+*** Send Intent
+*** Set Alarm
+*** Set Clipboard
+*** Set Timezone
+*** Start System Timer
+*** Test System
+** Task
+** Tasker
+** Variables
+** Zoom
+** 3rd Party
 * Usage Examples
 ** passcode-lock sensitive applications (e.g. for child safety)
 ** change phone settings by
@@ -31,7 +84,7 @@
 ** during the night, turn on airplane mode to conserve battery/reduce radiation, but turn it off every 15 minutes to check for SMS/voicemail.
 ** setup a vacation SMS message, with different messages for different callers
 ** launch a music application when headphones are connected
-* Tasker 101 Tutorials
+* [[https://www.youtube.com/playlist?list=PLjV3HijScGMynGvjJrvNNd5Q9pPy255dL][Tasker 101 Tutorials]]
 ** Lesson One EzY9te12UI0
 *** View the video
     1. [X] mplayer -fs -ss 00:00 -endpos 01:00 01.mp4
@@ -57,6 +110,55 @@
 *** Task 101 Vol Night
     1. [X] New Task => "101 Vol Night"
     2. [X] New Action
-   
-   
+** [[https://www.youtube.com/watch?v=j6VvFR32hVc][Lesson Two]]
+   + yt.pl j6VvFR32hVc
+** [[https://www.youtube.com/watch?v=5-8oItNtWdQ][Lesson Three]] Creating a Basic Scene
+   + yt.pl '5-8oItNtWdQ'
+*** View video
+    1. [X] mplayer -fs -ss 00:00 -endpos 01:00 03.webm
+    2. [ ] mplayer -fs -ss 01:00 -endpos 01:00 03.webm
+    3. [ ] mplayer -fs -ss 02:00 -endpos 01:00 03.webm
+    4. [ ] mplayer -fs -ss 03:00 -endpos 01:00 03.webm
+    5. [ ] mplayer -fs -ss 04:00 -endpos 01:00 03.webm
+    6. [ ] mplayer -fs -ss 05:00 -endpos 01:01 03.webm
+    7. [ ] mplayer -fs -ss 06:00 -endpos 01:01 03.webm
+    8. [ ] mplayer -fs -ss 07:00 -endpos 01:01 03.webm
+    9. [ ] mplayer -fs -ss 08:00 -endpos 01:01 03.webm
+    10. [ ] mplayer -fs -ss 09:00 -endpos 01:01 03.webm
+    11. [ ] mplayer -fs -ss 10:00 -endpos 01:01 03.webm
+    12. [ ] mplayer -fs -ss 11:00 -endpos 01:01 03.webm
+    13. [ ] mplayer -fs -ss 12:00 -endpos 01:01 03.webm
+    14. [ ] mplayer -fs -ss 13:00 -endpos 01:01 03.webm
+    15. [ ] mplayer -fs -ss 14:00 -endpos 01:01 03.webm
+    16. [ ] mplayer -fs -ss 15:00 -endpos 01:01 03.webm
+*** Create a Basic Scene
+* Troy's Tasker Applications
+** Tasker Waze
+*** [[https://groups.google.com/forum/#!topic/tasker/5nY-9A7OK6U][https://groups.google.com/forum/#!topic/tasker/5nY-9A7OK6U]]
+    #+BEGIN_SRC conf
+      I thought this might help some people.
+      Waze has a very small API for launching the app and getting into navigation or search directly.  The direct code examples can be found on this page.
+
+      In Tasker...
+      Send Intent
+      Action: android.intent.action.VIEW
+      Data: waze://?ll=40.3560493,-105.4533494&navigate=yes
+      Target: Activity
+
+      This example uses latitude and longitude to take you to Hermit Park in Colorado. I used it for testing, since the only route there is via private roads due to the flooding here.  Waze, found it and warned me about the private road. Good thing, too.  I know those nut jobs, they are serious it is a private road.  I am sure they have lightened up though in the face of the floods.
+
+      Other examples:
+      Change the Data Parm to this in order to search for Denver Colorado
+      waze://?q=Denver%20Colorado 
+
+      The q= takes anything you could put in the search box in the app itself.
+      The &navigate=yes is what tells Waze to begin navigating to that search or location immediately, but only if Waze can find a exact match for the search. For example...
+      waze://?q=321%20Mountain%20Ave%20Berthoud%20CO&navigate=yes
+      will take you directly to City Star Brewery in Berthoud Colorado but...
+      waze://?q=Walmart&navigate=yes
+      will present you with a list of the Walmarts near your location, and will not directly begin navigation.
+
+      Hope this helps someone.    
+    #+END_SRC
+
    
