@@ -83,14 +83,14 @@
 	set -o nounset
 	# September 5, 2014
 	# INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
-	INSTALL="grub-bios os-prober arch-install-scripts parted"
+	INSTALL="grub-bios"
 	DEVEL="base-devel git cmake"
-	SYSTEM="openssh rsync screen sudo wget"
+	SYSTEM="openssh sudo wget"
 	EMACS="emacs"
 	TEX="texlive-core texlive-latexextra"
 	WIRELESS="wireless_tools wpa_supplicant"
 	XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
-	XORG_FONTS="ttf-dejavu ttf-hannom"
+	XORG_FONTS="ttf-dejavu"
 	WEB="chromium"
 	KDE="kdebase-konsole kdebase-workspace"
 	AUDIO="alsa-utils pulseaudio-alsa pavucontrol"
@@ -231,8 +231,6 @@
       umount /mnt/{boot,home,}
     #+END_SRC
     Now reboot and then login into the new system with the root account.
-
-    
 ** TODO Configure pacman
 Edit /etc/pacman.conf and configure pacman's options, also enabling the repositories you need.
 
@@ -265,3 +263,21 @@ INTERFACE='wlp1s0'
 sudo wpa_supplicant -B -i${INTERFACE} -c ./wpa_supplicant.conf 
 sudo dhcpcd ${INTERFACE}
 #+END_SRC
+
+* Copy Configuration Files
+  #+BEGIN_SRC sh :tangle bin/tdw/copy-config-files.sh :shebang #!/bin/bash
+    set -o nounset
+    set -o errexit
+    set -o verbose
+
+    TARGET=/mnt/home/troy/
+
+    cp -av ~/.emacs $TARGET
+    cp -av ~/rcs $TARGET
+    cp -av ~/.git $TARGET
+    cp -av ~/.ssh $TARGET
+    cp -av ~/.bash* $TARGET
+    cp -av ~/wireless $TARGET
+    cp -av ~/bin $TARGET
+
+  #+END_SRC

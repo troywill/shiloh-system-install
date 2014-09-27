@@ -1,7 +1,7 @@
 * Installing Shiloh System step by step
 1. [ ] Connect to the internet
 2. [ ] Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
-3. [-] Prepare the target media with parted and GPT
+3. [ ] Prepare the target media with parted and GPT
    1. [ ] (Optional) Run lsblk to determine drive
       #+BEGIN_SRC sh
         lsblk > lsblk
@@ -107,8 +107,8 @@
 	mkdir --verbose pkg
 	ls -ld /mnt/var/cache/pacman/pkg
       #+end_src
-   5. [ ] (Optional) Copy AUR packages
-6. [ ]  Configure the system
+   5. (Optional) Copy AUR packages
+6. [-]  Configure the system
    1. [ ] Generate an [[fstab]]
       #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
         set -o verbose
