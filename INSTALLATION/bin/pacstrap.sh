@@ -2,7 +2,7 @@
 
 set -o errexit
 set -o nounset
-# June 11, 2016
+# December 8, 2014
 # INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
 INSTALL="grub-bios os-prober arch-install-scripts parted"
 DEVEL="base-devel git stow cmake"
@@ -13,7 +13,7 @@ WIRELESS="wireless_tools wpa_supplicant"
 XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
 XORG_FONTS="ttf-dejavu ttf-hannom"
 WEB="chromium firefox opera"
-KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars"
+KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars kdebase-workspace"
 LXQT="openbox"
 AUDIO="alsa-utils pulseaudio-alsa pavucontrol"
 VIDEO="flashplugin youtube-dl smplayer"

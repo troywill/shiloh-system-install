@@ -1,13 +1,12 @@
 * Installing Shiloh System step by step
 1. [ ] Connect to the internet
-2. [ ] Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
+2. (Optional) Read the wiki.archlinux.org [[https://wiki.archlinux.org/index.php/Beginners'_Guide][Beginner's Guide]]
 3. [ ] Prepare the target media with parted and GPT
-   1. [ ] (Optional) Run lsblk to determine drive
+   1. (Optional) Run lsblk to determine drive
       #+BEGIN_SRC sh
-        lsblk > lsblk
-        cat lsblk
+        lsblk
       #+END_SRC
-   2. [ ] (Optional) Zero drive
+   2. (Optional) Zero drive
       #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
 	set -o errexit
 	DEVICE="/dev/XXXX" # find DEVICE with /usr/bin/lsblk and edit this line
@@ -45,14 +44,14 @@
       #+END_SRC
 4. [ ] Mount the partition
    #+BEGIN_SRC sh
-     mount /dev/XXXX /mnt
+     sudo mount /dev/XXXX /mnt
    #+END_SRC
 5. [ ] Install the base system
    1. [ ] Install arch-install-scripts
       #+begin_src sh
 	sudo pacman --sync arch-install-scripts
       #+end_src
-   2. [ ] (Optional) Copy xz files or link symbolically to host pkg directory
+   2. (Optional) Copy xz files or link symbolically to host pkg directory
       #+begin_src sh :tangle bin/optional/copy-existing-pkg-cache :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -81,7 +80,7 @@
       #+BEGIN_SRC sh :tangle bin/pacstrap.sh :shebang #!/bin/bash
 	set -o errexit
 	set -o nounset
-	# June 11, 2016
+	# December 8, 2014
 	# INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
 	INSTALL="grub-bios os-prober arch-install-scripts parted"
 	DEVEL="base-devel git stow cmake"
@@ -92,7 +91,7 @@
 	XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
 	XORG_FONTS="ttf-dejavu ttf-hannom"
 	WEB="chromium firefox opera"
-	KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars"
+	KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars kdebase-workspace"
 	LXQT="openbox"
 	AUDIO="alsa-utils pulseaudio-alsa pavucontrol"
 	VIDEO="flashplugin youtube-dl smplayer"
@@ -107,9 +106,8 @@
 	mkdir --verbose pkg
 	ls -ld /mnt/var/cache/pacman/pkg
       #+end_src
-   5. (Optional) Copy AUR packages
-6. [-]  Configure the system
-   1. [ ] Generate an [[fstab]]
+6. [ ]  Configure the system
+   1. [ ] Generate an /etc/fstab file
       #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
         set -o verbose
         # if you prefer to use UUIDs or labels,
@@ -118,9 +116,9 @@
       #+END_SRC
    2. [ ] copy shiloh-setup to new root directory
       #+BEGIN_SRC sh
-          sudo cp --archive shiloh-setup/ /mnt/root
+          sudo cp --archive shiloh-system/ /mnt/root
       #+END_SRC
-   3. [ ] chroot into our newly installed system
+   3. [ ] chroot into the newly installed system
       #+BEGIN_SRC sh
         sudo arch-chroot /mnt
       #+END_SRC
@@ -175,7 +173,7 @@
        #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
          mkinitcpio -p linux
        #+END_SRC
-7. [ ] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+7. [-] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
    1. [ ] READ https://wiki.archlinux.org/index.php/GRUB2
    2. [ ] (Optional) Install osprober if Windows dual boot
       #+begin_src sh
@@ -232,8 +230,6 @@
       umount /mnt/{boot,home,}
     #+END_SRC
     Now reboot and then login into the new system with the root account.
-
-    
 ** TODO Configure pacman
 Edit /etc/pacman.conf and configure pacman's options, also enabling the repositories you need.
 
