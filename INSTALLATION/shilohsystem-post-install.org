@@ -84,11 +84,11 @@
 
    #+end_src
 * TODO Chromium flash
-  1. [ ] Read https://wiki.archlinux.org/index.php/Chromium#Flash_Player
-  1. [ ] https://aur.archlinux.org/packages/chromium-pepper-flash/
+  1. [X] Read https://wiki.archlinux.org/index.php/Chromium#Flash_Player_plugin
+  2. [X] https://aur.archlinux.org/packages/chromium-pepper-flash/
      Disable all other flash plugins:
      #+begin_src sh
-       chromum chrome://plugins
+       chromium chrome://plugins
      #+end_src
      Type [[http://chrome\://plugins/][chrome://plugins]] in the adress bar and press Enter
      Click on Details button on the top right

@@ -1,12 +1,10 @@
 * Automatic console login
-** Web Searches
-*** arch linux automatic login
-*** [[https://wiki.archlinux.org/index.php/Automatic_login_to_virtual_console][Automatic login to virtual console]]
+** [[https://wiki.archlinux.org/index.php/Automatic_login_to_virtual_console][Automatic login to virtual console]] Step by Step
     1. [ ] Create a new service file similar to getty@.service by copying it to /etc/systemd/system/
        #+BEGIN_SRC sh :tangle new.service.file.sh :shebang #!/bin/bash
          sudo cp -v /usr/lib/systemd/system/getty@.service /etc/systemd/system/autologin@.service
        #+END_SRC
-    2. [ ] Change the ExecStart line to include the -a USERNAME parameter 
+    2. [ ] Change the ExecStart line to include the -a USERNAME parameter file:/etc/systemd/system/autologin@.service
        #+BEGIN_SRC conf :tangle autologin@.service
          [Service]
          #  This file is part of systemd.
@@ -64,17 +62,8 @@
        #+BEGIN_SRC sh
          sudo cp -iv autologin@.service /etc/systemd/system
        #+END_SRC
-**** TODO 
-- [[file://etc/systemd/system/autologin@.service][/etc/systemd/system/autologin@.service]]
-#+BEGIN_EXAMPLE 
-[Service]
-# the VT is cleared by TTYVTDisallocate
-# ExecStart=-/sbin/agetty --noclear %I 38400 linux
-ExecStart=-/sbin/agetty --noclear -a troy %I 38400
-...
-#+END_EXAMPLE
-**** TODO disable the old getty@ttyX.service
-#+BEGIN_SRC sh :tangle disable.old.getty.sh :shebang #!/bin/bash
+    4. [ ] disable the old getty@ttyX.service
+       #+BEGIN_SRC sh :tangle disable.old.getty.sh :shebang #!/bin/bash
 set -o errexit
 set -o nounset
 sudo systemctl daemon-reload
@@ -88,5 +77,19 @@ sudo systemctl start autologin@tty1
 #+BEGIN_SRC sh
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 #+END_SRC
-     
+** Web Searches
+*** arch linux automatic login
 * [[https://wiki.archlinux.org/index.php/Systemd_FAQ#How_can_I_make_a_script_start_during_the_boot_process.3F][How can I make a script start during the boot process?]]
+  1. [X] file:/etc/systemd/system/myscript.service
+     #+BEGIN_SRC conf
+       [Unit]
+       Description=My script
+
+       [Service]
+       ExecStart=/usr/bin/my-script
+
+       [Install]
+       WantedBy=multi-user.target
+     #+END_SRC
+  2. [ ] systemctl enable myscript.service
+     

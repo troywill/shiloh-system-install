@@ -1,8 +1,7 @@
 * Step by Step
   1. (Optional) Briefly skim http://developer.android.com
   2. (Optional) Briefly skim http://developer.android.com/sdk/installing/studio.html
-  3. [ ] Download Android Studio Beta v0.8.14
-  4. [ ] http://developer.android.com/sdk/installing/studio.html
+  3. [X] Download Android Studio Beta v0.8.14
   5. [ ] WGET
      #+BEGIN_SRC sh :tangle download-android-studio.sh :shebang #!/bin/bash
        set -o nounset
@@ -40,5 +39,11 @@
        sudo pacman --sync jdk7-openjdk
      #+END_SRC
   8. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
-     
+* Author Notes
+** Android Studio IDE download package
+|     Date | file                                     | size | md5sum                           |
+|----------+------------------------------------------+------+----------------------------------|
+| 14-12-11 | android-studio-ide-135.1629389-linux.zip | 233M | a4b852b1e1bb530010275e702cf4661c |
+|          |                                          |      |                                  |
+   
 
