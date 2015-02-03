@@ -1,26 +1,51 @@
-* Step by step install
-  1. [ ] Skim http://developer.android.com/index.html
-  2. [ ] Skim http://developer.android.com/sdk/index.html (Get the SDK)
-  3. [ ] Download the SDK ADT Bundle for Linux
-     + adt-bundle-linux-x86-20140702.zip
-  4. [ ] http://developer.android.com/sdk/installing/bundle.html
-     (Setting Up the ADT Bundle)
-  5. [ ] Unpack the adt-bundle-linux-x86-20140702.zip ZIP file 
-                    adt-bundle-linux-x86-20140702.zip     
-     and save it to an appropriate location, such as a "Development"
-     directory in your home directory.
-     #+BEGIN_SRC sh :shebang #!/usr/bin/bash :tangle bin/unpack-the-zip-file.sh
+* Step by Step
+  1. (Optional) Briefly skim http://developer.android.com
+  2. (Optional) Briefly skim http://developer.android.com/sdk/index.html
+  3. [ ] Download Android Studio 
+  4. [ ] WGET
+     #+BEGIN_SRC sh :tangle download-android-studio.sh :shebang #!/bin/bash
+       set -o nounset
        set -o errexit
-       ZIP_FILE="adt-bundle-linux-x86-20140702.zip"
-       DEVELOPMENT_DIR=~/Development
-       mkdir --parent ${DEVELOPMENT_DIR}
-       cd $DEVELOPMENT_DIR
-       unzip ~/Downloads/${ZIP_FILE} -d .
+       set -o verbose
+       VERSION="1.0.1"
+       BUILD_NO="135.1641136"
+       ZIP_FILE="android-studio-ide-${BUILD_NO}-linux.zip"
+       DOWNLOAD_URL="https://dl.google.com/android/studio/ide-zips/${VERSION}/${ZIP_FILE}"
+       echo "Downloading ${DOWNLOAD_URL}"
+       wget ${DOWNLOAD_URL}
      #+END_SRC
-  6. [ ] Install jdk7-openjdk   
-* AUR
-  #+BEGIN_SRC sh
-    # https://aur.archlinux.org/packages/an/android-sdk/android-sdk.tar.gz
-  #+END_SRC
-* ADK REVISIONS
-  http://developer.android.com/tools/sdk/tools-notes.html
+  5. [ ] Unpack
+     #+BEGIN_SRC sh :tangle unpack-android-studio.sh :shebang #!/bin/bash
+       set -o nounset
+       set -o errexit
+
+       BUILD_NO="135.1641136"
+       ZIP_FILE="$HOME/Downloads/android-studio-ide-$BUILD_NO-linux.zip"
+       DEVELOPMENT_DIR=~/Development
+       mkdir --parents ~/Development
+       unzip $ZIP_FILE -d ~/Development
+
+       #        To set up Android Studio on Linux:
+
+       # Unpack the downloaded Tar file, android-studio-ide-<version>-linux.zip, into an appropriate location for your applications.
+       # To launch Android Studio, navigate to the android-studio/bin/ directory in a terminal and execute studio.sh.
+       # You may want to add android-studio/bin/ to your PATH environmental variable so that you can start Android Studio from any directory.
+       # Follow the links to install the SDK outside of the Android Studio directories.
+     #+END_SRC
+  6. [ ] Install Java
+     #+BEGIN_SRC sh
+       sudo pacman --sync jdk8-openjdk
+       #  wget https://aur.archlinux.org/packages/jd/jdk/jdk.tar.gz
+     #+END_SRC
+  7. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
+  8. [ ] add android-studio/bin/ to your PATH environmental variable
+  9. [ ] studio.sh
+     
+* Author Notes
+** Android Studio IDE download package
+|     Date | file                                     | size | md5sum                           |
+|----------+------------------------------------------+------+----------------------------------|
+| 14-12-11 | android-studio-ide-135.1629389-linux.zip | 233M | a4b852b1e1bb530010275e702cf4661c |
+|          |                                          |      |                                  |
+   
+
