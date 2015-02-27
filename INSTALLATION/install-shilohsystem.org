@@ -18,7 +18,7 @@
       #+END_SRC
    3. [ ] Create a GUID partition table with parted
       #+BEGIN_SRC sh
-	parted /dev/XXXX
+	parted /dev/sdX
 	mklabel gpt
       #+END_SRC
    4. [ ] Create a boot partition with parted
@@ -38,13 +38,13 @@
       #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
-	LABEL="20140611" #change this!
-	DEVICE="/dev/XXXX" #change this!
+	LABEL="20150226" #change this!
+	DEVICE="/dev/sdxX" #change this!
 	mkfs.ext4 -v -L $LABEL $DEVICE
       #+END_SRC
 4. [ ] Mount the partition
    #+BEGIN_SRC sh
-     sudo mount /dev/XXXX /mnt
+     sudo mount /dev/sdxX /mnt
    #+END_SRC
 5. [ ] Install the base system
    1. [ ] Install arch-install-scripts
@@ -56,7 +56,7 @@
 	set -o nounset
 	set -o errexit
 	sudo mkdir --verbose --parent /mnt/var/cache/pacman/pkg
-	sudo rsync --archive --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
+	sudo rsync --archive --progress --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
       #+end_src
       #+begin_src sh :tangle bin/optional/link-existing-pkg-cache :shebang #!/bin/bash
 	set -o nounset
@@ -80,7 +80,7 @@
       #+BEGIN_SRC sh :tangle bin/pacstrap.sh :shebang #!/bin/bash
 	set -o errexit
 	set -o nounset
-	# December 8, 2014
+	# February 26, 2015
 	# INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
 	INSTALL="grub-bios os-prober arch-install-scripts parted"
 	DEVEL="base-devel git stow cmake"
@@ -90,14 +90,14 @@
 	WIRELESS="wireless_tools wpa_supplicant"
 	XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
 	XORG_FONTS="ttf-dejavu ttf-hannom"
-	WEB="chromium firefox opera"
-	KDE="kdebase-konsole kdegraphics-gwenview kdebase-konqueror kdeedu-kstars kdebase-workspace"
+	WEB="chromium firefox"
+	KDE="kdebase-konsole gwenview kdebase-konqueror kdeedu-kstars kdebase-workspace"
 	LXQT="openbox"
 	AUDIO="alsa-utils pulseaudio-alsa pavucontrol"
 	VIDEO="flashplugin youtube-dl smplayer"
 	pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $LXQT $AUDIO $VIDEO $XORG_FONTS
       #+END_SRC  
-   4. [ ] (Optional) Remove symbolic link, and restore pacman pkg directory
+   4. (Optional) Remove symbolic link, and restore pacman pkg directory
       #+begin_src sh :tangle bin/optional/remove-link-to-pkg-cache-remove :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -114,7 +114,7 @@
         # add the -U or -L option
         sudo genfstab -pU /mnt >> /mnt/etc/fstab
       #+END_SRC
-   2. [ ] copy shiloh-setup to new root directory
+   2. [ ] copy shiloh-system to new root directory
       #+BEGIN_SRC sh
           sudo cp --archive shiloh-system/ /mnt/root
       #+END_SRC
@@ -131,12 +131,15 @@
    5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
       - Replace Zone and Subzone to your liking. For Los_Angeles:
         #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
+          set -o verbose
+
           ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
           ls -l /etc/localtime
         #+END_SRC   
    6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
       #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
         set -o verbose
+
         cat /etc/locale.conf
         echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
         cat /etc/locale.conf
@@ -171,9 +174,11 @@
       #+END_SRC
    10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
        #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
+         set -o verbose
+
          mkinitcpio -p linux
        #+END_SRC
-7. [-] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+7. [ ] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
    1. [ ] READ https://wiki.archlinux.org/index.php/GRUB2
    2. [ ] (Optional) Install osprober if Windows dual boot
       #+begin_src sh
@@ -181,7 +186,7 @@
       #+end_src
    3. [ ] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
       #+BEGIN_SRC sh :tangle bin/configure/grub-install.sh :shebang #!/bin/bash
-	DEVICE=/dev/XXXX #change this as desired!
+	DEVICE=/dev/sdX #change this as desired!
         exit
 	modprobe dm-mod
 	sleep 1
@@ -190,6 +195,8 @@
       #+END_SRC
    4. [ ] Generate GRUB2 BIOS Config file
       #+BEGIN_SRC sh :tangle bin/configure/grub-config.sh :shebang #!/bin/bash
+        set -o verbose
+
 	grub-mkconfig -o /boot/grub/grub.cfg
       #+END_SRC
 8. [ ] Set a root password with passwd.

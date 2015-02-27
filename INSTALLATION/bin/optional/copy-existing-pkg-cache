@@ -3,4 +3,4 @@
 set -o nounset
 set -o errexit
 sudo mkdir --verbose --parent /mnt/var/cache/pacman/pkg
-sudo rsync --archive --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
+sudo rsync --archive --progress --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg

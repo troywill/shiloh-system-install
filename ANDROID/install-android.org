@@ -1,8 +1,8 @@
 * Step by Step
-  1. (Optional) Briefly skim http://developer.android.com
-  2. (Optional) Briefly skim http://developer.android.com/sdk/index.html
-  3. [ ] Download Android Studio 
-  4. [ ] WGET
+  1. [ ] Read http://developer.android.com
+  2. [ ] Select [[Download Android Studio and SDK Tools][http://developer.android.com/sdk/index.html]]
+  4. [ ] Download Android Studio 
+  5. [ ] WGET
      #+BEGIN_SRC sh :tangle download-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
@@ -14,7 +14,7 @@
        echo "Downloading ${DOWNLOAD_URL}"
        wget ${DOWNLOAD_URL}
      #+END_SRC
-  5. [ ] Unpack
+  6. [ ] Unpack
      #+BEGIN_SRC sh :tangle unpack-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
@@ -32,14 +32,14 @@
        # You may want to add android-studio/bin/ to your PATH environmental variable so that you can start Android Studio from any directory.
        # Follow the links to install the SDK outside of the Android Studio directories.
      #+END_SRC
-  6. [ ] Install Java
+  7. [ ] Install Java
      #+BEGIN_SRC sh
        sudo pacman --sync jdk8-openjdk
        #  wget https://aur.archlinux.org/packages/jd/jdk/jdk.tar.gz
      #+END_SRC
-  7. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
-  8. [ ] add android-studio/bin/ to your PATH environmental variable
-  9. [ ] studio.sh
+  8. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
+  9. [ ] add android-studio/bin/ to your PATH environmental variable
+  10. [ ] studio.sh
      
 * Author Notes
 ** Android Studio IDE download package
