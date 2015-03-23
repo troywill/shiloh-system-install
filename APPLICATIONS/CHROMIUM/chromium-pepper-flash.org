@@ -1,2 +1,6 @@
+* Read https://wiki.archlinux.org/index.php/chromium#Flash_Player_plugin
+  See "Flash Player plugin"
 * https://aur.archlinux.org/packages/chromium-pepper-flash/
+* Enable the plugin in chrome://plugins
+  
   
