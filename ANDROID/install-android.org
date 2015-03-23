@@ -1,8 +1,15 @@
+* VERSION
+  #+BEGIN_SRC sh
+    VERSION="1.0.1"
+    BUILD_NO="135.1641136"
+  #+END_SRC
+  + See https://dl.google.com/android/studio/ide-zips/1.0.1/
+  + See https://dl.google.com/android/studio/ide-zips/${VERSION}/${ZIP_FILE}"
 * Step by Step
-  1. [ ] Read http://developer.android.com
-  2. [ ] Select [[Download Android Studio and SDK Tools][http://developer.android.com/sdk/index.html]]
-  4. [ ] Download Android Studio 
-  5. [ ] WGET
+  1. [X] Read http://developer.android.com
+  2. [X] Select [[Download Android Studio and SDK Tools][http://developer.android.com/sdk/index.html]]
+  3. [ ] Download Android Studio for Linux
+  4. [ ] WGET
      #+BEGIN_SRC sh :tangle download-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
@@ -14,7 +21,7 @@
        echo "Downloading ${DOWNLOAD_URL}"
        wget ${DOWNLOAD_URL}
      #+END_SRC
-  6. [ ] Unpack
+  5. [ ] Unpack
      #+BEGIN_SRC sh :tangle unpack-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
@@ -32,16 +39,18 @@
        # You may want to add android-studio/bin/ to your PATH environmental variable so that you can start Android Studio from any directory.
        # Follow the links to install the SDK outside of the Android Studio directories.
      #+END_SRC
-  7. [ ] Install Java
+  6. [ ] Install Java
      #+BEGIN_SRC sh
        sudo pacman --sync jdk8-openjdk
        #  wget https://aur.archlinux.org/packages/jd/jdk/jdk.tar.gz
      #+END_SRC
-  8. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
-  9. [ ] add android-studio/bin/ to your PATH environmental variable
-  10. [ ] studio.sh
+  7. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
+  8. [ ] add android-studio/bin/ to your PATH environmental variable
+  9. [ ] studio.sh
      
 * Author Notes
+** Check http://tools.android.com/download/studio/stable for version
+**    
 ** Android Studio IDE download package
 |     Date | file                                     | size | md5sum                           |
 |----------+------------------------------------------+------+----------------------------------|
