@@ -20,3 +20,8 @@
      # Run as root
      systemctl enable postgresql
    #+END_SRC
+* [ ] Create database user
+  :PROPERTIES:
+  :Hypercode: 2015d8928573
+  :END:
+  
