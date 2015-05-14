@@ -1,0 +1,26 @@
+* 2015-05-14 (See https://wiki.archlinux.org/index.php/Android)
+  1. [X] Install the Android SDK core component
+     1. [X] [[https://aur.archlinux.org/packages/android-sdk/][android-sdk r24.1.2-1]]
+     2. [X] [[https://aur.archlinux.org/packages/android-sdk-platform-tools/][android-sdk-platform-tools r22-2]]
+     3. [X] [[https://aur.archlinux.org/packages/android-sdk-build-tools/][android-sdk-build-tools r22.0.1-1]]
+  2. [X] Run as user
+     1. [X] groupadd sdkusers
+	#+BEGIN_SRC sh
+          sudo groupadd sdkusers
+	#+END_SRC
+     2. [X] Add your user into this group
+	#+BEGIN_SRC sh
+          sudo gpasswd -a troy sdkusers
+	#+END_SRC
+     3. [X] Change folder's group.
+	#+BEGIN_SRC sh
+	  sudo chown -R :sdkusers /opt/android-sdk/
+	#+END_SRC
+     4. [X] Change permissions of the folder so the user that was just added to the group will be able to write in it:
+	#+BEGIN_SRC sh
+          sudo chmod -R g+w /opt/android-sdk/        
+	#+END_SRC
+  3. [X] Android SDK platform API
+     1. [X] [[https://aur.archlinux.org/packages/android-platform/][android-platform 22_r02-1]]
+  4. [ ] [[https://aur.archlinux.org/packages/android-studio/][android-studio 1.2.1.1-1]]
+     1. [ ] 

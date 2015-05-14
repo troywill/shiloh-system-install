@@ -1,33 +1,39 @@
 * VERSION
+  #+NAME: VERSION
   #+BEGIN_SRC sh
-    VERSION="1.0.1"
-    BUILD_NO="135.1641136"
+    VERSION="1.2.1.1"
+    BUILD_NO="141.1903250"
+    DOWNLOAD_DIR="$HOME/Downloads"
+
+    # https://dl.google.com/dl/android/studio/ide-zips/1.2.1.1/android-studio-ide-141.1903250-linux.zip
   #+END_SRC
-  + See https://dl.google.com/android/studio/ide-zips/1.0.1/
   + See https://dl.google.com/android/studio/ide-zips/${VERSION}/${ZIP_FILE}"
 * Step by Step
-  1. [X] Read http://developer.android.com
-  2. [X] Select [[Download Android Studio and SDK Tools][http://developer.android.com/sdk/index.html]]
-  3. [ ] Download Android Studio for Linux
-  4. [ ] WGET
-     #+BEGIN_SRC sh :tangle download-android-studio.sh :shebang #!/bin/bash
+  1. [ ] Read http://developer.android.com
+  2. [ ] Select [[Download Android Studio and SDK Tools][http://developer.android.com/sdk/index.html]]
+  3. [X] Download Android Studio for Linux with wget
+     #+BEGIN_SRC sh :noweb yes :tangle download-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
        set -o verbose
-       VERSION="1.0.1"
-       BUILD_NO="135.1641136"
+
+       mkdir --parent ${DOWNLOAD_DIR}
+     
+       <<VERSION>>
        ZIP_FILE="android-studio-ide-${BUILD_NO}-linux.zip"
        DOWNLOAD_URL="https://dl.google.com/android/studio/ide-zips/${VERSION}/${ZIP_FILE}"
        echo "Downloading ${DOWNLOAD_URL}"
        wget ${DOWNLOAD_URL}
      #+END_SRC
-  5. [ ] Unpack
-     #+BEGIN_SRC sh :tangle unpack-android-studio.sh :shebang #!/bin/bash
+  4. [X] Unpack
+     #+BEGIN_SRC sh :noweb yes :tangle unpack-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
+       set -o verbose
 
-       BUILD_NO="135.1641136"
-       ZIP_FILE="$HOME/Downloads/android-studio-ide-$BUILD_NO-linux.zip"
+       <<VERSION>>
+
+       ZIP_FILE="$DOWNLOAD_DIR/android-studio-ide-$BUILD_NO-linux.zip"
        DEVELOPMENT_DIR=~/Development
        mkdir --parents ~/Development
        unzip $ZIP_FILE -d ~/Development
@@ -39,18 +45,48 @@
        # You may want to add android-studio/bin/ to your PATH environmental variable so that you can start Android Studio from any directory.
        # Follow the links to install the SDK outside of the Android Studio directories.
      #+END_SRC
-  6. [ ] Install Java
+  5. [X] Install Java
      #+BEGIN_SRC sh
        sudo pacman --sync jdk8-openjdk
        #  wget https://aur.archlinux.org/packages/jd/jdk/jdk.tar.gz
      #+END_SRC
-  7. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
-  8. [ ] add android-studio/bin/ to your PATH environmental variable
-  9. [ ] studio.sh
+  6. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
+  7. [ ] add android-studio/bin/ to your PATH environmental variable
+  8. [ ] studio.sh
      
-* Author Notes
+* Author Notes <troydwill@gmail.com>
+** 2015-05-14
+*** List of packages
+    1. Google Inc. x86 System Image, Android 22
+    2. Google Repository, rev 17
+    3. Android Support Repository, rev 14
+    4. Android SDK Build-Tools 22.0.1
+    5. Google APIs, Android 22
+    6. Android SDK Platform-Tools 22
+    7. Android SDK Tools 24.2
+*** Downloaded by Android Studio
+    1. Android SDK Tools, revision 24.2 to /home/troy/Android/Sdk/temp/tools_r24.2-linux.zip
+    2. Android SDK Platform-tools, revision 22
+    3. Android SDK Build-tools, revision 22.0.1
+    4. Android Support Repository, revision 14
+    5. Installing Google Repository, revision 17
+*** Errors
+    1. Skipping 'Google APIs, Android API 22, revision 1'; it depends on 'SDK Platform Android 5.1.1, API 22, revision 2' which was not installed
+    2. The following SDK components were not installed: sys-img-addon-google-apis-google-22 and addon-google_apis-google-22
+*** Pass 2
+    1. Google Inc. x86 System Image, Android 22
+    2. Google APIs, Android 22
+*** Clean Install
+    #+BEGIN_SRC sh :tangle /tmp/clean-android.sh :shebang #!/usr/bin/bash
+      set -o verbose
+      cd ~
+      rm -rf ~/.android
+      rm -rf ~/Android
+      rm -rf ~/.AndroidStudio1.2
+      rm -rf ~/AndroidStudioProjects
+      rm -rf ~/Development/android-studio
+    #+END_SRC
 ** Check http://tools.android.com/download/studio/stable for version
-**    
 ** Android Studio IDE download package
 |     Date | file                                     | size | md5sum                           |
 |----------+------------------------------------------+------+----------------------------------|
