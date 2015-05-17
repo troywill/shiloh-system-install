@@ -1,32 +1,40 @@
+* INTRODUCTION
+
 * VERSION
   #+NAME: VERSION
   #+BEGIN_SRC sh
     VERSION="1.2.1.1"
     BUILD_NO="141.1903250"
     DOWNLOAD_DIR="$HOME/Downloads"
-
-    # https://dl.google.com/dl/android/studio/ide-zips/1.2.1.1/android-studio-ide-141.1903250-linux.zip
   #+END_SRC
-  + See https://dl.google.com/android/studio/ide-zips/${VERSION}/${ZIP_FILE}"
+
 * Step by Step
-  1. [ ] Read http://developer.android.com
-  2. [ ] Select [[Download Android Studio and SDK Tools][http://developer.android.com/sdk/index.html]]
-  3. [X] Download Android Studio for Linux with wget
-     #+BEGIN_SRC sh :noweb yes :tangle download-android-studio.sh :shebang #!/bin/bash
+  1. [ ] Install Java
+     #+BEGIN_SRC sh
+       sudo pacman --sync jdk8-openjdk
+       #  wget https://aur.archlinux.org/packages/jd/jdk/jdk.tar.gz
+     #+END_SRC
+  2. [ ] Read http://developer.android.com
+  3. [ ] Select [[http://developer.android.com/sdk/index.html][Download Android Studio and SDK Tools]]
+  4. [ ] Download Android Studio for Linux with wget
+     #+BEGIN_SRC sh :noweb yes :tangle bin/download-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
        set -o verbose
 
-       mkdir --parent ${DOWNLOAD_DIR}
-     
        <<VERSION>>
+
        ZIP_FILE="android-studio-ide-${BUILD_NO}-linux.zip"
        DOWNLOAD_URL="https://dl.google.com/android/studio/ide-zips/${VERSION}/${ZIP_FILE}"
+
+       mkdir --parent ${DOWNLOAD_DIR}
+       cd ${DOWNLOAD_DIR}
+     
        echo "Downloading ${DOWNLOAD_URL}"
        wget ${DOWNLOAD_URL}
      #+END_SRC
-  4. [X] Unpack
-     #+BEGIN_SRC sh :noweb yes :tangle unpack-android-studio.sh :shebang #!/bin/bash
+  5. [ ] Unpack Android Studio for Linux
+     #+BEGIN_SRC sh :noweb yes :tangle bin/unpack-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
        set -o verbose
@@ -35,7 +43,7 @@
 
        ZIP_FILE="$DOWNLOAD_DIR/android-studio-ide-$BUILD_NO-linux.zip"
        DEVELOPMENT_DIR=~/Development
-       mkdir --parents ~/Development
+       mkdir --parent ~/Development
        unzip $ZIP_FILE -d ~/Development
 
        #        To set up Android Studio on Linux:
@@ -45,16 +53,75 @@
        # You may want to add android-studio/bin/ to your PATH environmental variable so that you can start Android Studio from any directory.
        # Follow the links to install the SDK outside of the Android Studio directories.
      #+END_SRC
-  5. [X] Install Java
-     #+BEGIN_SRC sh
-       sudo pacman --sync jdk8-openjdk
-       #  wget https://aur.archlinux.org/packages/jd/jdk/jdk.tar.gz
-     #+END_SRC
-  6. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
-  7. [ ] add android-studio/bin/ to your PATH environmental variable
-  8. [ ] studio.sh
+  6. [ ] studio.sh
+  7. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
+  8. [ ] add android-studio/bin/ to your PATH environmental variable
      
 * Author Notes <troydwill@gmail.com>
+** 2015-05-17
+*** Android Readout
+
+Downloading android-sdk_r22.6.2-linux.tgz from https://dl.google.com/android/android-sdk_r22.6.2-linux.tgz
+Unpacking android-sdk_r22.6.2-linux.tgz
+/usr/bin/tar xzvfC /tmp/AndroidStudio0FirstRun/android-sdk_r22.6.2-linux.tgz /tmp/AndroidStudio0FirstRun/android-sdk_r22.6.2-linux.tgz-unpacked
+Refresh Sources:
+  Fetched Add-ons List successfully
+  Refresh Sources
+
+Installing Archives:
+  Preparing to install archives
+  Installing Android SDK Platform-tools, revision 22
+  Stopping ADB server failed (code -1).
+    Installed Android SDK Platform-tools, revision 22
+  Installing Android SDK Build-tools, revision 22.0.1
+    Installed Android SDK Build-tools, revision 22.0.1
+  Installing SDK Platform Android 5.1.1, API 22, revision 2
+    Installed SDK Platform Android 5.1.1, API 22, revision 2
+  Installing Sources for Android SDK, API 22, revision 1
+    Installed Sources for Android SDK, API 22, revision 1
+  Installing Android Support Repository, revision 14
+    Installed Android Support Repository, revision 14
+  Installing Google Repository, revision 17
+    Installed Google Repository, revision 17
+  Installing Android SDK Tools, revision 24.2
+    Installed Android SDK Tools, revision 24.2
+  Installing Google APIs, Android API 22, revision 1
+    Installed Google APIs, Android API 22, revision 1
+  Installing Google APIs Intel x86 Atom System Image, Google Inc. API 22, revision 1
+    Installed Google APIs Intel x86 Atom System Image, Google Inc. API 22, revision 1
+    Updated ADB to support the USB devices declared in the SDK add-ons.
+    Stopping ADB server succeeded.
+    Starting ADB server succeeded.
+  Done. 9 packages installed.
+Android SDK is up to date.
+Creating Android virtual device
+Android virtual device Nexus_5_API_22_x86 was successfully created
+*** Table   
+   | AndroidStudio0FirstRun/android-sdk_r22.6.2-linux.tgz |
+   | ./temp/platform-tools_r22-linux.zip                  |
+   | ./temp/build-tools_r22.0.1-linux.zip                 |
+   | ./temp/sources-22_r01.zip                            |
+   | ./temp/android-22_r02.zip                            |
+   | ./temp/android_m2repository_r14.zip                  |
+   | ./temp/google_m2repository_r17.zip                   |
+   | ./temp/tools_r24.2-linux.zip                         |
+   | ./temp/sysimg_x86-22_r01.zip                         |
+   |                                                      |
+
+   #+BEGIN_SRC sh :tangle /tmp/rsync01.sh
+     mkdir --parent ~/Development/RSYNC
+     while [ 1 ]; do
+         rsync -av --progress /tmp/AndroidStudio0FirstRun ~/Development/RSYNC/
+         sleep 1
+     done
+   #+END_SRC
+   #+BEGIN_SRC sh :tangle /tmp/rsync02.sh
+     mkdir --parent ~/Development/RSYNC
+     while [ 1 ]; do
+         rsync -av --progress ~/Android/Sdk/temp ~/Development/RSYNC/
+         sleep 1
+     done
+   #+END_SRC
 ** 2015-05-14
 *** List of packages
     1. Google Inc. x86 System Image, Android 22

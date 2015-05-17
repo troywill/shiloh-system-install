@@ -8,11 +8,9 @@ VERSION="1.2.1.1"
 BUILD_NO="141.1903250"
 DOWNLOAD_DIR="$HOME/Downloads"
 
-# https://dl.google.com/dl/android/studio/ide-zips/1.2.1.1/android-studio-ide-141.1903250-linux.zip
-
 ZIP_FILE="$DOWNLOAD_DIR/android-studio-ide-$BUILD_NO-linux.zip"
 DEVELOPMENT_DIR=~/Development
-mkdir --parents ~/Development
+mkdir --parent ~/Development
 unzip $ZIP_FILE -d ~/Development
 
 #        To set up Android Studio on Linux:
