@@ -1,0 +1,52 @@
+* SDK Manager notes
+** May 17, 2015
+   1. Manifest Cache :: /home/troy/.android/cache
+   2. Six packages were selected for installation
+      1. Android TV ARM EABI v7a System Image
+      2. Android TV Intel x86 Atom System Image
+      3. ARM EABI v7a System Image
+      4. Intel x86 Atom_64 System Image
+      5. Intel x86 Atom System Image
+      6. Extras/Android Support Library
+   3. I deselected 4 of the packages, installed the following two:
+      1. 
+      2. 
+
+** Tools
+   | Tool                       |    Rev | Status    |
+   |----------------------------+--------+-----------|
+   | Android SDK Tools          |   24.2 | Installed |
+   | Android SDK Platform-tools |     22 | Installed |
+   | Android SDK Build-tools    | 22.0.1 | Installed |
+
+** Android 5.1.1 (API 22)
+   | Tool                                       | API | Rev | Status        |
+   |--------------------------------------------+-----+-----+---------------|
+   | Documentation for Android SDK              |  22 |   1 | Not installed |
+   | SDK Platform                               |  22 |   2 | Installed     |
+   | Samples for SDK                            |  22 |   5 | Not installed |
+   | Android TV ARM EABI v71 System Image       |  22 |   1 | Not installed |
+   | Android TV Intel x86 Atom System Image     |  22 |   1 | Not installed |
+   | Android EABI v7a System Image              |  22 |   1 | Not installed |
+   | Intel x86 Atom_64 System Image             |  22 |   1 | Not installed |
+   | Intel x86 Atom System Image                |  22 |   1 | Not installed |
+   | Google APIs                                |  22 |   1 | Installed     |
+   | Google APIs ARM EABI v7a System Image      |  22 |   1 | Not installed |
+   | Google APIs Intel x86 Atom_64 System Image |  22 |   1 | Not installed |
+   | Google APIs Intel x86 Atom System Image    |  22 |   1 | Installed     |
+   | Sources for Android SDK                    |  22 |   1 | Installed     |
+   
+** Extras
+   | Name                                            |    Rev | Status                    |
+   |-------------------------------------------------+--------+---------------------------|
+   | Android Support Repository                      |     14 | Installed                 |
+   | Android Support Library                         | 22.1.1 | Not installed             |
+   | Google Play services                            |     24 | Not installed             |
+   | Google Repository                               |     17 | Installed                 |
+   | Google Play APK Expansion Library               |      3 | Not installed             |
+   | Google Play Billing Library                     |      5 | Not installed             |
+   | Google Play Licensing Library                   |      2 | Not installed             |
+   | Android Auto API Simulators                     |      1 | Not installed             |
+   | Google USB Driver                               |     11 | Not compatible with Linux |
+   | Google Web Driver                               |      2 | Not installed             |
+   | Intel x86 Emulator Accelerator (HAXM installer) |    5.3 | Not compatible with Linux |
