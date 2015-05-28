@@ -1,5 +1,4 @@
 * INTRODUCTION
-
 * VERSION
   #+NAME: VERSION
   #+BEGIN_SRC sh
@@ -7,7 +6,6 @@
     BUILD_NO="141.1903250"
     DOWNLOAD_DIR="$HOME/Downloads"
   #+END_SRC
-
 * Step by Step
   1. [ ] Install Java
      #+BEGIN_SRC sh
@@ -53,7 +51,7 @@
        # You may want to add android-studio/bin/ to your PATH environmental variable so that you can start Android Studio from any directory.
        # Follow the links to install the SDK outside of the Android Studio directories.
      #+END_SRC
-  6. [ ] studio.sh
+  6. [ ] Run studio.sh
   7. [ ] http://developer.android.com/sdk/installing/index.html?pkg=studio
   8. [ ] add android-studio/bin/ to your PATH environmental variable
      
