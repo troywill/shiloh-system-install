@@ -1,0 +1,6 @@
+* Networking
+  1. Network controller: Broadcom Corporation BCM4352 802.11ac Wireless Network Adapter (rev 03)
+     1. https://wiki.archlinux.org/index.php/Broadcom_wireless
+     2. lspci -vnn | grep 14e4
+     3. 
+

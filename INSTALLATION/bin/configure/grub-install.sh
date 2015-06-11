@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEVICE=/dev/XXXX #change this as desired!
+DEVICE=/dev/sdX #change this as desired!
 exit
 modprobe dm-mod
 sleep 1

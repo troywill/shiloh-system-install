@@ -14,7 +14,7 @@
      #+END_SRC
   2. [ ] Read http://developer.android.com
   3. [ ] Select [[http://developer.android.com/sdk/index.html][Download Android Studio and SDK Tools]]
-  4. [ ] Download Android Studio for Linux with wget
+  4. [X] Download Android Studio for Linux with wget
      #+BEGIN_SRC sh :noweb yes :tangle bin/download-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
@@ -56,6 +56,8 @@
   8. [ ] add android-studio/bin/ to your PATH environmental variable
      
 * Author Notes <troydwill@gmail.com>
+** 2015-05-28
+   
 ** 2015-05-17
 *** Android Readout
 
@@ -144,12 +146,14 @@ Android virtual device Nexus_5_API_22_x86 was successfully created
 *** Clean Install
     #+BEGIN_SRC sh :tangle /tmp/clean-android.sh :shebang #!/usr/bin/bash
       set -o verbose
+      set -o nounset
       cd ~
-      rm -rf ~/.android
-      rm -rf ~/Android
-      rm -rf ~/.AndroidStudio1.2
-      rm -rf ~/AndroidStudioProjects
-      rm -rf ~/Development/android-studio
+      RM="rm -rvf"
+      ${RM} -rf ~/.android
+      ${RM} -rf ~/Android
+      ${RM} -rf ~/.AndroidStudio1.2
+      ${RM} -rf ~/AndroidStudioProjects
+      ${RM} -rf ~/Development/android-studio
     #+END_SRC
 ** Check http://tools.android.com/download/studio/stable for version
 ** Android Studio IDE download package

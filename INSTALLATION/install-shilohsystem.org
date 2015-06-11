@@ -9,7 +9,7 @@
    2. (Optional) Zero drive
       #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
 	set -o errexit
-	DEVICE="/dev/XXXX" # find DEVICE with /usr/bin/lsblk and edit this line
+	DEVICE="/dev/sdX" # find DEVICE with /usr/bin/lsblk and edit this line
         exit
 	BS="1M"
 	COUNT=4
@@ -38,7 +38,7 @@
       #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
-	LABEL="20150226" #change this!
+	LABEL="20150601" #change this!
 	DEVICE="/dev/sdxX" #change this!
 	mkfs.ext4 -v -L $LABEL $DEVICE
       #+END_SRC
@@ -91,7 +91,7 @@
 	XORG="xorg-server xorg-xinit xf86-video-intel xf86-input-synaptics"
 	XORG_FONTS="ttf-dejavu ttf-hannom"
 	WEB="chromium firefox"
-	KDE="kdebase-konsole gwenview kdebase-konqueror kdeedu-kstars kdebase-workspace"
+	KDE="konsole gwenview kdebase-konqueror kstars kdebase-workspace"
 	LXQT="openbox"
 	AUDIO="alsa-utils pulseaudio-alsa pavucontrol"
 	VIDEO="flashplugin youtube-dl smplayer"
@@ -106,29 +106,29 @@
 	mkdir --verbose pkg
 	ls -ld /mnt/var/cache/pacman/pkg
       #+end_src
-6. [ ]  Configure the system
-   1. [ ] Generate an /etc/fstab file
+6. [X]  Configure the system
+   1. [X] Generate an /etc/fstab file
       #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
         set -o verbose
         # if you prefer to use UUIDs or labels,
         # add the -U or -L option
         sudo genfstab -pU /mnt >> /mnt/etc/fstab
       #+END_SRC
-   2. [ ] copy shiloh-system to new root directory
+   2. [X] copy shiloh-system to new root directory
       #+BEGIN_SRC sh
           sudo cp --archive shiloh-system/ /mnt/root
       #+END_SRC
-   3. [ ] chroot into the newly installed system
+   3. [X] chroot into the newly installed system
       #+BEGIN_SRC sh
         sudo arch-chroot /mnt
       #+END_SRC
-   4. [ ] Write your hostname to /etc/hostname.
+   4. [X] Write your hostname to /etc/hostname.
       #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
         set -o nounset
         HOSTNAME="kangaroo" # change this!
         echo $HOSTNAME > /etc/hostname
       #+END_SRC
-   5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
+   5. [X] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
       - Replace Zone and Subzone to your liking. For Los_Angeles:
         #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
           set -o verbose
@@ -136,7 +136,7 @@
           ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
           ls -l /etc/localtime
         #+END_SRC   
-   6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+   6. [X] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
       #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
         set -o verbose
 
@@ -144,7 +144,7 @@
         echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
         cat /etc/locale.conf
       #+END_SRC
-   7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
+   7. [X] Uncomment en_US.UTF-8 in /etc/locale.gen
       #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
         use warnings;
         use strict;
@@ -164,27 +164,27 @@
         rename("/etc/locale.gen", "/etc/locale.gen.orig")   or die "can't rename /etc/locale.gen /etc/locale.gen.orig: $!";
         rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
       #+end_src
-   8. [ ] locale-gen
+   8. [X] locale-gen
        #+BEGIN_SRC sh
          locale-gen
        #+END_SRC
-   9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+   9. [X] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
       #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
         echo KEYMAP=us > /etc/vconsole.conf
       #+END_SRC
-   10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
+   10. [X] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
        #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
          set -o verbose
 
          mkinitcpio -p linux
        #+END_SRC
-7. [ ] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
-   1. [ ] READ https://wiki.archlinux.org/index.php/GRUB2
-   2. [ ] (Optional) Install osprober if Windows dual boot
+7. [X] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+   1. [X] READ https://wiki.archlinux.org/index.php/GRUB2
+   2. [X] (Optional) Install osprober if Windows dual boot
       #+begin_src sh
 	pacman --sync os-prober
       #+end_src
-   3. [ ] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
+   3. [X] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
       #+BEGIN_SRC sh :tangle bin/configure/grub-install.sh :shebang #!/bin/bash
 	DEVICE=/dev/sdX #change this as desired!
         exit
@@ -193,19 +193,19 @@
 	grub-install --target=i386-pc --recheck --debug $DEVICE
 	cp --verbose /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
       #+END_SRC
-   4. [ ] Generate GRUB2 BIOS Config file
+   4. [X] Generate GRUB2 BIOS Config file
       #+BEGIN_SRC sh :tangle bin/configure/grub-config.sh :shebang #!/bin/bash
         set -o verbose
 
 	grub-mkconfig -o /boot/grub/grub.cfg
       #+END_SRC
-8. [ ] Set a root password with passwd.
-9. [ ] Add a user
+8. [X] Set a root password with passwd.
+9. [X] Add a user
    #+BEGIN_SRC sh :tangle bin/configure/adduser.sh :shebang #!/bin/bash
      useradd -m -g users -s /bin/bash troy
      passwd troy
    #+END_SRC   
-10. [ ] Setup sudo
+10. [X] Setup sudo
     #+BEGIN_SRC perl :tangle bin/configure/sudo.pl :shebang #!/usr/bin/env perl
       use warnings;
       use strict;
