@@ -1,0 +1,17 @@
+* https://wiki.archlinux.org/index.php/Dell_XPS_13_(2015)
+* https://aur.archlinux.org/packages/broadcom-wl/
+* Unable to run mksdcard SDK tool.
+  1. https://wiki.archlinux.org/index.php/Multilib
+     1. uncomment the [multilib] section in /etc/pacman.conf
+	#+BEGIN_SRC conf
+          [multilib]
+          Include = /etc/pacman.d/mirrorlist
+	#+END_SRC
+  2. You can install lib32-* packages from the multilib repository.
+     #+BEGIN_SRC sh
+       sudo pacman -S lib32-glibc lib32-ncurses lib32-libstdc++5
+     #+END_SRC
+  3. https://wiki.archlinux.org/index.php/64-bit_FAQ#Can_I_run_32-bit_apps_inside_Arch64.3F
+     1. pacman -S gcc-multilib
+	
+	

@@ -4,8 +4,8 @@ set -o nounset
 set -o errexit
 set -o verbose
 
-VERSION="1.2.1.1"
-BUILD_NO="141.1903250"
+VERSION="1.2.2.0"
+BUILD_NO="141.1980579"
 DOWNLOAD_DIR="$HOME/Downloads"
 
 ZIP_FILE="$DOWNLOAD_DIR/android-studio-ide-$BUILD_NO-linux.zip"

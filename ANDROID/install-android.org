@@ -1,9 +1,10 @@
 * INTRODUCTION
 * VERSION
+  See http://tools.android.com/download/studio/canary/1-2-2
   #+NAME: VERSION
   #+BEGIN_SRC sh
-    VERSION="1.2.1.1"
-    BUILD_NO="141.1903250"
+    VERSION="1.2.2.0"
+    BUILD_NO="141.1980579"
     DOWNLOAD_DIR="$HOME/Downloads"
   #+END_SRC
 * Step by Step
@@ -14,15 +15,15 @@
      #+END_SRC
   2. [ ] Read http://developer.android.com
   3. [ ] Select [[http://developer.android.com/sdk/index.html][Download Android Studio and SDK Tools]]
-  4. [X] Download Android Studio for Linux with wget
+  4. [ ] Download Android Studio for Linux with wget
      #+BEGIN_SRC sh :noweb yes :tangle bin/download-android-studio.sh :shebang #!/bin/bash
        set -o nounset
        set -o errexit
        set -o verbose
 
        <<VERSION>>
-
-       ZIP_FILE="android-studio-ide-${BUILD_NO}-linux.zip"
+ 
+      ZIP_FILE="android-studio-ide-${BUILD_NO}-linux.zip"
        DOWNLOAD_URL="https://dl.google.com/android/studio/ide-zips/${VERSION}/${ZIP_FILE}"
 
        mkdir --parent ${DOWNLOAD_DIR}
