@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -o nounset
-set -o errexit
-cd /mnt
-mkdir --verbose --parent var/cache/pacman
-cd var/cache/pacman
-ln --symbolic --verbose /var/cache/pacman/pkg

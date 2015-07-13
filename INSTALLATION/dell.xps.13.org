@@ -1,5 +1,6 @@
 * https://wiki.archlinux.org/index.php/Dell_XPS_13_(2015)
 * https://aur.archlinux.org/packages/broadcom-wl/
+* https://aur.archlinux.org/packages/broadcom-wl-dkms/
 * Unable to run mksdcard SDK tool.
   1. https://wiki.archlinux.org/index.php/Multilib
      1. uncomment the [multilib] section in /etc/pacman.conf
@@ -15,3 +16,28 @@
      1. pacman -S gcc-multilib
 	
 	
+* Tangle /etc/X11/xorg.conf.d/50-synaptics.conf
+  #+BEGIN_SRC conf
+    Section "InputClass"
+        Identifier "touchpad"
+        Driver "synaptics"
+        MatchIsTouchpad "on"
+            # Enables Palm Detection to prevent bad clicks
+            # This seems to work on PS/2, but not on i2c
+            Option "PalmDetect" "1"
+            Option "PalmMinWidth" "8"
+            Option "PalmMinZ" "100"
+            # Enable clickpad support
+            Option "ClickPad" "true"
+            # Sets up soft buttons at the bottom
+            # First 40% - Left Button
+            # Middle 20% - Middle Button
+            # Right 40% - Right Button
+            Option "SoftButtonAreas" "60% 0 82% 0 40% 59% 82% 0"
+            # Disables Tap to click
+            Option "MaxTapTime" "0"
+            # Enable two finger scrolling
+            Option "VertTwoFingerScroll" "on"
+            Option "HorizTwoFingerScroll" "on"
+    EndSection  
+  #+END_SRC

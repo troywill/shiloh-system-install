@@ -9,7 +9,7 @@
    2. (Optional) Zero drive
       #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
 	set -o errexit
-	DEVICE="/dev/sdX" # find DEVICE with /usr/bin/lsblk and edit this line
+	DEVICE="/dev/sdb" # find DEVICE with /usr/bin/lsblk and edit this line
         exit
 	BS="1M"
 	COUNT=4
@@ -18,35 +18,39 @@
       #+END_SRC
    3. [ ] Create a GUID partition table with parted
       #+BEGIN_SRC sh
-	parted /dev/sdX
+	parted /dev/sdb
 	mklabel gpt
       #+END_SRC
-   4. [ ] Create a boot partition with parted
+   4. [ ] Create an EFI partition with parted
       #+BEGIN_SRC sh
-        mkpart primary 1 2
-        set 1 bios_grub on
+        mkpart ESP fat32 1MiB 513MiB 
+        set 1 boot on
       #+END_SRC
    5. [ ] Create a root partition with parted
       #+BEGIN_SRC sh
-	mkpart primary 2 8011
+	mkpart primary ext4 513MiB 100%
       #+END_SRC
-   6. [ ] Verify partition
-      #+BEGIN_SRC sh
-	print
-      #+END_SRC
+   6. [ ] Format the boot partition: mkfs.vfat -F32 /dev/sdb1
    7. [ ] Format the root partition
-      #+BEGIN_SRC sh :tangle bin/partition/format-the-partion.sh :shebang #!/bin/bash
+      #+BEGIN_SRC sh :tangle bin/partition/format-the-root-partion.sh :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
-	LABEL="20150601" #change this!
-	DEVICE="/dev/sdxX" #change this!
+	LABEL="20150712" #change this!
+	DEVICE="/dev/sdb2" #change this!
+        exit
 	mkfs.ext4 -v -L $LABEL $DEVICE
       #+END_SRC
-4. [ ] Mount the partition
-   #+BEGIN_SRC sh
-     sudo mount /dev/sdxX /mnt
-   #+END_SRC
-5. [ ] Install the base system
+4. [ ] Mount the partitions
+   1. [ ] Mount the root partition
+      #+BEGIN_SRC sh
+        sudo mount /dev/sdb2 /mnt
+      #+END_SRC
+   2. [ ] Mount the boot partition
+      #+BEGIN_SRC sh
+        mkdir -p /mnt/boot
+        mount /dev/sdb1 /mnt/boot
+      #+END_SRC
+5. [ ] Install the system
    1. [ ] Install arch-install-scripts
       #+begin_src sh
 	sudo pacman --sync arch-install-scripts
@@ -57,14 +61,6 @@
 	set -o errexit
 	sudo mkdir --verbose --parent /mnt/var/cache/pacman/pkg
 	sudo rsync --archive --progress --verbose /var/cache/pacman/pkg/* /mnt/var/cache/pacman/pkg
-      #+end_src
-      #+begin_src sh :tangle bin/optional/link-existing-pkg-cache :shebang #!/bin/bash
-	set -o nounset
-	set -o errexit
-	cd /mnt
-	mkdir --verbose --parent var/cache/pacman
-	cd var/cache/pacman
-	ln --symbolic --verbose /var/cache/pacman/pkg
       #+end_src
    3. [ ] Install packages with pacstap
       Before installing, you may want to edit /etc/pacman.d/mirrorlist such that your
@@ -80,11 +76,12 @@
       #+BEGIN_SRC sh :tangle bin/pacstrap.sh :shebang #!/bin/bash
 	set -o errexit
 	set -o nounset
-	# February 26, 2015
-	# INSTALL="grub-bios os-prober arch-install-scripts parted linux-lts"
-	INSTALL="grub-bios os-prober arch-install-scripts parted"
+	# July 12, 2015
+	# INSTALL="grub os-prober arch-install-scripts parted linux-lts"
+	INSTALL="grub os-prober arch-install-scripts parted"
 	DEVEL="base-devel git stow cmake"
 	SYSTEM="ntp openssh rsync screen sudo wget pkgfile abs"
+	SYSTEM="openssh rsync screen sudo wget pkgfile abs"
 	EMACS="emacs"
 	TEX="texlive-core texlive-latexextra"
 	WIRELESS="wireless_tools wpa_supplicant"
@@ -92,43 +89,36 @@
 	XORG_FONTS="ttf-dejavu ttf-hannom"
 	WEB="chromium firefox"
 	KDE="konsole gwenview kdebase-konqueror kstars kdebase-workspace"
-	LXQT="openbox"
+	# LXQT="openbox"
 	AUDIO="alsa-utils pulseaudio-alsa pavucontrol"
 	VIDEO="flashplugin youtube-dl smplayer"
-	pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $LXQT $AUDIO $VIDEO $XORG_FONTS
+	VIDEO="youtube-dl smplayer"
+	# pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $LXQT $AUDIO $VIDEO $XORG_FONTS
+	pacstrap /mnt base $INSTALL $DEVEL $SYSTEM $EMACS $WIRELESS $XORG $WEB $KDE $AUDIO $VIDEO $XORG_FONTS
       #+END_SRC  
-   4. (Optional) Remove symbolic link, and restore pacman pkg directory
-      #+begin_src sh :tangle bin/optional/remove-link-to-pkg-cache-remove :shebang #!/bin/bash
-	set -o nounset
-	set -o errexit
-	cd /mnt/var/cache/pacman
-	unlink pkg
-	mkdir --verbose pkg
-	ls -ld /mnt/var/cache/pacman/pkg
-      #+end_src
-6. [X]  Configure the system
-   1. [X] Generate an /etc/fstab file
+6. [ ] Configure the system
+   1. [ ] Generate an /etc/fstab file
       #+BEGIN_SRC sh :tangle bin/configure/fstab.sh :shebang #!/bin/bash
         set -o verbose
         # if you prefer to use UUIDs or labels,
         # add the -U or -L option
         sudo genfstab -pU /mnt >> /mnt/etc/fstab
       #+END_SRC
-   2. [X] copy shiloh-system to new root directory
+   2. [ ] copy shiloh-system to new root directory
       #+BEGIN_SRC sh
           sudo cp --archive shiloh-system/ /mnt/root
       #+END_SRC
-   3. [X] chroot into the newly installed system
+   3. [ ] chroot into the newly installed system
       #+BEGIN_SRC sh
         sudo arch-chroot /mnt
       #+END_SRC
-   4. [X] Write your hostname to /etc/hostname.
+   4. [ ] Write your hostname to /etc/hostname.
       #+BEGIN_SRC sh :tangle bin/configure/hostname.sh :shebang #!/bin/bash
         set -o nounset
         HOSTNAME="kangaroo" # change this!
         echo $HOSTNAME > /etc/hostname
       #+END_SRC
-   5. [X] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
+   5. [ ] Symlink /etc/localtime to /usr/share/zoneinfo/Zone/SubZone.
       - Replace Zone and Subzone to your liking. For Los_Angeles:
         #+BEGIN_SRC sh :tangle bin/configure/timezone.sh :shebang #!/bin/bash
           set -o verbose
@@ -136,7 +126,7 @@
           ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
           ls -l /etc/localtime
         #+END_SRC   
-   6. [X] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
+   6. [ ] Set [[https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale][locale]] preferences in /etc/locale.conf
       #+BEGIN_SRC sh :tangle bin/configure/locale.sh :shebang #!/bin/bash
         set -o verbose
 
@@ -144,7 +134,7 @@
         echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
         cat /etc/locale.conf
       #+END_SRC
-   7. [X] Uncomment en_US.UTF-8 in /etc/locale.gen
+   7. [ ] Uncomment en_US.UTF-8 in /etc/locale.gen
       #+begin_src perl :tangle bin/configure/locale-gen.pl :shebang #!/usr/bin/env perl
         use warnings;
         use strict;
@@ -164,27 +154,28 @@
         rename("/etc/locale.gen", "/etc/locale.gen.orig")   or die "can't rename /etc/locale.gen /etc/locale.gen.orig: $!";
         rename("/etc/locale.gen.tmp", "/etc/locale.gen") or die "can't rename /etc/locale.gen.tmp /etc/locale.gen: $!";
       #+end_src
-   8. [X] locale-gen
+   8. [ ] locale-gen
        #+BEGIN_SRC sh
          locale-gen
        #+END_SRC
-   9. [X] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
+   9. [ ] Add [[https://wiki.archlinux.org/index.php/KEYMAP][console keymap and font]] preferences in /etc/vconsole.conf
       #+BEGIN_SRC sh :tangle bin/configure/vconsole.sh :shebang #!/bin/bash
         echo KEYMAP=us > /etc/vconsole.conf
       #+END_SRC
-   10. [X] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
+   10. [ ] Configure /etc/mkinitcpio.conf as needed (see [[mkinitcpio]]) and create an initial RAM disk
        #+BEGIN_SRC sh :tangle bin/configure/mkinitcpio.sh :shebang #!/bin/bash
          set -o verbose
 
          mkinitcpio -p linux
        #+END_SRC
-7. [X] Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
-   1. [X] READ https://wiki.archlinux.org/index.php/GRUB2
-   2. [X] (Optional) Install osprober if Windows dual boot
+7. SKIP TO NEXT SECTION Configure the bootloader: refer back to the appropriate article from the bootloader installation section.
+   1. [ ] pacman --sync grub efibootmgr
+   2. (Optional) READ https://wiki.archlinux.org/index.php/GRUB2
+   3. (Optional) Install osprober if Windows dual boot
       #+begin_src sh
 	pacman --sync os-prober
       #+end_src
-   3. [X] run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
+   4. DELETE run grub-install to cp grub boot files and optionally install to 440-byte MBR boot code region
       #+BEGIN_SRC sh :tangle bin/configure/grub-install.sh :shebang #!/bin/bash
 	DEVICE=/dev/sdX #change this as desired!
         exit
@@ -193,19 +184,44 @@
 	grub-install --target=i386-pc --recheck --debug $DEVICE
 	cp --verbose /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
       #+END_SRC
-   4. [X] Generate GRUB2 BIOS Config file
+   5. grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
+   6. grub-mkconfig -o /boot/grub/grub.cfg
+   7. DELETE Generate GRUB2 BIOS Config file
       #+BEGIN_SRC sh :tangle bin/configure/grub-config.sh :shebang #!/bin/bash
         set -o verbose
 
 	grub-mkconfig -o /boot/grub/grub.cfg
       #+END_SRC
-8. [X] Set a root password with passwd.
-9. [X] Add a user
-   #+BEGIN_SRC sh :tangle bin/configure/adduser.sh :shebang #!/bin/bash
-     useradd -m -g users -s /bin/bash troy
-     passwd troy
-   #+END_SRC   
-10. [X] Setup sudo
+8. [ ] https://wiki.archlinux.org/index.php/Systemd-boot
+   1. [ ] Install
+      #+BEGIN_SRC sh
+        bootctl --path=/boot install
+      #+END_SRC
+   2. [ ] file:/mnt/boot/loader/loader.conf
+      #+BEGIN_SRC sh
+        #timeout 3
+        #default e7a68106fb4a4eb3b9608aebd437de41-*
+        default arch
+        timeout 10
+      #+END_SRC
+   3. [ ] sudo blkid -s PARTUUID -o value /dev/sdb2
+      #+BEGIN_SRC sh
+        9930d7be-0f3e-4ddb-9b4d-422e2e94f407
+      #+END_SRC
+   4. [ ] file:/mnt/boot/loader/entries/arch.conf
+      #+BEGIN_SRC sh
+        title          Shiloh GNU/Linux
+        linux          /vmlinuz-linux
+        initrd         /initramfs-linux.img
+        options        root=PARTUUID=9930d7be-0f3e-4ddb-9b4d-422e2e94f407 rw
+      #+END_SRC
+9. [ ] Set a root password with passwd.
+10. [ ] Add a user
+    #+BEGIN_SRC sh :tangle bin/configure/adduser.sh :shebang #!/bin/bash
+      useradd -m -g users -s /bin/bash troy
+      passwd troy
+    #+END_SRC   
+11. [ ] Setup sudo
     #+BEGIN_SRC perl :tangle bin/configure/sudo.pl :shebang #!/usr/bin/env perl
       use warnings;
       use strict;
@@ -230,7 +246,7 @@
           system $command;
       }
     #+END_SRC
-11. [ ] Unmount and reboot
+12. [ ] Unmount and reboot
     If you are still in the chroot environment type exit or press Ctrl+D in order to exit.
     Earlier we mounted the partitions under /mnt. In this step we will unmount them:
     #+BEGIN_SRC sh

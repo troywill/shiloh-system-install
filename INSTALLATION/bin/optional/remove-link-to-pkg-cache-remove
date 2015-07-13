@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -o nounset
-set -o errexit
-cd /mnt/var/cache/pacman
-unlink pkg
-mkdir --verbose pkg
-ls -ld /mnt/var/cache/pacman/pkg
