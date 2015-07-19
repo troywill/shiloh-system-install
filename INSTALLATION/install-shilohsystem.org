@@ -7,31 +7,41 @@
         lsblk
       #+END_SRC
    2. (Optional) Zero drive
-      #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/bin/bash
+      #+BEGIN_SRC sh :tangle bin/partition/zero-the-drive.sh :shebang #!/usr/bin/bash
 	set -o errexit
-	DEVICE="/dev/sdb" # find DEVICE with /usr/bin/lsblk and edit this line
-        exit
+        set -o nounset
+        set -o verbose
+
+	DEVICE="/dev/sda" # find DEVICE with /usr/bin/lsblk and edit this line
 	BS="1M"
 	COUNT=4
+        # exit
 	dd if=${DEVICE} of=SECTOR bs=$BS count=$COUNT
 	dd if=/dev/zero of=${DEVICE} bs=$BS count=$COUNT
+
+        dd if=${DEVICE} bs=1M count=$COUNT | hexdump -C
+
+
+        # Create a GUID partition table with parted
+        parted --script ${DEVICE} mklabel gpt
+        dd if=${DEVICE} bs=1M count=$COUNT | hexdump -C
+
+
+        # Create an EFI partition with parted
+        parted --script ${DEVICE} mkpart ESP fat32 1MiB 513MiB set 1 boot on
+
+        # Format the boot partition 
+        mkfs.vfat -F32 ${DEVICE}1
+
+        # Create a root partition with parted
+        parted --script ${DEVICE} mkpart primary ext4 513MiB 50%
+
+        # Format the root partition
+	LABEL="20150718" #change this!
+	mkfs.ext4 -v -L $LABEL ${DEVICE}2
+        
       #+END_SRC
-   3. [ ] Create a GUID partition table with parted
-      #+BEGIN_SRC sh
-	parted /dev/sdb
-	mklabel gpt
-      #+END_SRC
-   4. [ ] Create an EFI partition with parted
-      #+BEGIN_SRC sh
-        mkpart ESP fat32 1MiB 513MiB 
-        set 1 boot on
-      #+END_SRC
-   5. [ ] Create a root partition with parted
-      #+BEGIN_SRC sh
-	mkpart primary ext4 513MiB 100%
-      #+END_SRC
-   6. [ ] Format the boot partition: mkfs.vfat -F32 /dev/sdb1
-   7. [ ] Format the root partition
+   3. [ ] 
       #+BEGIN_SRC sh :tangle bin/partition/format-the-root-partion.sh :shebang #!/bin/bash
 	set -o nounset
 	set -o errexit
@@ -271,17 +281,17 @@ Your new Arch Linux base system is now a functional GNU/Linux environment: you c
 * Bootloader documentation
 * Networking
 ** wpa
-#+BEGIN_SRC sh :tangle NETWORKING/generate-wpa-config.sh :shebang #!/bin/bash
-set -o errexit
-set -o nounset
-SSID="my_ssid"
-PASSPHRASE="my_passphrase"
+   #+BEGIN_SRC sh :tangle NETWORKING/generate-wpa-config.sh :shebang #!/bin/bash
+     set -o errexit
+     set -o nounset
+     SSID="my_ssid"
+     PASSPHRASE="my_passphrase"
 
-wpa_passphrase $SSID $PASSPHRASE >> wpa_supplicant.conf
-#+END_SRC
-#+BEGIN_SRC sh :tangle NETWORKING/wpa_supplicant.sh :shebang #!/bin/bash 
-set -o nounset
-INTERFACE='wlp1s0'
-sudo wpa_supplicant -B -i${INTERFACE} -c ./wpa_supplicant.conf 
-sudo dhcpcd ${INTERFACE}
-#+END_SRC
+     wpa_passphrase $SSID $PASSPHRASE >> wpa_supplicant.conf
+   #+END_SRC
+   #+BEGIN_SRC sh :tangle NETWORKING/wpa_supplicant.sh :shebang #!/bin/bash 
+     set -o nounset
+     INTERFACE='wlp1s0'
+     sudo wpa_supplicant -B -i${INTERFACE} -c ./wpa_supplicant.conf 
+     sudo dhcpcd ${INTERFACE}
+   #+END_SRC
